@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: c7bdabab45ab92df22ce1c2dcb7c4b3177e47553
-          fetch-depth: 3
+          ref: 18405d2db8b6fafeb7856f7847e970277885825f
+          fetch-depth: 4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -29,7 +29,7 @@ jobs:
           python -m pip freeze > installed-dependencies.txt
       - name: Verify exact production commit and native tests
         run: |
-          test "$(git rev-parse HEAD)" = "c7bdabab45ab92df22ce1c2dcb7c4b3177e47553"
+          test "$(git rev-parse HEAD)" = "18405d2db8b6fafeb7856f7847e970277885825f"
           python -m pytest tests/tests_pytorch/core/test_optimizer_toggle_cleanup.py tests/tests_pytorch/core/test_lightning_optimizer.py -q --junitxml=patched.xml
       - name: Check same regressions against original source
         run: |
