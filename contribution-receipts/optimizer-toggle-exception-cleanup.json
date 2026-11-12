@@ -1,0 +1,59 @@
+{
+  "repository": "Lightning-AI/pytorch-lightning",
+  "stars": 31449,
+  "title": "Restore optimizer parameter flags after toggle_model exceptions",
+  "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+  "branch": "fix/optimizer-toggle-exception-cleanup-20261112",
+  "commit": "18405d2db8b6fafeb7856f7847e970277885825f",
+  "tree": "26d2badf2808908d56ea602e9febe814d8da04b7",
+  "commit_url": "https://github.com/Afloat16/pytorch-lightning/commit/18405d2db8b6fafeb7856f7847e970277885825f",
+  "issue_url": "https://github.com/Lightning-AI/pytorch-lightning/issues/22164",
+  "body": "Fixes #22164.\n\n## Problem\n\nIf a forward pass, optimizer closure or user operation raises inside `LightningOptimizer.toggle_model()`, the context exits before `untoggle_optimizer()` runs. Parameters belonging to another optimizer remain frozen, so catching the first error is not enough to recover: the next valid loss can have no gradient function and its backward call fails.\n\n## Changes\n\nRun the existing `untoggle_optimizer()` call in a `finally` block. The same module hooks still perform the toggle and restore, within the existing synchronization context. Successful execution keeps its existing behavior, while exceptions restore shared and initially frozen parameter flags before propagating.\n\n## Validation\n\nBase: `84df182f50ab34301aabb3c0eb4031815bfb413d`.\nTested production commit: `18405d2db8b6fafeb7856f7847e970277885825f`.\n\n- The identical 20 new native cases on the unchanged base: **20 failed**, all at the parameter-restoration assertions, with no collection errors or skips. After the fix: **20 passed**.\n- New cases plus all existing `test_lightning_optimizer.py` cases: **30 passed**.\n- Real CPU `Trainer.fit` runs compare two-optimizer training after a caught forward/closure failure with an otherwise identical uninterrupted reference, for SGD and Adam, shared/unshared parameters and both `sync_grad` values. Losses, every recorded gradient, final model weights, optimizer state and the eight completed optimizer steps match exactly.\n- Separate cases preserve the original exception object for both `ValueError` and `KeyboardInterrupt` and verify that toggle bookkeeping is cleared.\n- Ruff 0.15.9 lint, the repository's preview formatter and `git diff --check` passed.\n\nThe [native CPU validation run](https://github.com/Afloat16/pytorch-lightning/actions/runs/43303213881) checks out the exact production SHA, runs the normal repository conftest, then restores only the original source file to run the same regression tests against the base.\n\n```bash\npython -m pytest tests/tests_pytorch/core/test_optimizer_toggle_cleanup.py tests/tests_pytorch/core/test_lightning_optimizer.py -q\n```\n\nUbuntu/Python 3.12.16, PyTorch 2.9.1+cpu. GPU/distributed execution and the complete repository suite were not run. The synchronization-context nesting is preserved; the new cases do not claim a distributed execution test. The separate validation workflow is only on a fork validation branch and is not included in this PR.\n\n## Submission notes\n\n- [x] Reproduction reported in #22164.\n- [x] Read the contributor guidance and checked related work.\n- [x] Added native regression tests and ran existing related tests.\n- [ ] Add the required changelog entry with this PR's number after creation.\n\nRelated #20771 adds a `LightningModule.toggled_optimizer()` context manager; its patch does not update this optimizer-wrapper context. #22144 changes parameter-toggle bookkeeping, and #12088 addresses single-optimizer handling. None adds exceptional-exit cleanup here.\n",
+  "validation": {
+    "new_before": {
+      "failed": 20,
+      "passed": 0
+    },
+    "new_after": {
+      "passed": 20
+    },
+    "related_after": {
+      "passed": 30
+    },
+    "run_url": "https://github.com/Afloat16/pytorch-lightning/actions/runs/43303213881",
+    "job_id": 131479568273,
+    "environment": "Python 3.12.16 / PyTorch 2.9.1+cpu / Ubuntu native runner",
+    "limits": "No GPU/distributed or full repository suite.",
+    "style": "Ruff 0.15.9 lint and format plus git diff --check pass"
+  },
+  "pr_created": false,
+  "merged_at": null,
+  "status": "validated_branch_prefilled_pr",
+  "prefilled_url": "https://github.com/Lightning-AI/pytorch-lightning/compare/master...Afloat16:pytorch-lightning:fix/optimizer-toggle-exception-cleanup-20261112?expand=1&title=Restore%20optimizer%20parameter%20flags%20after%20toggle_model%20exceptions&body=Fixes%20%2322164.%0A%0A%23%23%20Problem%0A%0AIf%20a%20forward%20pass%2C%20optimizer%20closure%20or%20user%20operation%20raises%20inside%20%60LightningOptimizer.toggle_model()%60%2C%20the%20context%20exits%20before%20%60untoggle_optimizer()%60%20runs.%20Parameters%20belonging%20to%20another%20optimizer%20remain%20frozen%2C%20so%20catching%20the%20first%20error%20is%20not%20enough%20to%20recover%3A%20the%20next%20valid%20loss%20can%20have%20no%20gradient%20function%20and%20its%20backward%20call%20fails.%0A%0A%23%23%20Changes%0A%0ARun%20the%20existing%20%60untoggle_optimizer()%60%20call%20in%20a%20%60finally%60%20block.%20The%20same%20module%20hooks%20still%20perform%20the%20toggle%20and%20restore%2C%20within%20the%20existing%20synchronization%20context.%20Successful%20execution%20keeps%20its%20existing%20behavior%2C%20while%20exceptions%20restore%20shared%20and%20initially%20frozen%20parameter%20flags%20before%20propagating.%0A%0A%23%23%20Validation%0A%0ABase%3A%20%6084df182f50ab34301aabb3c0eb4031815bfb413d%60.%0ATested%20production%20commit%3A%20%6018405d2db8b6fafeb7856f7847e970277885825f%60.%0A%0A-%20The%20identical%2020%20new%20native%20cases%20on%20the%20unchanged%20base%3A%20**20%20failed**%2C%20all%20at%20the%20parameter-restoration%20assertions%2C%20with%20no%20collection%20errors%20or%20skips.%20After%20the%20fix%3A%20**20%20passed**.%0A-%20New%20cases%20plus%20all%20existing%20%60test_lightning_optimizer.py%60%20cases%3A%20**30%20passed**.%0A-%20Real%20CPU%20%60Trainer.fit%60%20runs%20compare%20two-optimizer%20training%20after%20a%20caught%20forward%2Fclosure%20failure%20with%20an%20otherwise%20identical%20uninterrupted%20reference%2C%20for%20SGD%20and%20Adam%2C%20shared%2Funshared%20parameters%20and%20both%20%60sync_grad%60%20values.%20Losses%2C%20every%20recorded%20gradient%2C%20final%20model%20weights%2C%20optimizer%20state%20and%20the%20eight%20completed%20optimizer%20steps%20match%20exactly.%0A-%20Separate%20cases%20preserve%20the%20original%20exception%20object%20for%20both%20%60ValueError%60%20and%20%60KeyboardInterrupt%60%20and%20verify%20that%20toggle%20bookkeeping%20is%20cleared.%0A-%20Ruff%200.15.9%20lint%2C%20the%20repository's%20preview%20formatter%20and%20%60git%20diff%20--check%60%20passed.%0A%0AThe%20%5Bnative%20CPU%20validation%20run%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fpytorch-lightning%2Factions%2Fruns%2F43303213881)%20checks%20out%20the%20exact%20production%20SHA%2C%20runs%20the%20normal%20repository%20conftest%2C%20then%20restores%20only%20the%20original%20source%20file%20to%20run%20the%20same%20regression%20tests%20against%20the%20base.%0A%0A%60%60%60bash%0Apython%20-m%20pytest%20tests%2Ftests_pytorch%2Fcore%2Ftest_optimizer_toggle_cleanup.py%20tests%2Ftests_pytorch%2Fcore%2Ftest_lightning_optimizer.py%20-q%0A%60%60%60%0A%0AUbuntu%2FPython%203.12.16%2C%20PyTorch%202.9.1%2Bcpu.%20GPU%2Fdistributed%20execution%20and%20the%20complete%20repository%20suite%20were%20not%20run.%20The%20synchronization-context%20nesting%20is%20preserved%3B%20the%20new%20cases%20do%20not%20claim%20a%20distributed%20execution%20test.%20The%20separate%20validation%20workflow%20is%20only%20on%20a%20fork%20validation%20branch%20and%20is%20not%20included%20in%20this%20PR.%0A%0A%23%23%20Submission%20notes%0A%0A-%20%5Bx%5D%20Reproduction%20reported%20in%20%2322164.%0A-%20%5Bx%5D%20Read%20the%20contributor%20guidance%20and%20checked%20related%20work.%0A-%20%5Bx%5D%20Added%20native%20regression%20tests%20and%20ran%20existing%20related%20tests.%0A-%20%5B%20%5D%20Add%20the%20required%20changelog%20entry%20with%20this%20PR's%20number%20after%20creation.%0A%0ARelated%20%2320771%20adds%20a%20%60LightningModule.toggled_optimizer()%60%20context%20manager%3B%20its%20patch%20does%20not%20update%20this%20optimizer-wrapper%20context.%20%2322144%20changes%20parameter-toggle%20bookkeeping%2C%20and%20%2312088%20addresses%20single-optimizer%20handling.%20None%20adds%20exceptional-exit%20cleanup%20here.%0A",
+  "pr_creation_error": {
+    "status": 403,
+    "message": "Resource not accessible by integration"
+  },
+  "peer_review": {
+    "reviewer": "independent implementation review",
+    "result": "No blocking issue found; tests independently inspected",
+    "scope": "Exception cleanup semantics and all 20 native regression cases"
+  },
+  "deduplication": {
+    "upstream_all_state_queries": [
+      "toggle_model",
+      "toggled_optimizer",
+      "toggle exception",
+      "requires_grad restore"
+    ],
+    "actual_related_patches_checked": [
+      20771,
+      22144,
+      5771,
+      12088
+    ],
+    "fork_branches_checked_before_change": 5,
+    "duplicate_found": false
+  },
+  "changelog_pending_pr_number": true
+}
