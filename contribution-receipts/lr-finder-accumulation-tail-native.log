@@ -1,0 +1,1204 @@
+﻿2026-11-13T10:42:00.1919056Z Current runner version: '2.338.2'
+2026-11-13T10:42:00.1936706Z ##[group]Runner Image Provisioner
+2026-11-13T10:42:00.1937662Z Hosted Compute Agent
+2026-11-13T10:42:00.1938131Z Version: 20261103.629
+2026-11-13T10:42:00.1938705Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-13T10:42:00.1939306Z Build Date: 2026-11-03T17:26:59Z
+2026-11-13T10:42:00.1939941Z Worker ID: {cfe4e382-2eb1-4c11-aa3e-2cedf86ec9e5}
+2026-11-13T10:42:00.1940523Z Region: westus3
+2026-11-13T10:42:00.1940959Z Cloud: Azure
+2026-11-13T10:42:00.1941425Z ##[endgroup]
+2026-11-13T10:42:00.1942508Z ##[group]Operating System
+2026-11-13T10:42:00.1943034Z Ubuntu
+2026-11-13T10:42:00.1943473Z 24.04.5
+2026-11-13T10:42:00.1943888Z LTS
+2026-11-13T10:42:00.1944323Z ##[endgroup]
+2026-11-13T10:42:00.1944837Z ##[group]Runner Image
+2026-11-13T10:42:00.1945402Z Image: ubuntu-24.04
+2026-11-13T10:42:00.1945877Z Version: 20261111.370.1
+2026-11-13T10:42:00.1947451Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T10:42:00.1948755Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-13T10:42:00.1949525Z ##[endgroup]
+2026-11-13T10:42:00.1950450Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T10:42:00.1952198Z Contents: read
+2026-11-13T10:42:00.1952677Z Metadata: read
+2026-11-13T10:42:00.1953151Z ##[endgroup]
+2026-11-13T10:42:00.1954873Z Secret source: Actions
+2026-11-13T10:42:00.1955639Z Cache mode: write
+2026-11-13T10:42:00.1956202Z Prepare workflow directory
+2026-11-13T10:42:00.2280043Z Prepare all required actions
+2026-11-13T10:42:00.2327422Z Getting action download info
+2026-11-13T10:42:00.5359786Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T10:42:00.6448890Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T10:42:00.7502423Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+2026-11-13T10:42:01.5269021Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T10:42:01.8178432Z Complete job name: native-cpu
+2026-11-13T10:42:01.9026469Z ##[group]Run actions/checkout@v4
+2026-11-13T10:42:01.9028208Z with:
+2026-11-13T10:42:01.9029075Z   fetch-depth: 4
+2026-11-13T10:42:01.9029992Z   repository: Afloat16/pytorch-lightning
+2026-11-13T10:42:01.9038098Z   token: ***
+2026-11-13T10:42:01.9039000Z   ssh-strict: true
+2026-11-13T10:42:01.9039848Z   ssh-user: git
+2026-11-13T10:42:01.9040702Z   persist-credentials: true
+2026-11-13T10:42:01.9041646Z   clean: true
+2026-11-13T10:42:01.9042505Z   sparse-checkout-cone-mode: true
+2026-11-13T10:42:01.9043525Z   fetch-tags: false
+2026-11-13T10:42:01.9044370Z   show-progress: true
+2026-11-13T10:42:01.9045210Z   lfs: false
+2026-11-13T10:42:01.9046112Z   submodules: false
+2026-11-13T10:42:01.9047128Z   set-safe-directory: true
+2026-11-13T10:42:01.9048443Z   allow-unsafe-pr-checkout: false
+2026-11-13T10:42:01.9049749Z env:
+2026-11-13T10:42:01.9050520Z   PYTHONPATH: src:tests
+2026-11-13T10:42:01.9051464Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:01.9052323Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:01.9053285Z ##[endgroup]
+2026-11-13T10:42:02.1096704Z Syncing repository: Afloat16/pytorch-lightning
+2026-11-13T10:42:02.1099553Z ##[group]Getting Git version info
+2026-11-13T10:42:02.1101069Z Working directory is '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T10:42:02.1103037Z [command]/usr/bin/git version
+2026-11-13T10:42:02.1148467Z git version 2.56.1
+2026-11-13T10:42:02.1172157Z ##[endgroup]
+2026-11-13T10:42:02.1180892Z Temporarily overriding HOME='/home/runner/work/_temp/c0594792-d03d-4b0a-8193-7b590d2f1a4c' before making global git config changes
+2026-11-13T10:42:02.1184910Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T10:42:02.1188320Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:42:02.1216751Z Deleting the contents of '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T10:42:02.1221342Z ##[group]Initializing the repository
+2026-11-13T10:42:02.1224094Z [command]/usr/bin/git init /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:42:02.1304740Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T10:42:02.1308423Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T10:42:02.1311292Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T10:42:02.1313698Z hint: call:
+2026-11-13T10:42:02.1314984Z hint:
+2026-11-13T10:42:02.1318139Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T10:42:02.1320723Z hint:
+2026-11-13T10:42:02.1323197Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T10:42:02.1326309Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T10:42:02.1328905Z hint:
+2026-11-13T10:42:02.1330185Z hint: 	git branch -m <name>
+2026-11-13T10:42:02.1331529Z hint:
+2026-11-13T10:42:02.1333250Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T10:42:02.1336376Z Initialized empty Git repository in /home/runner/work/pytorch-lightning/pytorch-lightning/.git/
+2026-11-13T10:42:02.1341502Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:42:02.1356686Z ##[endgroup]
+2026-11-13T10:42:02.1358966Z ##[group]Disabling automatic garbage collection
+2026-11-13T10:42:02.1360789Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T10:42:02.1391713Z ##[endgroup]
+2026-11-13T10:42:02.1393622Z ##[group]Setting up auth
+2026-11-13T10:42:02.1397213Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T10:42:02.1425440Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T10:42:02.1771525Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T10:42:02.1808429Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T10:42:02.2002508Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T10:42:02.2032926Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T10:42:02.2197483Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T10:42:02.2229014Z ##[endgroup]
+2026-11-13T10:42:02.2230574Z ##[group]Fetching the repository
+2026-11-13T10:42:02.2239894Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=4 origin +65e3cee3f023ab59b0eb8cdf7cde73d5bc1e1229:refs/remotes/origin/validation/lr-finder-accumulation-tail-20261113
+2026-11-13T10:42:03.7609704Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:42:03.7611363Z  * [new ref]         65e3cee3f023ab59b0eb8cdf7cde73d5bc1e1229 -> origin/validation/lr-finder-accumulation-tail-20261113
+2026-11-13T10:42:03.7614165Z ##[endgroup]
+2026-11-13T10:42:03.7615048Z ##[group]Determining the checkout info
+2026-11-13T10:42:03.7617557Z ##[endgroup]
+2026-11-13T10:42:03.7624035Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T10:42:03.7676551Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T10:42:03.7702428Z ##[group]Checking out the ref
+2026-11-13T10:42:03.7707176Z [command]/usr/bin/git checkout --progress --force -B validation/lr-finder-accumulation-tail-20261113 refs/remotes/origin/validation/lr-finder-accumulation-tail-20261113
+2026-11-13T10:42:03.8909757Z Switched to a new branch 'validation/lr-finder-accumulation-tail-20261113'
+2026-11-13T10:42:03.8914913Z branch 'validation/lr-finder-accumulation-tail-20261113' set up to track 'origin/validation/lr-finder-accumulation-tail-20261113'.
+2026-11-13T10:42:03.8920075Z ##[endgroup]
+2026-11-13T10:42:03.8953695Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T10:42:03.8973557Z 65e3cee3f023ab59b0eb8cdf7cde73d5bc1e1229
+2026-11-13T10:42:03.9191616Z ##[group]Run actions/setup-python@v5
+2026-11-13T10:42:03.9191937Z with:
+2026-11-13T10:42:03.9192168Z   python-version: 3.12
+2026-11-13T10:42:03.9192418Z   check-latest: false
+2026-11-13T10:42:03.9194606Z   token: ***
+2026-11-13T10:42:03.9194849Z   update-environment: true
+2026-11-13T10:42:03.9195119Z   allow-prereleases: false
+2026-11-13T10:42:03.9195387Z   freethreaded: false
+2026-11-13T10:42:03.9195620Z env:
+2026-11-13T10:42:03.9195836Z   PYTHONPATH: src:tests
+2026-11-13T10:42:03.9196081Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:03.9196315Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:03.9196557Z ##[endgroup]
+2026-11-13T10:42:04.0311846Z ##[group]Installed versions
+2026-11-13T10:42:04.0385098Z (node:2110) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:42:04.0386068Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:42:04.0386693Z Successfully set up CPython (3.12.16)
+2026-11-13T10:42:04.0387552Z ##[endgroup]
+2026-11-13T10:42:04.0564641Z ##[group]Run astral-sh/setup-uv@v6
+2026-11-13T10:42:04.0564928Z with:
+2026-11-13T10:42:04.0565530Z   activate-environment: false
+2026-11-13T10:42:04.0566037Z   working-directory: /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:42:04.0566449Z   server-url: https://github.com
+2026-11-13T10:42:04.0569019Z   github-token: ***
+2026-11-13T10:42:04.0569266Z   enable-cache: auto
+2026-11-13T10:42:04.0569789Z   cache-dependency-glob: **/*requirements*.txt
+**/*requirements*.in
+**/*constraints*.txt
+**/*constraints*.in
+**/pyproject.toml
+**/uv.lock
+**/*.py.lock
+
+2026-11-13T10:42:04.0570357Z   restore-cache: true
+2026-11-13T10:42:04.0570590Z   save-cache: true
+2026-11-13T10:42:04.0570814Z   prune-cache: true
+2026-11-13T10:42:04.0571057Z   ignore-nothing-to-cache: false
+2026-11-13T10:42:04.0571331Z   ignore-empty-workdir: false
+2026-11-13T10:42:04.0571596Z   add-problem-matchers: true
+2026-11-13T10:42:04.0571842Z env:
+2026-11-13T10:42:04.0572140Z   PYTHONPATH: src:tests
+2026-11-13T10:42:04.0572511Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:04.0572909Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:04.0573278Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:04.0573793Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:42:04.0574331Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:04.0574759Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:04.0575214Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:04.0575661Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:42:04.0576058Z ##[endgroup]
+2026-11-13T10:42:04.2224997Z (node:2118) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:42:04.2225690Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:42:04.2329328Z Trying to find version for uv in: /home/runner/work/pytorch-lightning/pytorch-lightning/uv.toml
+2026-11-13T10:42:04.2331830Z Could not find file: /home/runner/work/pytorch-lightning/pytorch-lightning/uv.toml
+2026-11-13T10:42:04.2333059Z Trying to find version for uv in: /home/runner/work/pytorch-lightning/pytorch-lightning/pyproject.toml
+2026-11-13T10:42:04.2352887Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-11-13T10:42:04.2354509Z Getting latest version from GitHub API...
+2026-11-13T10:42:04.5630450Z manifest-file not provided, reading from local file.
+2026-11-13T10:42:04.5665403Z manifest-file does not contain version 0.13.8, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+2026-11-13T10:42:04.5666750Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-11-13T10:42:04.9453635Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/088b3b21-0d80-411f-a930-887067fd4141 -f /home/runner/work/_temp/79a36322-cbf6-4fcf-ab88-d53f8282f0ce
+2026-11-13T10:42:05.4540380Z Added /home/runner/.local/bin to the path
+2026-11-13T10:42:05.4542578Z Added /opt/hostedtoolcache/uv/0.13.8/x86_64 to the path
+2026-11-13T10:42:05.4550553Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:05.4551190Z Successfully installed uv version 0.13.8
+2026-11-13T10:42:05.4553845Z Searching files using cache dependency glob: /home/runner/work/pytorch-lightning/pytorch-lightning/**/*requirements*.txt,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*requirements*.in,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*constraints*.txt,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*constraints*.in,/home/runner/work/pytorch-lightning/pytorch-lightning/**/pyproject.toml,/home/runner/work/pytorch-lightning/pytorch-lightning/**/uv.lock,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*.py.lock
+2026-11-13T10:42:05.4605388Z /home/runner/work/pytorch-lightning/pytorch-lightning/.actions/requirements.txt
+2026-11-13T10:42:05.5071297Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/fabric/fp8_distributed_transformer/requirements.txt
+2026-11-13T10:42:05.5093329Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/fabric/reinforcement_learning/requirements.txt
+2026-11-13T10:42:05.5239369Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/pytorch/fp8_distributed_transformer/requirements.txt
+2026-11-13T10:42:05.5257904Z /home/runner/work/pytorch-lightning/pytorch-lightning/pyproject.toml
+2026-11-13T10:42:05.5284541Z /home/runner/work/pytorch-lightning/pytorch-lightning/requirements.txt
+2026-11-13T10:42:05.5847700Z Found 6 files to hash.
+2026-11-13T10:42:05.6755108Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:42:05.8652094Z No GitHub Actions cache found for key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:42:05.8754373Z ##[group]Run uv venv .venv
+2026-11-13T10:42:05.8754714Z [36;1muv venv .venv[0m
+2026-11-13T10:42:05.8755155Z [36;1muv pip install --python .venv/bin/python torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu[0m
+2026-11-13T10:42:05.8756049Z [36;1muv pip install --python .venv/bin/python -e . torch==2.9.1 pytest==9.0.2 pytest-timeout==2.4.0 pytest-rerunfailures==16.1 pytest-random-order==1.2.0 tensorboardX==2.6.4 "jsonargparse[signatures]==4.41.0" rich matplotlib psutil ruff==0.15.9[0m
+2026-11-13T10:42:05.8772141Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:42:05.8772374Z env:
+2026-11-13T10:42:05.8772557Z   PYTHONPATH: src:tests
+2026-11-13T10:42:05.8772760Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:05.8772952Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:05.8773192Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:05.8773538Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:42:05.8773915Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:05.8774223Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:05.8774526Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:05.8774828Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:42:05.8775125Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:05.8775375Z ##[endgroup]
+2026-11-13T10:42:05.8886765Z Using CPython 3.12.16 interpreter at: /opt/hostedtoolcache/Python/3.12.16/x64/bin/python
+2026-11-13T10:42:05.8887625Z Creating virtual environment at: .venv
+2026-11-13T10:42:05.8889938Z Activate with: .venv/bin/activate
+2026-11-13T10:42:06.3441218Z Resolved 10 packages in 412ms
+2026-11-13T10:42:06.3469738Z Downloading networkx (2.0MiB)
+2026-11-13T10:42:06.3508439Z Downloading setuptools (1.2MiB)
+2026-11-13T10:42:06.3521723Z Downloading sympy (6.0MiB)
+2026-11-13T10:42:06.3700131Z Downloading torch (175.8MiB)
+2026-11-13T10:42:06.4049680Z  Downloaded setuptools
+2026-11-13T10:42:06.4104697Z  Downloaded networkx
+2026-11-13T10:42:06.4818529Z  Downloaded sympy
+2026-11-13T10:42:07.9591144Z  Downloaded torch
+2026-11-13T10:42:07.9751245Z Prepared 10 packages in 1.62s
+2026-11-13T10:42:08.2338204Z Installed 10 packages in 260ms
+2026-11-13T10:42:08.2338707Z  + filelock==4.2.4
+2026-11-13T10:42:08.2339075Z  + fsspec==2026.9.0
+2026-11-13T10:42:08.2339437Z  + jinja2==3.1.6
+2026-11-13T10:42:08.2339797Z  + markupsafe==3.0.3
+2026-11-13T10:42:08.2340159Z  + mpmath==1.3.0
+2026-11-13T10:42:08.2340628Z  + networkx==3.7
+2026-11-13T10:42:08.2340832Z  + setuptools==78.1.0
+2026-11-13T10:42:08.2341038Z  + sympy==1.14.0
+2026-11-13T10:42:08.2341292Z  + torch==2.9.1+cpu
+2026-11-13T10:42:08.2341518Z  + typing-extensions==4.16.0
+2026-11-13T10:42:09.3701771Z Resolved 53 packages in 1.06s
+2026-11-13T10:42:09.3721660Z    Building lightning @ file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:42:09.3828269Z Downloading numpy (16.0MiB)
+2026-11-13T10:42:09.3851598Z Downloading pillow (6.8MiB)
+2026-11-13T10:42:09.3852455Z Downloading pygments (1.2MiB)
+2026-11-13T10:42:09.3867780Z Downloading kiwisolver (1.4MiB)
+2026-11-13T10:42:09.3868389Z Downloading ruff (10.7MiB)
+2026-11-13T10:42:09.3868970Z Downloading fonttools (5.2MiB)
+2026-11-13T10:42:09.3875331Z Downloading aiohttp (1.8MiB)
+2026-11-13T10:42:09.3970935Z Downloading matplotlib (9.4MiB)
+2026-11-13T10:42:09.5011988Z  Downloaded pygments
+2026-11-13T10:42:09.5137871Z  Downloaded kiwisolver
+2026-11-13T10:42:09.5270513Z  Downloaded aiohttp
+2026-11-13T10:42:09.5980620Z  Downloaded fonttools
+2026-11-13T10:42:09.5995419Z  Downloaded pillow
+2026-11-13T10:42:09.6427971Z  Downloaded ruff
+2026-11-13T10:42:09.6448818Z  Downloaded matplotlib
+2026-11-13T10:42:09.7076764Z  Downloaded numpy
+2026-11-13T10:42:09.7297900Z       Built lightning @ file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:42:09.7311050Z Prepared 42 packages in 360ms
+2026-11-13T10:42:09.7515149Z Installed 43 packages in 20ms
+2026-11-13T10:42:09.7515719Z  + aiohappyeyeballs==2.7.1
+2026-11-13T10:42:09.7516011Z  + aiohttp==3.14.5
+2026-11-13T10:42:09.7516266Z  + aiosignal==1.4.0
+2026-11-13T10:42:09.7516508Z  + attrs==26.1.0
+2026-11-13T10:42:09.7516755Z  + contourpy==1.4.0
+2026-11-13T10:42:09.7517151Z  + cycler==0.12.1
+2026-11-13T10:42:09.7517412Z  + docstring-parser==0.18.0
+2026-11-13T10:42:09.7517690Z  + fonttools==4.68.0
+2026-11-13T10:42:09.7517938Z  + frozenlist==1.8.0
+2026-11-13T10:42:09.7518179Z  + idna==3.20
+2026-11-13T10:42:09.7518406Z  + iniconfig==2.3.1
+2026-11-13T10:42:09.7518673Z  + jsonargparse==4.41.0
+2026-11-13T10:42:09.7518936Z  + kiwisolver==1.5.1
+2026-11-13T10:42:09.7519406Z  + lightning==2.7.0.dev0 (from file:///home/runner/work/pytorch-lightning/pytorch-lightning)
+2026-11-13T10:42:09.7519935Z  + lightning-utilities==0.15.3
+2026-11-13T10:42:09.7520240Z  + markdown-it-py==4.3.0
+2026-11-13T10:42:09.7520518Z  + matplotlib==3.11.2
+2026-11-13T10:42:09.7520767Z  + mdurl==0.1.2
+2026-11-13T10:42:09.7521009Z  + multidict==7.2.1
+2026-11-13T10:42:09.7521253Z  + numpy==2.5.4
+2026-11-13T10:42:09.7521483Z  + packaging==26.3
+2026-11-13T10:42:09.7521718Z  + pillow==13.0.0
+2026-11-13T10:42:09.7521945Z  + pluggy==1.7.0
+2026-11-13T10:42:09.7522182Z  + propcache==0.5.4
+2026-11-13T10:42:09.7522417Z  + protobuf==7.36.2
+2026-11-13T10:42:09.7522653Z  + psutil==7.2.2
+2026-11-13T10:42:09.7522882Z  + pygments==2.21.0
+2026-11-13T10:42:09.7523127Z  + pyparsing==3.3.3
+2026-11-13T10:42:09.7523365Z  + pytest==9.0.2
+2026-11-13T10:42:09.7523621Z  + pytest-random-order==1.2.0
+2026-11-13T10:42:09.7524044Z  + pytest-rerunfailures==16.1
+2026-11-13T10:42:09.7524337Z  + pytest-timeout==2.4.0
+2026-11-13T10:42:09.7524615Z  + python-dateutil==4.0.0
+2026-11-13T10:42:09.7524910Z  + pytorch-lightning==2.6.6
+2026-11-13T10:42:09.7525200Z  + pyyaml==6.0.3
+2026-11-13T10:42:09.7525436Z  + rich==15.0.0
+2026-11-13T10:42:09.7525676Z  + ruff==0.15.9
+2026-11-13T10:42:09.7525925Z  + tensorboardx==2.6.4
+2026-11-13T10:42:09.7526191Z  + torchmetrics==1.9.0
+2026-11-13T10:42:09.7526430Z  + tqdm==4.70.1
+2026-11-13T10:42:09.7526624Z  + typeshed-client==2.15.0
+2026-11-13T10:42:09.7526818Z  + tzdata==2026.6
+2026-11-13T10:42:09.7527158Z  + yarl==1.25.1
+2026-11-13T10:42:09.7650358Z ##[group]Run .venv/bin/python validation/run_lr_tail.py
+2026-11-13T10:42:09.7650703Z [36;1m.venv/bin/python validation/run_lr_tail.py[0m
+2026-11-13T10:42:09.7663116Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:42:09.7663345Z env:
+2026-11-13T10:42:09.7663534Z   PYTHONPATH: src:tests
+2026-11-13T10:42:09.7663736Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:09.7663940Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:09.7664187Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:09.7664534Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:42:09.7664882Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:09.7665195Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:09.7665498Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:09.7665801Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:42:09.7666139Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:09.7666391Z ##[endgroup]
+2026-11-13T10:42:10.2317933Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:42:10.2318545Z  * branch            84df182f50ab34301aabb3c0eb4031815bfb413d -> FETCH_HEAD
+2026-11-13T10:42:10.2318944Z  * branch            579399b45a1fd955df9ed4a694658666b3a59212 -> FETCH_HEAD
+2026-11-13T10:42:19.3480979Z [31mF[0m[31mF[0m[31mF[0m[32m.[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[31m                                                         [100%][0m
+2026-11-13T10:42:19.3482099Z =================================== FAILURES ===================================
+2026-11-13T10:42:19.3482776Z [31m[1m_______ test_lr_finder_records_final_accumulation_step[False-linear-1-4] _______[0m
+2026-11-13T10:42:19.3483202Z 
+2026-11-13T10:42:19.3483535Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a0')
+2026-11-13T10:42:19.3484178Z batches = 1, accumulation = 4, mode = 'linear', iterable = False
+2026-11-13T10:42:19.3484505Z 
+2026-11-13T10:42:19.3485627Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3487468Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3488468Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3489359Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3489915Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3490705Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3491585Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3491973Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3492398Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3492773Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3493115Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3493450Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3494054Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3494452Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3494804Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3495182Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3495551Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3495932Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3496345Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3496732Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3497350Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3497657Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3497954Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3498279Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3498612Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3498974Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3499316Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3499673Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3500011Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3500384Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3500794Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3501115Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3501586Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3502249Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3503046Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3503695Z [1m[31mE       assert [] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3504046Z [1m[31mE         [0m
+2026-11-13T10:42:19.3504406Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3504799Z [1m[31mE         Lengths: 6 and 0[0m
+2026-11-13T10:42:19.3504975Z 
+2026-11-13T10:42:19.3505299Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3505838Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3506237Z GPU available: False, used: False
+2026-11-13T10:42:19.3506522Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3507971Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3508875Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3509221Z `Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3509887Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a0/.lr_find_21e5b330-c8ed-4423-a57d-a40ecf38d067.ckpt
+2026-11-13T10:42:19.3510990Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a0/.lr_find_21e5b330-c8ed-4423-a57d-a40ecf38d067.ckpt
+2026-11-13T10:42:19.3511831Z [31m[1m_______ test_lr_finder_records_final_accumulation_step[False-linear-3-2] _______[0m
+2026-11-13T10:42:19.3512163Z 
+2026-11-13T10:42:19.3512402Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a1')
+2026-11-13T10:42:19.3512896Z batches = 3, accumulation = 2, mode = 'linear', iterable = False
+2026-11-13T10:42:19.3513142Z 
+2026-11-13T10:42:19.3514281Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3515771Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3516827Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3518003Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3518620Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3519469Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3520179Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3520595Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3521044Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3521574Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3522131Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3522499Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3522983Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3523441Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3523813Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3524222Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3524622Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3525043Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3525487Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3525930Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3526355Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3526694Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3527211Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3527569Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3527922Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3528303Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3528662Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3529026Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3529369Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3529744Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3530155Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3530571Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3531053Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3531703Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3532488Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3533209Z [1m[31mE       assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3533699Z [1m[31mE         [0m
+2026-11-13T10:42:19.3534095Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3534486Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3534663Z 
+2026-11-13T10:42:19.3534984Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3535506Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3535885Z GPU available: False, used: False
+2026-11-13T10:42:19.3536165Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3537339Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3538215Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3538439Z 
+2026-11-13T10:42:19.3538703Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3539016Z 
+2026-11-13T10:42:19.3539275Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 660.45it/s]
+2026-11-13T10:42:19.3539961Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a1/.lr_find_52375f11-1dcd-443f-b551-65e379e462d0.ckpt
+2026-11-13T10:42:19.3540918Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a1/.lr_find_52375f11-1dcd-443f-b551-65e379e462d0.ckpt
+2026-11-13T10:42:19.3541754Z [31m[1m_______ test_lr_finder_records_final_accumulation_step[False-linear-5-3] _______[0m
+2026-11-13T10:42:19.3542073Z 
+2026-11-13T10:42:19.3542308Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a2')
+2026-11-13T10:42:19.3542791Z batches = 5, accumulation = 3, mode = 'linear', iterable = False
+2026-11-13T10:42:19.3543017Z 
+2026-11-13T10:42:19.3544001Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3545479Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3546521Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3547665Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3548275Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3549088Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3549785Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3550262Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3550691Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3551072Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3551432Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3551780Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3552231Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3552661Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3553078Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3553473Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3553901Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3554308Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3554742Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3555168Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3555573Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3555898Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3556209Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3556539Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3556855Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3557436Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3557785Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3558134Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3558472Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3558828Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3559224Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3559533Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3559980Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3560574Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3561291Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3561932Z [1m[31mE       assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3562305Z [1m[31mE         [0m
+2026-11-13T10:42:19.3562683Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3563062Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3563218Z 
+2026-11-13T10:42:19.3563515Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3564001Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3564350Z GPU available: False, used: False
+2026-11-13T10:42:19.3564606Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3565531Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3566334Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3566537Z 
+2026-11-13T10:42:19.3566764Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3567202Z 
+2026-11-13T10:42:19.3567442Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 520.62it/s]
+2026-11-13T10:42:19.3568075Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a2/.lr_find_ba48854a-c00a-4af4-941a-3234d573560a.ckpt
+2026-11-13T10:42:19.3569038Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a2/.lr_find_ba48854a-c00a-4af4-941a-3234d573560a.ckpt
+2026-11-13T10:42:19.3569807Z [31m[1m____ test_lr_finder_records_final_accumulation_step[False-exponential-1-4] _____[0m
+2026-11-13T10:42:19.3570105Z 
+2026-11-13T10:42:19.3570325Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a4')
+2026-11-13T10:42:19.3570779Z batches = 1, accumulation = 4, mode = 'exponential', iterable = False
+2026-11-13T10:42:19.3571106Z 
+2026-11-13T10:42:19.3572016Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3573377Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3574386Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3575292Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3575869Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3576653Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3577516Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3577913Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3578339Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3578748Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3579104Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3579432Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3579869Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3580287Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3580627Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3581009Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3581383Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3581782Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3582201Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3582616Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3583013Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3583328Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3583628Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3583944Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3584258Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3584613Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3584943Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3585280Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3585599Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3585946Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3586407Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3586713Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3587296Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3587957Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3588673Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3589322Z [1m[31mE       assert [] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3589650Z [1m[31mE         [0m
+2026-11-13T10:42:19.3589996Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3590362Z [1m[31mE         Lengths: 6 and 0[0m
+2026-11-13T10:42:19.3590516Z 
+2026-11-13T10:42:19.3590825Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3591302Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3591649Z GPU available: False, used: False
+2026-11-13T10:42:19.3591909Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3592831Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3593652Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3593976Z `Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3594592Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a4/.lr_find_16a0cb54-d7b6-4639-8270-6ca156aed0ee.ckpt
+2026-11-13T10:42:19.3595486Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a4/.lr_find_16a0cb54-d7b6-4639-8270-6ca156aed0ee.ckpt
+2026-11-13T10:42:19.3596274Z [31m[1m____ test_lr_finder_records_final_accumulation_step[False-exponential-3-2] _____[0m
+2026-11-13T10:42:19.3596593Z 
+2026-11-13T10:42:19.3596809Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a5')
+2026-11-13T10:42:19.3597517Z batches = 3, accumulation = 2, mode = 'exponential', iterable = False
+2026-11-13T10:42:19.3597774Z 
+2026-11-13T10:42:19.3598719Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3600127Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3601168Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3602115Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3602731Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3603546Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3604240Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3604648Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3605149Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3605529Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3605892Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3606233Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3606693Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3607282Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3607641Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3608142Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3608535Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3608936Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3609369Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3609802Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3610208Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3610524Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3610820Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3611134Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3611451Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3611796Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3612126Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3612474Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3612793Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3613149Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3613541Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3613842Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3614293Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3614895Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3615610Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3616276Z [1m[31mE       assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3616660Z [1m[31mE         [0m
+2026-11-13T10:42:19.3617438Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3617902Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3618066Z 
+2026-11-13T10:42:19.3618366Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3618846Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3619208Z GPU available: False, used: False
+2026-11-13T10:42:19.3619478Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3620408Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3621234Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3621430Z 
+2026-11-13T10:42:19.3621663Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3621952Z 
+2026-11-13T10:42:19.3622179Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 678.54it/s]
+2026-11-13T10:42:19.3622815Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a5/.lr_find_83ec28fd-1342-44cb-b52a-bc2b2d16c7d8.ckpt
+2026-11-13T10:42:19.3623782Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a5/.lr_find_83ec28fd-1342-44cb-b52a-bc2b2d16c7d8.ckpt
+2026-11-13T10:42:19.3624539Z [31m[1m____ test_lr_finder_records_final_accumulation_step[False-exponential-5-3] _____[0m
+2026-11-13T10:42:19.3624846Z 
+2026-11-13T10:42:19.3625069Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a6')
+2026-11-13T10:42:19.3625525Z batches = 5, accumulation = 3, mode = 'exponential', iterable = False
+2026-11-13T10:42:19.3625762Z 
+2026-11-13T10:42:19.3626746Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3628242Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3629258Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3630165Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3630744Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3631533Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3632199Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3632585Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3633006Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3633375Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3633721Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3634047Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3634488Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3634906Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3635254Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3635632Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3636001Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3636393Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3636808Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3637335Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3637736Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3638053Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3638348Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3638664Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3638976Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3639325Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3639669Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3640009Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3640325Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3640670Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3641053Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3641420Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3641883Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3642514Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3643276Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3643931Z [1m[31mE       assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3644312Z [1m[31mE         [0m
+2026-11-13T10:42:19.3644615Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3644929Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3645069Z 
+2026-11-13T10:42:19.3645325Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3645743Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3646047Z GPU available: False, used: False
+2026-11-13T10:42:19.3646285Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3647163Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3647858Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3648033Z 
+2026-11-13T10:42:19.3648228Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3648479Z 
+2026-11-13T10:42:19.3648671Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 516.31it/s]
+2026-11-13T10:42:19.3649211Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a6/.lr_find_b61e079a-08d5-4066-b33a-44b9a76234ec.ckpt
+2026-11-13T10:42:19.3649958Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a6/.lr_find_b61e079a-08d5-4066-b33a-44b9a76234ec.ckpt
+2026-11-13T10:42:19.3650598Z [31m[1m_______ test_lr_finder_records_final_accumulation_step[True-linear-1-4] ________[0m
+2026-11-13T10:42:19.3650853Z 
+2026-11-13T10:42:19.3651046Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a8')
+2026-11-13T10:42:19.3651420Z batches = 1, accumulation = 4, mode = 'linear', iterable = True
+2026-11-13T10:42:19.3651614Z 
+2026-11-13T10:42:19.3652390Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3653574Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3654422Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3655197Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3655701Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3656375Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3657058Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3657461Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3657823Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3658140Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3658443Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3658726Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3659110Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3659473Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3659818Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3660158Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3660479Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3660812Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3661174Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3661528Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3661869Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3662145Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3662444Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3662740Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3663014Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3663316Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3663606Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3663901Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3664180Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3664486Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3664824Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3665091Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3665483Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3665998Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3666617Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3667240Z [1m[31mE       assert [] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3667523Z [1m[31mE         [0m
+2026-11-13T10:42:19.3667817Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3668132Z [1m[31mE         Lengths: 6 and 0[0m
+2026-11-13T10:42:19.3668274Z 
+2026-11-13T10:42:19.3668537Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3668952Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3669250Z GPU available: False, used: False
+2026-11-13T10:42:19.3669477Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3670268Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3670947Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3671222Z `Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3671743Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a8/.lr_find_02c3605f-ae17-49bf-a6f2-bd2e543b8da6.ckpt
+2026-11-13T10:42:19.3672518Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a8/.lr_find_02c3605f-ae17-49bf-a6f2-bd2e543b8da6.ckpt
+2026-11-13T10:42:19.3673234Z [31m[1m_______ test_lr_finder_records_final_accumulation_step[True-linear-3-2] ________[0m
+2026-11-13T10:42:19.3673494Z 
+2026-11-13T10:42:19.3673688Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a9')
+2026-11-13T10:42:19.3674068Z batches = 3, accumulation = 2, mode = 'linear', iterable = True
+2026-11-13T10:42:19.3674265Z 
+2026-11-13T10:42:19.3675085Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3676259Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3677215Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3677999Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3678496Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3679180Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3679756Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3680096Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3680455Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3680781Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3681084Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3681365Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3681742Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3682097Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3682404Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3682729Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3683053Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3683389Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3683748Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3684099Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3684450Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3684722Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3684979Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3685255Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3685525Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3685824Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3686112Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3686406Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3686681Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3687065Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3687405Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3687671Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3688060Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3688636Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3689259Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3689817Z [1m[31mE       assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3690138Z [1m[31mE         [0m
+2026-11-13T10:42:19.3690486Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3690813Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3690957Z 
+2026-11-13T10:42:19.3691217Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3691628Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3691933Z GPU available: False, used: False
+2026-11-13T10:42:19.3692164Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3692957Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3693643Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3693818Z 
+2026-11-13T10:42:19.3694008Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3694272Z 
+2026-11-13T10:42:19.3694467Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 686.88it/s]
+2026-11-13T10:42:19.3695018Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a9/.lr_find_2dc2cfe3-72ec-477a-8d44-e3bf4f1779a5.ckpt
+2026-11-13T10:42:19.3695768Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a9/.lr_find_2dc2cfe3-72ec-477a-8d44-e3bf4f1779a5.ckpt
+2026-11-13T10:42:19.3696427Z [31m[1m_______ test_lr_finder_records_final_accumulation_step[True-linear-5-3] ________[0m
+2026-11-13T10:42:19.3696686Z 
+2026-11-13T10:42:19.3696942Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a10')
+2026-11-13T10:42:19.3697520Z batches = 5, accumulation = 3, mode = 'linear', iterable = True
+2026-11-13T10:42:19.3697821Z 
+2026-11-13T10:42:19.3698631Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3699896Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3700876Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3701735Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3702319Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3703118Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3703778Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3704238Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3704733Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3705152Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3705543Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3705906Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3706377Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3706812Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3707504Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3707995Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3708397Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3708832Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3709268Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3709706Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3710159Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3710512Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3710890Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3711261Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3711600Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3712012Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3712380Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3712757Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3713124Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3713532Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3713996Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3714441Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3714923Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3715539Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3716225Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3717018Z [1m[31mE       assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3717458Z [1m[31mE         [0m
+2026-11-13T10:42:19.3717894Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3718314Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3718479Z 
+2026-11-13T10:42:19.3718775Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3719299Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3719679Z GPU available: False, used: False
+2026-11-13T10:42:19.3719996Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3720912Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3721696Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3721912Z 
+2026-11-13T10:42:19.3722169Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3722442Z 
+2026-11-13T10:42:19.3722691Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 519.72it/s]
+2026-11-13T10:42:19.3723328Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a10/.lr_find_b3b139f8-c7ff-4c88-ae29-7e7a2155260b.ckpt
+2026-11-13T10:42:19.3724278Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a10/.lr_find_b3b139f8-c7ff-4c88-ae29-7e7a2155260b.ckpt
+2026-11-13T10:42:19.3725030Z [31m[1m_____ test_lr_finder_records_final_accumulation_step[True-exponential-1-4] _____[0m
+2026-11-13T10:42:19.3725332Z 
+2026-11-13T10:42:19.3725587Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a12')
+2026-11-13T10:42:19.3726061Z batches = 1, accumulation = 4, mode = 'exponential', iterable = True
+2026-11-13T10:42:19.3726302Z 
+2026-11-13T10:42:19.3727268Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3728575Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3729486Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3730364Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3730945Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3731717Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3732388Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3732823Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3733291Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3733684Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3734084Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3734456Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3734909Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3735364Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3735764Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3736275Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3736777Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3737382Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3737939Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3738494Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3739024Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3739483Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3739923Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3740373Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3740799Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3741266Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3741760Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3742219Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3742656Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3743132Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3743728Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3744289Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3744857Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3745729Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3747079Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3748011Z [1m[31mE       assert [] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3748819Z [1m[31mE         [0m
+2026-11-13T10:42:19.3749541Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3750146Z [1m[31mE         Lengths: 6 and 0[0m
+2026-11-13T10:42:19.3750509Z 
+2026-11-13T10:42:19.3750904Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3751640Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3752368Z GPU available: False, used: False
+2026-11-13T10:42:19.3752918Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3754734Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3756510Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3757334Z `Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3758520Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a12/.lr_find_68240122-abc9-42d7-9093-a4c27a6fb53c.ckpt
+2026-11-13T10:42:19.3760164Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a12/.lr_find_68240122-abc9-42d7-9093-a4c27a6fb53c.ckpt
+2026-11-13T10:42:19.3761882Z [31m[1m_____ test_lr_finder_records_final_accumulation_step[True-exponential-3-2] _____[0m
+2026-11-13T10:42:19.3762554Z 
+2026-11-13T10:42:19.3763035Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a13')
+2026-11-13T10:42:19.3764002Z batches = 3, accumulation = 2, mode = 'exponential', iterable = True
+2026-11-13T10:42:19.3764476Z 
+2026-11-13T10:42:19.3765811Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3767506Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3768727Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3769724Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3770453Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3771349Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3772107Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3772666Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3773162Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3773648Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3774237Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3774691Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3775237Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3775743Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3776191Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3776692Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3777428Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3777930Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3778436Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3778953Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3779442Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3779859Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3780308Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3780712Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3781126Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3781560Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3781991Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3782447Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3782853Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3783294Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3783817Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3784222Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3784782Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3785488Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3786330Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3787233Z [1m[31mE       assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3787740Z [1m[31mE         [0m
+2026-11-13T10:42:19.3788268Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3788721Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3788908Z 
+2026-11-13T10:42:19.3789319Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3789894Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3790356Z GPU available: False, used: False
+2026-11-13T10:42:19.3790731Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3791864Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3792758Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3793037Z 
+2026-11-13T10:42:19.3793312Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3793663Z 
+2026-11-13T10:42:19.3793923Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 735.76it/s]
+2026-11-13T10:42:19.3794663Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a13/.lr_find_02e13385-b514-4bd7-af80-dc4d52d21933.ckpt
+2026-11-13T10:42:19.3795691Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a13/.lr_find_02e13385-b514-4bd7-af80-dc4d52d21933.ckpt
+2026-11-13T10:42:19.3796619Z [31m[1m_____ test_lr_finder_records_final_accumulation_step[True-exponential-5-3] _____[0m
+2026-11-13T10:42:19.3797059Z 
+2026-11-13T10:42:19.3797375Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a14')
+2026-11-13T10:42:19.3797924Z batches = 5, accumulation = 3, mode = 'exponential', iterable = True
+2026-11-13T10:42:19.3798226Z 
+2026-11-13T10:42:19.3799268Z     [0m[37m@pytest[39;49;00m.mark.parametrize(([33m"[39;49;00m[33mbatches[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33maccumulation[39;49;00m[33m"[39;49;00m), [([94m1[39;49;00m, [94m4[39;49;00m), ([94m3[39;49;00m, [94m2[39;49;00m), ([94m5[39;49;00m, [94m3[39;49;00m), ([94m4[39;49;00m, [94m2[39;49;00m)])[90m[39;49;00m
+2026-11-13T10:42:19.3800769Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mlinear[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mexponential[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3801850Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33miterable[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:42:19.3802883Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_finder_records_final_accumulation_step[39;49;00m(tmp_path, batches, accumulation, mode, iterable):[90m[39;49;00m
+2026-11-13T10:42:19.3803643Z         dataset = ([90m[39;49;00m
+2026-11-13T10:42:19.3804566Z             _IterableLRData(batches) [94mif[39;49;00m iterable [94melse[39;49;00m TensorDataset(torch.arange(batches).float().unsqueeze([94m1[39;49;00m) / [94m10[39;49;00m + [94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3805312Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3805813Z         dataloader = DataLoader(dataset, batch_size=[94m1[39;49;00m)[90m[39;49;00m
+2026-11-13T10:42:19.3806321Z         model = _TailLRModel()[90m[39;49;00m
+2026-11-13T10:42:19.3806768Z         initial = deepcopy(model.state_dict())[90m[39;49;00m
+2026-11-13T10:42:19.3807331Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:42:19.3807743Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:42:19.3808242Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3808821Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3809238Z             max_epochs=[94m20[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3809703Z             accumulate_grad_batches=accumulation,[90m[39;49;00m
+2026-11-13T10:42:19.3810154Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3810622Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3811141Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3811620Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3812147Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3812539Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3812921Z         result = Tuner(trainer).lr_find([90m[39;49;00m
+2026-11-13T10:42:19.3813339Z             model,[90m[39;49;00m
+2026-11-13T10:42:19.3813728Z             train_dataloaders=dataloader,[90m[39;49;00m
+2026-11-13T10:42:19.3814161Z             min_lr=[94m1e-5[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3814580Z             max_lr=[94m1e-3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3815017Z             num_training=[94m6[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3815475Z             mode=mode,[90m[39;49;00m
+2026-11-13T10:42:19.3815914Z             early_stop_threshold=[94mNone[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3816389Z             update_attr=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:42:19.3816792Z         )[90m[39;49;00m
+2026-11-13T10:42:19.3817447Z         [94massert[39;49;00m result [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3818220Z         [94massert[39;49;00m [96mlen[39;49;00m(model.optimizer_lrs) == [94m6[39;49;00m[90m[39;49;00m
+2026-11-13T10:42:19.3819018Z >       [94massert[39;49;00m result.results[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx(model.optimizer_lrs)[90m[39;49;00m
+2026-11-13T10:42:19.3819800Z [1m[31mE       assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])[0m
+2026-11-13T10:42:19.3820280Z [1m[31mE         [0m
+2026-11-13T10:42:19.3820806Z [1m[31mE         Impossible to compare lists with different sizes.[0m
+2026-11-13T10:42:19.3821274Z [1m[31mE         Lengths: 6 and 3[0m
+2026-11-13T10:42:19.3821497Z 
+2026-11-13T10:42:19.3821817Z [1m[31mtests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m:83: AssertionError
+2026-11-13T10:42:19.3822359Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:42:19.3822853Z GPU available: False, used: False
+2026-11-13T10:42:19.3823206Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:42:19.3824537Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:42:19.3825445Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T10:42:19.3825668Z 
+2026-11-13T10:42:19.3825939Z Finding best initial lr:   0%|          | 0/6 [00:00<?, ?it/s]`Trainer.fit` stopped: `max_steps=6` reached.
+2026-11-13T10:42:19.3826327Z 
+2026-11-13T10:42:19.3826602Z Finding best initial lr:  50%|█████     | 3/6 [00:00<00:00, 475.24it/s]
+2026-11-13T10:42:19.3827417Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a14/.lr_find_a0dd69de-0717-45e9-8af7-17276bc62d5e.ckpt
+2026-11-13T10:42:19.3828442Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-0/test_lr_finder_records_final_a14/.lr_find_a0dd69de-0717-45e9-8af7-17276bc62d5e.ckpt
+2026-11-13T10:42:19.3829251Z [36m[1m=========================== short test summary info ============================[0m
+2026-11-13T10:42:19.3830666Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[False-linear-1-4][0m - assert [] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3831459Z   
+2026-11-13T10:42:19.3831773Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3832147Z   Lengths: 6 and 0
+2026-11-13T10:42:19.3833123Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[False-linear-3-2][0m - assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3833859Z   
+2026-11-13T10:42:19.3834215Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3834579Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3835489Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[False-linear-5-3][0m - assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3836239Z   
+2026-11-13T10:42:19.3836540Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3837027Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3837957Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[False-exponential-1-4][0m - assert [] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3838728Z   
+2026-11-13T10:42:19.3839053Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3839444Z   Lengths: 6 and 0
+2026-11-13T10:42:19.3840503Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[False-exponential-3-2][0m - assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3841413Z   
+2026-11-13T10:42:19.3841720Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3842171Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3843106Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[False-exponential-5-3][0m - assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3843824Z   
+2026-11-13T10:42:19.3844094Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3844400Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3845247Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[True-linear-1-4][0m - assert [] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3845921Z   
+2026-11-13T10:42:19.3846238Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3846563Z   Lengths: 6 and 0
+2026-11-13T10:42:19.3847477Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[True-linear-3-2][0m - assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3848250Z   
+2026-11-13T10:42:19.3848552Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3848889Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3849769Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[True-linear-5-3][0m - assert [1e-05, 0.000505, 0.000835] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3850514Z   
+2026-11-13T10:42:19.3850821Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3851181Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3851992Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[True-exponential-1-4][0m - assert [] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3852704Z   
+2026-11-13T10:42:19.3852983Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3853322Z   Lengths: 6 and 0
+2026-11-13T10:42:19.3854206Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[True-exponential-3-2][0m - assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3854972Z   
+2026-11-13T10:42:19.3855266Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3855591Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3856432Z [31mFAILED[0m tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py::[1mtest_lr_finder_records_final_accumulation_step[True-exponential-5-3][0m - assert [1e-05, 0.000...5888336127806] == approx([1e-05...01 ± 1.0e-09])
+2026-11-13T10:42:19.3857222Z   
+2026-11-13T10:42:19.3857471Z   Impossible to compare lists with different sizes.
+2026-11-13T10:42:19.3857821Z   Lengths: 6 and 3
+2026-11-13T10:42:19.3858264Z [31m[31m[1m12 failed[0m, [32m4 passed[0m, [33m18 warnings[0m[31m in 0.63s[0m[0m
+2026-11-13T10:42:19.3858509Z 
+2026-11-13T10:42:19.3858761Z before {'tests': 16, 'failures': 12, 'errors': 0, 'skipped': 0, 'returncode': 1}
+2026-11-13T10:42:22.6506288Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                                         [100%][0m
+2026-11-13T10:42:22.6507652Z [33m[32m16 passed[0m, [33m[1m18 warnings[0m[33m in 0.42s[0m[0m
+2026-11-13T10:42:22.6508063Z 
+2026-11-13T10:42:22.6508349Z after {'tests': 16, 'failures': 0, 'errors': 0, 'skipped': 0, 'returncode': 0}
+2026-11-13T10:42:28.4562861Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                    [100%][0m
+2026-11-13T10:42:28.4564803Z [33m[32m35 passed[0m, [33m[1m2 skipped[0m, [33m[1m59 warnings[0m[33m in 2.90s[0m[0m
+2026-11-13T10:42:28.4565295Z 
+2026-11-13T10:42:28.4565607Z existing {'tests': 37, 'failures': 0, 'errors': 0, 'skipped': 2, 'returncode': 0}
+2026-11-13T10:42:28.4566102Z {
+2026-11-13T10:42:28.4566471Z   "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+2026-11-13T10:42:28.4567246Z   "head": "579399b45a1fd955df9ed4a694658666b3a59212",
+2026-11-13T10:42:28.4567658Z   "before": {
+2026-11-13T10:42:28.4568021Z     "tests": 16,
+2026-11-13T10:42:28.4568335Z     "failures": 12,
+2026-11-13T10:42:28.4568676Z     "errors": 0,
+2026-11-13T10:42:28.4568991Z     "skipped": 0,
+2026-11-13T10:42:28.4569252Z     "returncode": 1
+2026-11-13T10:42:28.4569516Z   },
+2026-11-13T10:42:28.4569758Z   "after": {
+2026-11-13T10:42:28.4570006Z     "tests": 16,
+2026-11-13T10:42:28.4570295Z     "failures": 0,
+2026-11-13T10:42:28.4570547Z     "errors": 0,
+2026-11-13T10:42:28.4570848Z     "skipped": 0,
+2026-11-13T10:42:28.4571101Z     "returncode": 0
+2026-11-13T10:42:28.4571354Z   },
+2026-11-13T10:42:28.4571618Z   "existing": {
+2026-11-13T10:42:28.4571868Z     "tests": 37,
+2026-11-13T10:42:28.4572113Z     "failures": 0,
+2026-11-13T10:42:28.4572369Z     "errors": 0,
+2026-11-13T10:42:28.4572633Z     "skipped": 2,
+2026-11-13T10:42:28.4572896Z     "returncode": 0
+2026-11-13T10:42:28.4573139Z   }
+2026-11-13T10:42:28.4573406Z }
+2026-11-13T10:42:28.4691680Z ##[group]Run .venv/bin/python validation/probe_log_graph.py
+2026-11-13T10:42:28.4692134Z [36;1m.venv/bin/python validation/probe_log_graph.py[0m
+2026-11-13T10:42:28.4704621Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:42:28.4704928Z env:
+2026-11-13T10:42:28.4705180Z   PYTHONPATH: src:tests
+2026-11-13T10:42:28.4705490Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:28.4705792Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:28.4706109Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:28.4706540Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:42:28.4707201Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:28.4707639Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:28.4708038Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:28.4708427Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:42:28.4708912Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:28.4709240Z ##[endgroup]
+2026-11-13T10:42:30.5234964Z {"enable_graph": false, "on_step": true, "value": 4.0, "requires_grad": false, "grad_fn": "None"}
+2026-11-13T10:42:30.5236800Z {"enable_graph": false, "on_step": false, "value": 4.0, "requires_grad": false, "grad_fn": "None"}
+2026-11-13T10:42:30.5242500Z {"enable_graph": true, "on_step": true, "value": 4.0, "requires_grad": false, "grad_fn": "None"}
+2026-11-13T10:42:30.5243589Z {"enable_graph": true, "on_step": false, "value": 4.0, "requires_grad": false, "grad_fn": "None"}
+2026-11-13T10:42:30.5247518Z     def _wrap_update(self, update: Callable) -> Callable:
+2026-11-13T10:42:30.5248143Z         @functools.wraps(update)
+2026-11-13T10:42:30.5248587Z         def wrapped_func(*args: Any, **kwargs: Any) -> None:
+2026-11-13T10:42:30.5249102Z             self._computed = None
+2026-11-13T10:42:30.5249575Z             self._update_count += 1
+2026-11-13T10:42:30.5250088Z             with torch.set_grad_enabled(self._enable_grad):
+2026-11-13T10:42:30.5250626Z                 try:
+2026-11-13T10:42:30.5251029Z                     update(*args, **kwargs)
+2026-11-13T10:42:30.5251526Z                 except RuntimeError as err:
+2026-11-13T10:42:30.5252011Z                     if "Expected all tensors to be on" in str(err):
+2026-11-13T10:42:30.5252459Z                         raise RuntimeError(
+2026-11-13T10:42:30.5253438Z                             "Encountered different devices in metric calculation (see stacktrace for details)."
+2026-11-13T10:42:30.5254220Z                             " This could be due to the metric class not being on the same device as input."
+2026-11-13T10:42:30.5254915Z                             f" Instead of `metric={self.__class__.__name__}(...)` try to do"
+2026-11-13T10:42:30.5255646Z                             f" `metric={self.__class__.__name__}(...).to(device)` where"
+2026-11-13T10:42:30.5256236Z                             " device corresponds to the device of the input."
+2026-11-13T10:42:30.5256720Z                         ) from err
+2026-11-13T10:42:30.5257354Z                     raise err
+2026-11-13T10:42:30.5257578Z 
+2026-11-13T10:42:30.5257764Z             if self.compute_on_cpu:
+2026-11-13T10:42:30.5258242Z                 self._move_list_states_to_cpu()
+2026-11-13T10:42:30.5258516Z 
+2026-11-13T10:42:30.5258649Z         return wrapped_func
+2026-11-13T10:42:30.5258855Z 
+2026-11-13T10:42:30.8716662Z ##[group]Run .venv/bin/ruff check src/lightning/pytorch/tuner/lr_finder.py tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py
+2026-11-13T10:42:30.8717921Z [36;1m.venv/bin/ruff check src/lightning/pytorch/tuner/lr_finder.py tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m
+2026-11-13T10:42:30.8718676Z [36;1m.venv/bin/ruff format --check --diff src/lightning/pytorch/tuner/lr_finder.py tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py[0m
+2026-11-13T10:42:30.8731029Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:42:30.8731362Z env:
+2026-11-13T10:42:30.8731619Z   PYTHONPATH: src:tests
+2026-11-13T10:42:30.8731923Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:30.8732254Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:30.8732575Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8733012Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:42:30.8733535Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8734028Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8734405Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8734765Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:42:30.8735211Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:30.8735545Z ##[endgroup]
+2026-11-13T10:42:30.8857271Z All checks passed!
+2026-11-13T10:42:30.8925418Z 2 files already formatted
+2026-11-13T10:42:30.8990785Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T10:42:30.8991147Z with:
+2026-11-13T10:42:30.8991493Z   name: lr-tail-native-579399b45a1f
+2026-11-13T10:42:30.8992053Z   path: before.log
+before.xml
+after.log
+after.xml
+existing.log
+existing.xml
+validation_result.json
+
+2026-11-13T10:42:30.8992662Z   if-no-files-found: warn
+2026-11-13T10:42:30.8992996Z   compression-level: 6
+2026-11-13T10:42:30.8993298Z   overwrite: false
+2026-11-13T10:42:30.8993638Z   include-hidden-files: false
+2026-11-13T10:42:30.8993981Z env:
+2026-11-13T10:42:30.8994298Z   PYTHONPATH: src:tests
+2026-11-13T10:42:30.8994665Z   OMP_NUM_THREADS: 1
+2026-11-13T10:42:30.8994979Z   MKL_NUM_THREADS: 1
+2026-11-13T10:42:30.8995360Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8995893Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:42:30.8996410Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8997123Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8997589Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:42:30.8998067Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:42:30.8998544Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:30.8998949Z ##[endgroup]
+2026-11-13T10:42:31.0463715Z (node:2395) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:42:31.0465135Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:42:31.0554524Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-13T10:42:31.0558435Z The least common ancestor is /home/runner/work/pytorch-lightning/pytorch-lightning. This will be the root directory of the artifact
+2026-11-13T10:42:31.0559526Z With the provided path, there will be 7 files uploaded
+2026-11-13T10:42:31.0560649Z Artifact name is valid!
+2026-11-13T10:42:31.0561227Z Root directory input is valid!
+2026-11-13T10:42:31.4099185Z Beginning upload of artifact content to blob storage
+2026-11-13T10:42:31.4395699Z (node:2395) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T10:42:31.6793655Z Uploaded bytes 6725
+2026-11-13T10:42:31.7417845Z Finished uploading artifact content to blob storage!
+2026-11-13T10:42:31.7418832Z SHA256 digest of uploaded artifact zip is 14335538962d47058a280f48b8560206fb402e46f19a48f3a2bf20b1f4cf7595
+2026-11-13T10:42:31.7420537Z Finalizing artifact upload
+2026-11-13T10:42:32.1533700Z Artifact lr-tail-native-579399b45a1f.zip successfully finalized. Artifact ID 14028808884
+2026-11-13T10:42:32.1535033Z Artifact lr-tail-native-579399b45a1f has been successfully uploaded! Final size is 6725 bytes. Artifact ID is 14028808884
+2026-11-13T10:42:32.1540927Z Artifact download URL: https://github.com/Afloat16/pytorch-lightning/actions/runs/43411079811/artifacts/14028808884
+2026-11-13T10:42:32.1721888Z Post job cleanup.
+2026-11-13T10:42:32.2805341Z Pruning cache...
+2026-11-13T10:42:32.2815795Z (node:2407) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:42:32.2816445Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:42:32.2867756Z [command]/opt/hostedtoolcache/uv/0.13.8/x86_64/uv cache prune --ci
+2026-11-13T10:42:32.2954294Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:32.4476187Z Removed 20595 files (6.4MiB)
+2026-11-13T10:42:32.4497773Z Saving cache path: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:42:32.4631740Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/pytorch-lightning/pytorch-lightning --files-from manifest.txt --use-compress-program zstdmt
+2026-11-13T10:42:32.7435686Z (node:2407) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T10:42:33.5033825Z Sent 6632008 of 6632008 (100.0%), 8.2 MBs/sec
+2026-11-13T10:42:33.6619586Z cache saved with the key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:42:33.6729088Z Post job cleanup.
+2026-11-13T10:42:33.7758950Z (node:2430) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:42:33.7760040Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:42:33.7942279Z Post job cleanup.
+2026-11-13T10:42:33.8744430Z [command]/usr/bin/git version
+2026-11-13T10:42:33.8777798Z git version 2.56.1
+2026-11-13T10:42:33.8809640Z Temporarily overriding HOME='/home/runner/work/_temp/4038b37d-0e63-4ebe-87c1-2ee6a6916cda' before making global git config changes
+2026-11-13T10:42:33.8810837Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T10:42:33.8812509Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:42:33.8846592Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T10:42:33.8876747Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T10:42:33.9077002Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T10:42:33.9105963Z http.https://github.com/.extraheader
+2026-11-13T10:42:33.9113283Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T10:42:33.9144162Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T10:42:33.9349621Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T10:42:33.9385132Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T10:42:33.9669987Z Cleaning up orphan processes
+2026-11-13T10:42:33.9935011Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

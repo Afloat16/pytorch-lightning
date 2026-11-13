@@ -1,0 +1,37 @@
+{
+  "project": "Lightning-AI/pytorch-lightning",
+  "issue": "https://github.com/Lightning-AI/pytorch-lightning/issues/22170",
+  "pull_request": "https://github.com/Lightning-AI/pytorch-lightning/pull/22171",
+  "branch": "fix/lr-finder-accumulation-tail-20261113",
+  "head": "4ca23967f46b8de5cdee62ebee5ba1662cbcb443",
+  "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+  "validated_code_head": "579399b45a1fd955df9ed4a694658666b3a59212",
+  "validation_head": "65e3cee3f023ab59b0eb8cdf7cde73d5bc1e1229",
+  "validation_url": "https://github.com/Afloat16/pytorch-lightning/actions/runs/43411079811",
+  "native_before": {
+    "failed": 12,
+    "passed": 4
+  },
+  "native_after": {
+    "failed": 0,
+    "passed": 16
+  },
+  "existing": {
+    "passed": 35,
+    "skipped": 2
+  },
+  "validation_environment": "Python3.12 officialCPU PyTorch2.9.1 Ubuntu24.04 real Trainer/Tuner, no mocks",
+  "style": "Ruff check and format pass",
+  "dedup": {
+    "related_reviewed": [
+      1801,
+      2853,
+      7076,
+      22000
+    ],
+    "distinct_behavior": "End-of-epoch partial accumulation decision, not general accumulation support or LR smoothing counter"
+  },
+  "peer_review": "Independent review of production diff, loop decisions, and all16native tests: pass",
+  "merged_at": null,
+  "last_change": "Changelog-only commit after native validation; code/test bytes unchanged"
+}
