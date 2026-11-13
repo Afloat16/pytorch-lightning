@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 8e7e21e686a854219e2053fb1182711be1806719
+          ref: b255e50037312cc3eb2e52c90d948c021174c2af
           fetch-depth: 5
       - uses: actions/setup-python@v5
         with:
@@ -29,7 +29,7 @@ jobs:
           python -m pip freeze > installed-dependencies.txt
       - name: Test exact patched native tuner
         run: |
-          test "$(git rev-parse HEAD)" = "8e7e21e686a854219e2053fb1182711be1806719"
+          test "$(git rev-parse HEAD)" = "b255e50037312cc3eb2e52c90d948c021174c2af"
           set +e
           python -m pytest -q tests/tests_pytorch/tuner/test_batch_size_decrease.py tests/tests_pytorch/tuner/test_scale_batch_size.py --junitxml=patched.xml > patched.log 2>&1
           status=$?
@@ -55,7 +55,7 @@ jobs:
       - name: Restore exact final source and check style
         if: always()
         run: |
-          git checkout 8e7e21e686a854219e2053fb1182711be1806719 -- src/lightning/pytorch/tuner/batch_size_scaling.py
+          git checkout b255e50037312cc3eb2e52c90d948c021174c2af -- src/lightning/pytorch/tuner/batch_size_scaling.py
           python -m ruff check src/lightning/pytorch/tuner/batch_size_scaling.py tests/tests_pytorch/tuner/test_batch_size_decrease.py
           python -m ruff format --check --diff src/lightning/pytorch/tuner/batch_size_scaling.py tests/tests_pytorch/tuner/test_batch_size_decrease.py
           git diff --exit-code
