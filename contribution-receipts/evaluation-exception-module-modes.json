@@ -1,0 +1,52 @@
+{
+  "project": "Lightning-AI/pytorch-lightning",
+  "issue": "https://github.com/Lightning-AI/pytorch-lightning/issues/22176",
+  "pull_request": "https://github.com/Lightning-AI/pytorch-lightning/pull/22177",
+  "branch": "fix/evaluation-exception-module-modes-20261113",
+  "head": "83ed522394357c7d8c098c21f764f97bb9213936",
+  "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+  "validated_code_head": "441c3f9ee6e6d7a04b4d8f022da755ad44eb5a53",
+  "validation_head": "607012d80c55a0aebbe11fb0a420d6d5a5e50881",
+  "validation_url": "https://github.com/Afloat16/pytorch-lightning/actions/runs/43413374674",
+  "native_before": {
+    "failed": 18,
+    "passed": 9
+  },
+  "native_after": {
+    "failed": 0,
+    "passed": 27
+  },
+  "existing": {
+    "passed": 23,
+    "skipped": 1
+  },
+  "validation_environment": "Python3.12 officialCPU PyTorch2.9.1 Ubuntu24.04",
+  "training_evidence": "Real validate/test/predict with start/step/end failures and inference_mode true/false; identical raised exception, all nested modes restored, retry evaluation, subsequent SGD fit with frozen BatchNorm statistics preserved",
+  "style": "Ruff and format pass",
+  "dedup": {
+    "queries": [
+      "validation exception training mode",
+      "restore eval exception",
+      "_module_mode",
+      "prediction exception mode"
+    ],
+    "related": [
+      8819,
+      4820,
+      22103,
+      22167
+    ],
+    "distinction": "Restores per-module training flags inside failing evaluation/prediction loops; existing outer exception handling, WeightAveraging tensor swaps, and optimizer requires_grad cleanup are different paths"
+  },
+  "peer_review": "Independent two-loop source, _ModuleMode implementation, and 27-case test review passed",
+  "last_change": "Changelog only; production source/test unchanged from native-tested head",
+  "merged_at": null,
+  "counts_for_merged": false,
+  "api_verified": {
+    "head": "83ed522394357c7d8c098c21f764f97bb9213936",
+    "commits": 2,
+    "changed_files": 4,
+    "state": "open",
+    "merged_at": null
+  }
+}
