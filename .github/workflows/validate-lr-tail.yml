@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lr-tail-native-a73ed5456e9c
+          name: lr-tail-native-579399b45a1f
           path: |
             before.log
             before.xml

@@ -5,7 +5,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 BASE = "84df182f50ab34301aabb3c0eb4031815bfb413d"
-HEAD = "a73ed5456e9ce05db713fcf8bd3054756bca1fa6"
+HEAD = "579399b45a1fd955df9ed4a694658666b3a59212"
 FILES = ["src/lightning/pytorch/tuner/lr_finder.py", "tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py"]
 SOURCE = FILES[0]
 TEST = FILES[1]
