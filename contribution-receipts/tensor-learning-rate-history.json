@@ -1,0 +1,50 @@
+{
+  "project": "Lightning-AI/pytorch-lightning",
+  "issue": "https://github.com/Lightning-AI/pytorch-lightning/issues/22174",
+  "pull_request": "https://github.com/Lightning-AI/pytorch-lightning/pull/22175",
+  "branch": "fix/tensor-learning-rate-history-20261113",
+  "head": "44788b249619426301baa951cec2a2d956ac37c5",
+  "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+  "validated_code_head": "a914d621b0e19527b9d8c886d005634895e53018",
+  "validation_head": "a991a25fb709783929e0206af94a7ef3653ba169",
+  "validation_url": "https://github.com/Afloat16/pytorch-lightning/actions/runs/43412490775",
+  "native_before": {
+    "failed": 12,
+    "passed": 8
+  },
+  "native_after": {
+    "failed": 0,
+    "passed": 20
+  },
+  "existing": {
+    "passed": 24,
+    "skipped": 1
+  },
+  "validation_environment": "Python3.12 officialCPU PyTorch2.9.1 Ubuntu24.04",
+  "training_evidence": "Three epochs actual SGD/AdamW with float/tensor rates, step/epoch scheduling, float32/float64; history matches every optimizer step rate and model weights match direct PyTorch reference",
+  "style": "Ruff and format pass",
+  "dedup": {
+    "queries": [
+      "LearningRateMonitor tensor",
+      "lr_monitor snapshot",
+      "history in-place",
+      "learning rate history"
+    ],
+    "related": [
+      21545,
+      17626
+    ],
+    "distinction": "Snapshots mutable learning-rate tensors before appending history; existing callback_metrics casting does not remove history aliases"
+  },
+  "peer_review": "Independent source/test review passed",
+  "last_change": "Changelog only; production source/test unchanged from native-tested head",
+  "merged_at": null,
+  "counts_for_merged": false,
+  "api_verified": {
+    "head": "44788b249619426301baa951cec2a2d956ac37c5",
+    "commits": 2,
+    "changed_files": 3,
+    "state": "open",
+    "merged_at": null
+  }
+}

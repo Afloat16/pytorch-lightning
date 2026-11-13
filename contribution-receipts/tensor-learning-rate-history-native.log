@@ -1,0 +1,1049 @@
+﻿2026-11-13T10:52:39.2795056Z Current runner version: '2.338.2'
+2026-11-13T10:52:39.2818510Z ##[group]Runner Image Provisioner
+2026-11-13T10:52:39.2819313Z Hosted Compute Agent
+2026-11-13T10:52:39.2819874Z Version: 20261028.624
+2026-11-13T10:52:39.2820433Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-13T10:52:39.2821065Z Build Date: 2026-10-28T21:51:42Z
+2026-11-13T10:52:39.2821695Z Worker ID: {22685f0b-7fad-4cbc-a8b2-72b2700c70ae}
+2026-11-13T10:52:39.2822335Z Region: eastus2
+2026-11-13T10:52:39.2822814Z Cloud: Azure
+2026-11-13T10:52:39.2823508Z ##[endgroup]
+2026-11-13T10:52:39.2824794Z ##[group]Operating System
+2026-11-13T10:52:39.2825375Z Ubuntu
+2026-11-13T10:52:39.2825902Z 24.04.5
+2026-11-13T10:52:39.2826416Z LTS
+2026-11-13T10:52:39.2826845Z ##[endgroup]
+2026-11-13T10:52:39.2827372Z ##[group]Runner Image
+2026-11-13T10:52:39.2827920Z Image: ubuntu-24.04
+2026-11-13T10:52:39.2828425Z Version: 20261101.360.1
+2026-11-13T10:52:39.2829527Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T10:52:39.2831183Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-13T10:52:39.2832069Z ##[endgroup]
+2026-11-13T10:52:39.2833030Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T10:52:39.2835194Z Contents: read
+2026-11-13T10:52:39.2835774Z Metadata: read
+2026-11-13T10:52:39.2836310Z ##[endgroup]
+2026-11-13T10:52:39.2838216Z Secret source: Actions
+2026-11-13T10:52:39.2839470Z Cache mode: write
+2026-11-13T10:52:39.2840266Z Prepare workflow directory
+2026-11-13T10:52:39.3172694Z Prepare all required actions
+2026-11-13T10:52:39.3216610Z Getting action download info
+2026-11-13T10:52:39.5464095Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T10:52:39.9112011Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T10:52:40.0525604Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+2026-11-13T10:52:40.5220461Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T10:52:40.7960807Z Complete job name: native-cpu
+2026-11-13T10:52:40.8832905Z ##[group]Run actions/checkout@v4
+2026-11-13T10:52:40.8834265Z with:
+2026-11-13T10:52:40.8834980Z   fetch-depth: 4
+2026-11-13T10:52:40.8835797Z   repository: Afloat16/pytorch-lightning
+2026-11-13T10:52:40.8842951Z   token: ***
+2026-11-13T10:52:40.8843809Z   ssh-strict: true
+2026-11-13T10:52:40.8844568Z   ssh-user: git
+2026-11-13T10:52:40.8845332Z   persist-credentials: true
+2026-11-13T10:52:40.8846170Z   clean: true
+2026-11-13T10:52:40.8846949Z   sparse-checkout-cone-mode: true
+2026-11-13T10:52:40.8847857Z   fetch-tags: false
+2026-11-13T10:52:40.8848639Z   show-progress: true
+2026-11-13T10:52:40.8849427Z   lfs: false
+2026-11-13T10:52:40.8850151Z   submodules: false
+2026-11-13T10:52:40.8851018Z   set-safe-directory: true
+2026-11-13T10:52:40.8852107Z   allow-unsafe-pr-checkout: false
+2026-11-13T10:52:40.8853463Z env:
+2026-11-13T10:52:40.8854396Z   PYTHONPATH: src:tests
+2026-11-13T10:52:40.8855306Z   OMP_NUM_THREADS: 1
+2026-11-13T10:52:40.8856174Z   MKL_NUM_THREADS: 1
+2026-11-13T10:52:40.8857265Z ##[endgroup]
+2026-11-13T10:52:41.2350745Z Syncing repository: Afloat16/pytorch-lightning
+2026-11-13T10:52:41.2352447Z ##[group]Getting Git version info
+2026-11-13T10:52:41.2353294Z Working directory is '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T10:52:41.2354139Z [command]/usr/bin/git version
+2026-11-13T10:52:41.2399674Z git version 2.56.0
+2026-11-13T10:52:41.2484959Z ##[endgroup]
+2026-11-13T10:52:41.2495755Z Temporarily overriding HOME='/home/runner/work/_temp/c72032f9-0d31-4507-a97a-28eb2724c5b3' before making global git config changes
+2026-11-13T10:52:41.2497271Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T10:52:41.2498538Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:52:41.2548281Z Deleting the contents of '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T10:52:41.2550436Z ##[group]Initializing the repository
+2026-11-13T10:52:41.2570110Z [command]/usr/bin/git init /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:52:41.2683708Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T10:52:41.2684570Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T10:52:41.2685275Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T10:52:41.2685700Z hint: call:
+2026-11-13T10:52:41.2685953Z hint:
+2026-11-13T10:52:41.2686372Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T10:52:41.2686739Z hint:
+2026-11-13T10:52:41.2687143Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T10:52:41.2687674Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T10:52:41.2688156Z hint:
+2026-11-13T10:52:41.2688509Z hint: 	git branch -m <name>
+2026-11-13T10:52:41.2688817Z hint:
+2026-11-13T10:52:41.2689248Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T10:52:41.2694888Z Initialized empty Git repository in /home/runner/work/pytorch-lightning/pytorch-lightning/.git/
+2026-11-13T10:52:41.2707423Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:52:41.2755223Z ##[endgroup]
+2026-11-13T10:52:41.2755832Z ##[group]Disabling automatic garbage collection
+2026-11-13T10:52:41.2759668Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T10:52:41.2801142Z ##[endgroup]
+2026-11-13T10:52:41.2802196Z ##[group]Setting up auth
+2026-11-13T10:52:41.2808635Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T10:52:41.2876617Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T10:52:41.3263983Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T10:52:41.3311988Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T10:52:41.3553474Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T10:52:41.3596516Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T10:52:41.3841897Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T10:52:41.3898980Z ##[endgroup]
+2026-11-13T10:52:41.7552866Z ##[group]Fetching the repository
+2026-11-13T10:52:41.7554585Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=4 origin +a991a25fb709783929e0206af94a7ef3653ba169:refs/remotes/origin/validation/tensor-learning-rate-history-20261113
+2026-11-13T10:52:42.7872286Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:52:42.7873910Z  * [new ref]         a991a25fb709783929e0206af94a7ef3653ba169 -> origin/validation/tensor-learning-rate-history-20261113
+2026-11-13T10:52:42.7876276Z ##[endgroup]
+2026-11-13T10:52:42.7876907Z ##[group]Determining the checkout info
+2026-11-13T10:52:42.7878063Z ##[endgroup]
+2026-11-13T10:52:42.7883704Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T10:52:42.8336112Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T10:52:42.8377817Z ##[group]Checking out the ref
+2026-11-13T10:52:42.8381494Z [command]/usr/bin/git checkout --progress --force -B validation/tensor-learning-rate-history-20261113 refs/remotes/origin/validation/tensor-learning-rate-history-20261113
+2026-11-13T10:52:42.9558720Z Switched to a new branch 'validation/tensor-learning-rate-history-20261113'
+2026-11-13T10:52:42.9625138Z branch 'validation/tensor-learning-rate-history-20261113' set up to track 'origin/validation/tensor-learning-rate-history-20261113'.
+2026-11-13T10:52:42.9626607Z ##[endgroup]
+2026-11-13T10:52:42.9627132Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T10:52:42.9654711Z a991a25fb709783929e0206af94a7ef3653ba169
+2026-11-13T10:52:42.9895947Z ##[group]Run actions/setup-python@v5
+2026-11-13T10:52:42.9896623Z with:
+2026-11-13T10:52:42.9896817Z   python-version: 3.12
+2026-11-13T10:52:42.9897078Z   check-latest: false
+2026-11-13T10:52:42.9900474Z   token: ***
+2026-11-13T10:52:42.9900676Z   update-environment: true
+2026-11-13T10:52:42.9901556Z   allow-prereleases: false
+2026-11-13T10:52:42.9901900Z   freethreaded: false
+2026-11-13T10:52:42.9902120Z env:
+2026-11-13T10:52:42.9902737Z   PYTHONPATH: src:tests
+2026-11-13T10:52:42.9903022Z   OMP_NUM_THREADS: 1
+2026-11-13T10:52:42.9903438Z   MKL_NUM_THREADS: 1
+2026-11-13T10:52:42.9903730Z ##[endgroup]
+2026-11-13T10:52:43.1147232Z ##[group]Installed versions
+2026-11-13T10:52:43.1236497Z (node:2103) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:52:43.1237152Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:52:43.1237696Z Successfully set up CPython (3.12.16)
+2026-11-13T10:52:43.1238408Z ##[endgroup]
+2026-11-13T10:52:43.1429171Z ##[group]Run astral-sh/setup-uv@v6
+2026-11-13T10:52:43.1429477Z with:
+2026-11-13T10:52:43.1429713Z   activate-environment: false
+2026-11-13T10:52:43.1430086Z   working-directory: /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:52:43.1430476Z   server-url: https://github.com
+2026-11-13T10:52:43.1432481Z   github-token: ***
+2026-11-13T10:52:43.1432670Z   enable-cache: auto
+2026-11-13T10:52:43.1433126Z   cache-dependency-glob: **/*requirements*.txt
+**/*requirements*.in
+**/*constraints*.txt
+**/*constraints*.in
+**/pyproject.toml
+**/uv.lock
+**/*.py.lock
+
+2026-11-13T10:52:43.1433786Z   restore-cache: true
+2026-11-13T10:52:43.1433970Z   save-cache: true
+2026-11-13T10:52:43.1434164Z   prune-cache: true
+2026-11-13T10:52:43.1434498Z   ignore-nothing-to-cache: false
+2026-11-13T10:52:43.1434818Z   ignore-empty-workdir: false
+2026-11-13T10:52:43.1435267Z   add-problem-matchers: true
+2026-11-13T10:52:43.1435674Z env:
+2026-11-13T10:52:43.1436003Z   PYTHONPATH: src:tests
+2026-11-13T10:52:43.1436437Z   OMP_NUM_THREADS: 1
+2026-11-13T10:52:43.1436712Z   MKL_NUM_THREADS: 1
+2026-11-13T10:52:43.1437062Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:43.1437673Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:52:43.1438195Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:43.1438637Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:43.1439064Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:43.1439564Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:52:43.1439968Z ##[endgroup]
+2026-11-13T10:52:43.3081305Z (node:2111) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:52:43.3081940Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:52:43.3184372Z Trying to find version for uv in: /home/runner/work/pytorch-lightning/pytorch-lightning/uv.toml
+2026-11-13T10:52:43.3185259Z Could not find file: /home/runner/work/pytorch-lightning/pytorch-lightning/uv.toml
+2026-11-13T10:52:43.3186025Z Trying to find version for uv in: /home/runner/work/pytorch-lightning/pytorch-lightning/pyproject.toml
+2026-11-13T10:52:43.3212101Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-11-13T10:52:43.3244569Z Getting latest version from GitHub API...
+2026-11-13T10:52:43.5715772Z manifest-file not provided, reading from local file.
+2026-11-13T10:52:43.5743943Z manifest-file does not contain version 0.13.8, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+2026-11-13T10:52:43.5750284Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-11-13T10:52:43.8776084Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/38135bf1-7998-4c31-9e9c-530b8032d6ef -f /home/runner/work/_temp/3def999a-426f-430a-b005-1e4a7625090c
+2026-11-13T10:52:44.2757580Z Added /home/runner/.local/bin to the path
+2026-11-13T10:52:44.2759430Z Added /opt/hostedtoolcache/uv/0.13.8/x86_64 to the path
+2026-11-13T10:52:44.2768663Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:52:44.2769240Z Successfully installed uv version 0.13.8
+2026-11-13T10:52:44.2771804Z Searching files using cache dependency glob: /home/runner/work/pytorch-lightning/pytorch-lightning/**/*requirements*.txt,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*requirements*.in,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*constraints*.txt,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*constraints*.in,/home/runner/work/pytorch-lightning/pytorch-lightning/**/pyproject.toml,/home/runner/work/pytorch-lightning/pytorch-lightning/**/uv.lock,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*.py.lock
+2026-11-13T10:52:44.2820113Z /home/runner/work/pytorch-lightning/pytorch-lightning/.actions/requirements.txt
+2026-11-13T10:52:44.3681469Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/fabric/fp8_distributed_transformer/requirements.txt
+2026-11-13T10:52:44.4151856Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/fabric/reinforcement_learning/requirements.txt
+2026-11-13T10:52:44.4220419Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/pytorch/fp8_distributed_transformer/requirements.txt
+2026-11-13T10:52:44.4234001Z /home/runner/work/pytorch-lightning/pytorch-lightning/pyproject.toml
+2026-11-13T10:52:44.4257241Z /home/runner/work/pytorch-lightning/pytorch-lightning/requirements.txt
+2026-11-13T10:52:44.4804170Z Found 6 files to hash.
+2026-11-13T10:52:45.1832099Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:52:45.2524902Z No GitHub Actions cache found for key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:52:45.2672411Z ##[group]Run uv venv .venv
+2026-11-13T10:52:45.2672713Z [36;1muv venv .venv[0m
+2026-11-13T10:52:45.2673336Z [36;1muv pip install --python .venv/bin/python torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu[0m
+2026-11-13T10:52:45.2674296Z [36;1muv pip install --python .venv/bin/python -e . torch==2.9.1 pytest==9.0.2 pytest-timeout==2.4.0 pytest-rerunfailures==16.1 pytest-random-order==1.2.0 tensorboardX==2.6.4 "jsonargparse[signatures]==4.41.0" rich matplotlib psutil ruff==0.15.9[0m
+2026-11-13T10:52:45.2698075Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:52:45.2698296Z env:
+2026-11-13T10:52:45.2698468Z   PYTHONPATH: src:tests
+2026-11-13T10:52:45.2698655Z   OMP_NUM_THREADS: 1
+2026-11-13T10:52:45.2698829Z   MKL_NUM_THREADS: 1
+2026-11-13T10:52:45.2699060Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:45.2699410Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:52:45.2699795Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:45.2700095Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:45.2700389Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:45.2700678Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:52:45.2700963Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:52:45.2701195Z ##[endgroup]
+2026-11-13T10:52:45.2831356Z Using CPython 3.12.16 interpreter at: /opt/hostedtoolcache/Python/3.12.16/x64/bin/python
+2026-11-13T10:52:45.2832316Z Creating virtual environment at: .venv
+2026-11-13T10:52:45.2836118Z Activate with: .venv/bin/activate
+2026-11-13T10:52:45.7024166Z Resolved 10 packages in 370ms
+2026-11-13T10:52:45.7119991Z Downloading setuptools (1.2MiB)
+2026-11-13T10:52:45.7132602Z Downloading sympy (6.0MiB)
+2026-11-13T10:52:45.7133304Z Downloading networkx (2.0MiB)
+2026-11-13T10:52:45.7188909Z Downloading torch (175.8MiB)
+2026-11-13T10:52:45.7929667Z  Downloaded setuptools
+2026-11-13T10:52:45.8280608Z  Downloaded networkx
+2026-11-13T10:52:45.9126374Z  Downloaded sympy
+2026-11-13T10:52:47.2346541Z  Downloaded torch
+2026-11-13T10:52:47.2348383Z Prepared 10 packages in 1.53s
+2026-11-13T10:52:47.4142388Z Installed 10 packages in 179ms
+2026-11-13T10:52:47.4142786Z  + filelock==4.2.4
+2026-11-13T10:52:47.4143039Z  + fsspec==2026.9.0
+2026-11-13T10:52:47.4143426Z  + jinja2==3.1.6
+2026-11-13T10:52:47.4143676Z  + markupsafe==3.0.3
+2026-11-13T10:52:47.4143924Z  + mpmath==1.3.0
+2026-11-13T10:52:47.4144183Z  + networkx==3.7
+2026-11-13T10:52:47.4144462Z  + setuptools==78.1.0
+2026-11-13T10:52:47.4144748Z  + sympy==1.14.0
+2026-11-13T10:52:47.4157254Z  + torch==2.9.1+cpu
+2026-11-13T10:52:47.4163803Z  + typing-extensions==4.16.0
+2026-11-13T10:52:48.6052287Z Resolved 53 packages in 1.13s
+2026-11-13T10:52:48.6080616Z    Building lightning @ file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:52:48.6310210Z Downloading fonttools (5.2MiB)
+2026-11-13T10:52:48.6324256Z Downloading ruff (10.7MiB)
+2026-11-13T10:52:48.6357703Z Downloading numpy (16.0MiB)
+2026-11-13T10:52:48.6358417Z Downloading pygments (1.2MiB)
+2026-11-13T10:52:48.6422844Z Downloading aiohttp (1.8MiB)
+2026-11-13T10:52:48.6464590Z Downloading kiwisolver (1.4MiB)
+2026-11-13T10:52:48.6472827Z Downloading pillow (6.8MiB)
+2026-11-13T10:52:48.6473657Z Downloading matplotlib (9.4MiB)
+2026-11-13T10:52:48.9170552Z  Downloaded pygments
+2026-11-13T10:52:48.9193855Z  Downloaded kiwisolver
+2026-11-13T10:52:48.9310145Z  Downloaded aiohttp
+2026-11-13T10:52:48.9963833Z  Downloaded fonttools
+2026-11-13T10:52:49.0061356Z  Downloaded pillow
+2026-11-13T10:52:49.0514433Z  Downloaded ruff
+2026-11-13T10:52:49.0674470Z  Downloaded matplotlib
+2026-11-13T10:52:49.1131732Z       Built lightning @ file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:52:49.1260086Z  Downloaded numpy
+2026-11-13T10:52:49.1261683Z Prepared 42 packages in 520ms
+2026-11-13T10:52:49.2654293Z Installed 43 packages in 139ms
+2026-11-13T10:52:49.2654992Z  + aiohappyeyeballs==2.7.1
+2026-11-13T10:52:49.2655291Z  + aiohttp==3.14.5
+2026-11-13T10:52:49.2655533Z  + aiosignal==1.4.0
+2026-11-13T10:52:49.2655775Z  + attrs==26.1.0
+2026-11-13T10:52:49.2656030Z  + contourpy==1.4.0
+2026-11-13T10:52:49.2656268Z  + cycler==0.12.1
+2026-11-13T10:52:49.2656691Z  + docstring-parser==0.18.0
+2026-11-13T10:52:49.2657028Z  + fonttools==4.68.0
+2026-11-13T10:52:49.2657395Z  + frozenlist==1.8.0
+2026-11-13T10:52:49.2657788Z  + idna==3.20
+2026-11-13T10:52:49.2658069Z  + iniconfig==2.3.1
+2026-11-13T10:52:49.2658491Z  + jsonargparse==4.41.0
+2026-11-13T10:52:49.2658784Z  + kiwisolver==1.5.1
+2026-11-13T10:52:49.2659671Z  + lightning==2.7.0.dev0 (from file:///home/runner/work/pytorch-lightning/pytorch-lightning)
+2026-11-13T10:52:49.2660329Z  + lightning-utilities==0.15.3
+2026-11-13T10:52:49.2660707Z  + markdown-it-py==4.3.0
+2026-11-13T10:52:49.2661056Z  + matplotlib==3.11.2
+2026-11-13T10:52:49.2661317Z  + mdurl==0.1.2
+2026-11-13T10:52:49.2661523Z  + multidict==7.2.1
+2026-11-13T10:52:49.2661911Z  + numpy==2.5.4
+2026-11-13T10:52:49.2662149Z  + packaging==26.3
+2026-11-13T10:52:49.2662433Z  + pillow==13.0.0
+2026-11-13T10:52:49.2662670Z  + pluggy==1.7.0
+2026-11-13T10:52:49.2662952Z  + propcache==0.5.4
+2026-11-13T10:52:49.2663356Z  + protobuf==7.36.2
+2026-11-13T10:52:49.2663641Z  + psutil==7.2.2
+2026-11-13T10:52:49.2663873Z  + pygments==2.21.0
+2026-11-13T10:52:49.2664395Z  + pyparsing==3.3.3
+2026-11-13T10:52:49.2664699Z  + pytest==9.0.2
+2026-11-13T10:52:49.2664934Z  + pytest-random-order==1.2.0
+2026-11-13T10:52:49.2665520Z  + pytest-rerunfailures==16.1
+2026-11-13T10:52:49.2665810Z  + pytest-timeout==2.4.0
+2026-11-13T10:52:49.2666083Z  + python-dateutil==4.0.0
+2026-11-13T10:52:49.2666367Z  + pytorch-lightning==2.6.6
+2026-11-13T10:52:49.2666640Z  + pyyaml==6.0.3
+2026-11-13T10:52:49.2666869Z  + rich==15.0.0
+2026-11-13T10:52:49.2667096Z  + ruff==0.15.9
+2026-11-13T10:52:49.2667330Z  + tensorboardx==2.6.4
+2026-11-13T10:52:49.2667586Z  + torchmetrics==1.9.0
+2026-11-13T10:52:49.2667827Z  + tqdm==4.70.1
+2026-11-13T10:52:49.2668071Z  + typeshed-client==2.15.0
+2026-11-13T10:52:49.2668334Z  + tzdata==2026.6
+2026-11-13T10:52:49.2668585Z  + yarl==1.25.1
+2026-11-13T10:52:49.2862337Z ##[group]Run .venv/bin/python validation/run_lr_history.py
+2026-11-13T10:52:49.2862696Z [36;1m.venv/bin/python validation/run_lr_history.py[0m
+2026-11-13T10:52:49.2881079Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:52:49.2881284Z env:
+2026-11-13T10:52:49.2881454Z   PYTHONPATH: src:tests
+2026-11-13T10:52:49.2881641Z   OMP_NUM_THREADS: 1
+2026-11-13T10:52:49.2881839Z   MKL_NUM_THREADS: 1
+2026-11-13T10:52:49.2882060Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:49.2882402Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:52:49.2882731Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:49.2883032Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:49.2883580Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:52:49.2883878Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:52:49.2884214Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:52:49.2884461Z ##[endgroup]
+2026-11-13T10:52:49.8454094Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:52:49.8454677Z  * branch            84df182f50ab34301aabb3c0eb4031815bfb413d -> FETCH_HEAD
+2026-11-13T10:52:49.8455220Z  * branch            a914d621b0e19527b9d8c886d005634895e53018 -> FETCH_HEAD
+2026-11-13T10:53:01.7921948Z [31mF[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[32m.[0m[31mF[0m[31mF[0m[32m.[0m[32m.[0m[31mF[0m[31mF[0m[32m.[0m[32m.[0m[31mF[0m[31mF[0m[32m.[0m[32m.[0m[31mF[0m[31mF[0m[31m                                                     [100%][0m
+2026-11-13T10:53:01.7922945Z =================================== FAILURES ===================================
+2026-11-13T10:53:01.7923856Z [31m[1m__________ test_lr_monitor_snapshots_mutable_tensor_lr[shape0-dtype0] __________[0m
+2026-11-13T10:53:01.7924243Z 
+2026-11-13T10:53:01.7924378Z dtype = torch.float32, shape = ()
+2026-11-13T10:53:01.7924585Z 
+2026-11-13T10:53:01.7925340Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.7926438Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mshape[39;49;00m[33m"[39;49;00m, [(), ([94m1[39;49;00m,)])[90m[39;49;00m
+2026-11-13T10:53:01.7927489Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_snapshots_mutable_tensor_lr[39;49;00m(dtype, shape):[90m[39;49;00m
+2026-11-13T10:53:01.7928220Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.7928842Z         monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] = [][90m[39;49;00m
+2026-11-13T10:53:01.7929505Z         lr = torch.full(shape, [94m0.125[39;49;00m, dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.7929963Z         group = {[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m: lr}[90m[39;49;00m
+2026-11-13T10:53:01.7930464Z         first = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7930865Z         lr.mul_([94m0.5[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7931278Z         second = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7931683Z         lr.fill_([94m0.001[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7932735Z >       [94massert[39;49;00m monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx([[94m0.125[39;49;00m, [94m0.0625[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7933628Z [1m[31mE       assert [tensor(0.001...ensor(0.0010)] == approx([0.125...25 ± 6.2e-08])[0m
+2026-11-13T10:53:01.7933981Z [1m[31mE         [0m
+2026-11-13T10:53:01.7934266Z [1m[31mE         comparison failed. Mismatched elements: 2 / 2:[0m
+2026-11-13T10:53:01.7934618Z [1m[31mE         Max absolute difference: 0.12399999797344208[0m
+2026-11-13T10:53:01.7935156Z [1m[31mE         Max relative difference: 123.99999237060547[0m
+2026-11-13T10:53:01.7935486Z [1m[31mE         Index | Obtained       | Expected        [0m
+2026-11-13T10:53:01.7935810Z [1m[31mE         0     | tensor(0.0010) | 0.125 ± 1.2e-07 [0m
+2026-11-13T10:53:01.7936100Z [1m[31mE         1     | tensor(0.0010) | 0.0625 ± 6.2e-08[0m
+2026-11-13T10:53:01.7936256Z 
+2026-11-13T10:53:01.7936532Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:34: AssertionError
+2026-11-13T10:53:01.7937052Z [31m[1m__________ test_lr_monitor_snapshots_mutable_tensor_lr[shape0-dtype1] __________[0m
+2026-11-13T10:53:01.7937307Z 
+2026-11-13T10:53:01.7937394Z dtype = torch.float64, shape = ()
+2026-11-13T10:53:01.7937535Z 
+2026-11-13T10:53:01.7937911Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.7938594Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mshape[39;49;00m[33m"[39;49;00m, [(), ([94m1[39;49;00m,)])[90m[39;49;00m
+2026-11-13T10:53:01.7939227Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_snapshots_mutable_tensor_lr[39;49;00m(dtype, shape):[90m[39;49;00m
+2026-11-13T10:53:01.7939690Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.7940070Z         monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] = [][90m[39;49;00m
+2026-11-13T10:53:01.7940493Z         lr = torch.full(shape, [94m0.125[39;49;00m, dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.7940896Z         group = {[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m: lr}[90m[39;49;00m
+2026-11-13T10:53:01.7941362Z         first = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7941756Z         lr.mul_([94m0.5[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7942169Z         second = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7942561Z         lr.fill_([94m0.001[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7943119Z >       [94massert[39;49;00m monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx([[94m0.125[39;49;00m, [94m0.0625[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7943922Z [1m[31mE       assert [tensor(0.001...orch.float64)] == approx([0.125...25 ± 6.2e-08])[0m
+2026-11-13T10:53:01.7944260Z [1m[31mE         [0m
+2026-11-13T10:53:01.7944536Z [1m[31mE         comparison failed. Mismatched elements: 2 / 2:[0m
+2026-11-13T10:53:01.7944858Z [1m[31mE         Max absolute difference: 0.124[0m
+2026-11-13T10:53:01.7945151Z [1m[31mE         Max relative difference: 124.0[0m
+2026-11-13T10:53:01.7945484Z [1m[31mE         Index | Obtained                            | Expected        [0m
+2026-11-13T10:53:01.7945881Z [1m[31mE         0     | tensor(0.0010, dtype=torch.float64) | 0.125 ± 1.2e-07 [0m
+2026-11-13T10:53:01.7946270Z [1m[31mE         1     | tensor(0.0010, dtype=torch.float64) | 0.0625 ± 6.2e-08[0m
+2026-11-13T10:53:01.7946468Z 
+2026-11-13T10:53:01.7946728Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:34: AssertionError
+2026-11-13T10:53:01.7947240Z [31m[1m__________ test_lr_monitor_snapshots_mutable_tensor_lr[shape1-dtype0] __________[0m
+2026-11-13T10:53:01.7947496Z 
+2026-11-13T10:53:01.7947718Z dtype = torch.float32, shape = (1,)
+2026-11-13T10:53:01.7947865Z 
+2026-11-13T10:53:01.7948240Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.7948905Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mshape[39;49;00m[33m"[39;49;00m, [(), ([94m1[39;49;00m,)])[90m[39;49;00m
+2026-11-13T10:53:01.7949537Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_snapshots_mutable_tensor_lr[39;49;00m(dtype, shape):[90m[39;49;00m
+2026-11-13T10:53:01.7950098Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.7950479Z         monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] = [][90m[39;49;00m
+2026-11-13T10:53:01.7950904Z         lr = torch.full(shape, [94m0.125[39;49;00m, dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.7951331Z         group = {[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m: lr}[90m[39;49;00m
+2026-11-13T10:53:01.7951808Z         first = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7952199Z         lr.mul_([94m0.5[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7952611Z         second = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7952997Z         lr.fill_([94m0.001[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7954416Z >       [94massert[39;49;00m monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx([[94m0.125[39;49;00m, [94m0.0625[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7955012Z [1m[31mE       assert [tensor([0.00...sor([0.0010])] == approx([0.125...25 ± 6.2e-08])[0m
+2026-11-13T10:53:01.7955340Z [1m[31mE         [0m
+2026-11-13T10:53:01.7955618Z [1m[31mE         comparison failed. Mismatched elements: 2 / 2:[0m
+2026-11-13T10:53:01.7955982Z [1m[31mE         Max absolute difference: tensor([0.1240])[0m
+2026-11-13T10:53:01.7956320Z [1m[31mE         Max relative difference: tensor([124.0000])[0m
+2026-11-13T10:53:01.7956641Z [1m[31mE         Index | Obtained         | Expected        [0m
+2026-11-13T10:53:01.7957042Z [1m[31mE         0     | tensor([0.0010]) | 0.125 ± 1.2e-07 [0m
+2026-11-13T10:53:01.7957352Z [1m[31mE         1     | tensor([0.0010]) | 0.0625 ± 6.2e-08[0m
+2026-11-13T10:53:01.7957509Z 
+2026-11-13T10:53:01.7957775Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:34: AssertionError
+2026-11-13T10:53:01.7958286Z [31m[1m__________ test_lr_monitor_snapshots_mutable_tensor_lr[shape1-dtype1] __________[0m
+2026-11-13T10:53:01.7958528Z 
+2026-11-13T10:53:01.7958622Z dtype = torch.float64, shape = (1,)
+2026-11-13T10:53:01.7958759Z 
+2026-11-13T10:53:01.7959122Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.7959794Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mshape[39;49;00m[33m"[39;49;00m, [(), ([94m1[39;49;00m,)])[90m[39;49;00m
+2026-11-13T10:53:01.7960426Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_snapshots_mutable_tensor_lr[39;49;00m(dtype, shape):[90m[39;49;00m
+2026-11-13T10:53:01.7960872Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.7961246Z         monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] = [][90m[39;49;00m
+2026-11-13T10:53:01.7961662Z         lr = torch.full(shape, [94m0.125[39;49;00m, dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.7962069Z         group = {[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m: lr}[90m[39;49;00m
+2026-11-13T10:53:01.7962528Z         first = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7962934Z         lr.mul_([94m0.5[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7963614Z         second = monitor._extract_lr(group, [33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7964134Z         lr.fill_([94m0.001[39;49;00m)[90m[39;49;00m
+2026-11-13T10:53:01.7964686Z >       [94massert[39;49;00m monitor.lrs[[33m"[39;49;00m[33mlr[39;49;00m[33m"[39;49;00m] == pytest.approx([[94m0.125[39;49;00m, [94m0.0625[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7965278Z [1m[31mE       assert [tensor([0.00...orch.float64)] == approx([0.125...25 ± 6.2e-08])[0m
+2026-11-13T10:53:01.7965598Z [1m[31mE         [0m
+2026-11-13T10:53:01.7965863Z [1m[31mE         comparison failed. Mismatched elements: 2 / 2:[0m
+2026-11-13T10:53:01.7966344Z [1m[31mE         Max absolute difference: tensor([0.1240], dtype=torch.float64)[0m
+2026-11-13T10:53:01.7966772Z [1m[31mE         Max relative difference: tensor([124.], dtype=torch.float64)[0m
+2026-11-13T10:53:01.7967180Z [1m[31mE         Index | Obtained                              | Expected        [0m
+2026-11-13T10:53:01.7967585Z [1m[31mE         0     | tensor([0.0010], dtype=torch.float64) | 0.125 ± 1.2e-07 [0m
+2026-11-13T10:53:01.7967960Z [1m[31mE         1     | tensor([0.0010], dtype=torch.float64) | 0.0625 ± 6.2e-08[0m
+2026-11-13T10:53:01.7968157Z 
+2026-11-13T10:53:01.7968415Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:34: AssertionError
+2026-11-13T10:53:01.7968921Z [31m[1m____ test_lr_monitor_tensor_history_matches_training[step-dtype0-True-SGD] _____[0m
+2026-11-13T10:53:01.7969188Z 
+2026-11-13T10:53:01.7969379Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history2')
+2026-11-13T10:53:01.7969794Z optimizer_type = <class 'torch.optim.sgd.SGD'>, tensor_lr = True
+2026-11-13T10:53:01.7970083Z dtype = torch.float32, interval = 'step'
+2026-11-13T10:53:01.7970225Z 
+2026-11-13T10:53:01.7970656Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.7971432Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7972169Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.7973014Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7974180Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.7974830Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.7975215Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.7975493Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.7975759Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.7976124Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7976463Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7976765Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7977049Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.7977326Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.7977631Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7977986Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7978343Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7978688Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7979206Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7979475Z         )[90m[39;49;00m
+2026-11-13T10:53:01.7979831Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.7980407Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.7981472Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.7982596Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.7983386Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.7983866Z [1m[31mE       assert [tensor(0.002...ensor(0.0020)] == approx([0.125...25 ± 3.9e-09])[0m
+2026-11-13T10:53:01.7984203Z [1m[31mE         [0m
+2026-11-13T10:53:01.7984476Z [1m[31mE         comparison failed. Mismatched elements: 6 / 6:[0m
+2026-11-13T10:53:01.7984807Z [1m[31mE         Max absolute difference: 0.123046875[0m
+2026-11-13T10:53:01.7985102Z [1m[31mE         Max relative difference: 63.0[0m
+2026-11-13T10:53:01.7985410Z [1m[31mE         Index | Obtained       | Expected            [0m
+2026-11-13T10:53:01.7985731Z [1m[31mE         0     | tensor(0.0020) | 0.125 ± 1.2e-07     [0m
+2026-11-13T10:53:01.7986039Z [1m[31mE         1     | tensor(0.0020) | 0.0625 ± 6.2e-08    [0m
+2026-11-13T10:53:01.7986339Z [1m[31mE         2     | tensor(0.0020) | 0.03125 ± 3.1e-08   [0m
+2026-11-13T10:53:01.7986639Z [1m[31mE         3     | tensor(0.0020) | 0.015625 ± 1.6e-08  [0m
+2026-11-13T10:53:01.7986943Z [1m[31mE         4     | tensor(0.0020) | 0.0078125 ± 7.8e-09 [0m
+2026-11-13T10:53:01.7987243Z [1m[31mE         5     | tensor(0.0020) | 0.00390625 ± 3.9e-09[0m
+2026-11-13T10:53:01.7987404Z 
+2026-11-13T10:53:01.7987674Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.7988099Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.7988418Z GPU available: False, used: False
+2026-11-13T10:53:01.7988640Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.7989492Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.7990224Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.7990636Z [31m[1m___ test_lr_monitor_tensor_history_matches_training[step-dtype0-True-AdamW] ____[0m
+2026-11-13T10:53:01.7990896Z 
+2026-11-13T10:53:01.7991093Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history3')
+2026-11-13T10:53:01.7991489Z optimizer_type = <class 'torch.optim.adamw.AdamW'>, tensor_lr = True
+2026-11-13T10:53:01.7991780Z dtype = torch.float32, interval = 'step'
+2026-11-13T10:53:01.7991925Z 
+2026-11-13T10:53:01.7992345Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.7993118Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7994079Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.7994935Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.7995990Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.7996631Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.7997018Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.7997300Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.7997569Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.7998024Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7998374Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7998653Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7998927Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.7999208Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.7999510Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.7999856Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8000204Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8000541Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8000871Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8001135Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8001476Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8002042Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8002803Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8003930Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8004536Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8004970Z [1m[31mE       assert [tensor(0.002...ensor(0.0020)] == approx([0.125...25 ± 3.9e-09])[0m
+2026-11-13T10:53:01.8005290Z [1m[31mE         [0m
+2026-11-13T10:53:01.8005564Z [1m[31mE         comparison failed. Mismatched elements: 6 / 6:[0m
+2026-11-13T10:53:01.8005891Z [1m[31mE         Max absolute difference: 0.123046875[0m
+2026-11-13T10:53:01.8006183Z [1m[31mE         Max relative difference: 63.0[0m
+2026-11-13T10:53:01.8006501Z [1m[31mE         Index | Obtained       | Expected            [0m
+2026-11-13T10:53:01.8006820Z [1m[31mE         0     | tensor(0.0020) | 0.125 ± 1.2e-07     [0m
+2026-11-13T10:53:01.8007123Z [1m[31mE         1     | tensor(0.0020) | 0.0625 ± 6.2e-08    [0m
+2026-11-13T10:53:01.8007418Z [1m[31mE         2     | tensor(0.0020) | 0.03125 ± 3.1e-08   [0m
+2026-11-13T10:53:01.8007713Z [1m[31mE         3     | tensor(0.0020) | 0.015625 ± 1.6e-08  [0m
+2026-11-13T10:53:01.8008017Z [1m[31mE         4     | tensor(0.0020) | 0.0078125 ± 7.8e-09 [0m
+2026-11-13T10:53:01.8008314Z [1m[31mE         5     | tensor(0.0020) | 0.00390625 ± 3.9e-09[0m
+2026-11-13T10:53:01.8008481Z 
+2026-11-13T10:53:01.8008749Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8009163Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8009455Z GPU available: False, used: False
+2026-11-13T10:53:01.8009672Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8010477Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8011308Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8011715Z [31m[1m____ test_lr_monitor_tensor_history_matches_training[step-dtype1-True-SGD] _____[0m
+2026-11-13T10:53:01.8011979Z 
+2026-11-13T10:53:01.8012170Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history6')
+2026-11-13T10:53:01.8012563Z optimizer_type = <class 'torch.optim.sgd.SGD'>, tensor_lr = True
+2026-11-13T10:53:01.8012940Z dtype = torch.float64, interval = 'step'
+2026-11-13T10:53:01.8013081Z 
+2026-11-13T10:53:01.8013723Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.8014526Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8015254Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.8016109Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8017023Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.8017666Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.8018059Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.8018340Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.8018609Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.8018977Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8019317Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8019593Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8019863Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.8020141Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.8020446Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8020787Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8021132Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8021478Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8021807Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8022075Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8022410Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8022978Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8023988Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8024940Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8025537Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8025971Z [1m[31mE       assert [tensor(0.002...orch.float64)] == approx([0.125...25 ± 3.9e-09])[0m
+2026-11-13T10:53:01.8026432Z [1m[31mE         [0m
+2026-11-13T10:53:01.8026709Z [1m[31mE         comparison failed. Mismatched elements: 6 / 6:[0m
+2026-11-13T10:53:01.8027069Z [1m[31mE         Max absolute difference: 0.123046875[0m
+2026-11-13T10:53:01.8027370Z [1m[31mE         Max relative difference: 63.0[0m
+2026-11-13T10:53:01.8027719Z [1m[31mE         Index | Obtained                            | Expected            [0m
+2026-11-13T10:53:01.8028130Z [1m[31mE         0     | tensor(0.0020, dtype=torch.float64) | 0.125 ± 1.2e-07     [0m
+2026-11-13T10:53:01.8028672Z [1m[31mE         1     | tensor(0.0020, dtype=torch.float64) | 0.0625 ± 6.2e-08    [0m
+2026-11-13T10:53:01.8029059Z [1m[31mE         2     | tensor(0.0020, dtype=torch.float64) | 0.03125 ± 3.1e-08   [0m
+2026-11-13T10:53:01.8029442Z [1m[31mE         3     | tensor(0.0020, dtype=torch.float64) | 0.015625 ± 1.6e-08  [0m
+2026-11-13T10:53:01.8029828Z [1m[31mE         4     | tensor(0.0020, dtype=torch.float64) | 0.0078125 ± 7.8e-09 [0m
+2026-11-13T10:53:01.8030233Z [1m[31mE         5     | tensor(0.0020, dtype=torch.float64) | 0.00390625 ± 3.9e-09[0m
+2026-11-13T10:53:01.8030439Z 
+2026-11-13T10:53:01.8030704Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8031116Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8031411Z GPU available: False, used: False
+2026-11-13T10:53:01.8031627Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8032439Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8033298Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8033736Z [31m[1m___ test_lr_monitor_tensor_history_matches_training[step-dtype1-True-AdamW] ____[0m
+2026-11-13T10:53:01.8034001Z 
+2026-11-13T10:53:01.8034199Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history7')
+2026-11-13T10:53:01.8034588Z optimizer_type = <class 'torch.optim.adamw.AdamW'>, tensor_lr = True
+2026-11-13T10:53:01.8034882Z dtype = torch.float64, interval = 'step'
+2026-11-13T10:53:01.8035027Z 
+2026-11-13T10:53:01.8035444Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.8036210Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8036925Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.8037768Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8038680Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.8039350Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.8039742Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.8040024Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.8040307Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.8040673Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8041012Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8041287Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8041557Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.8041952Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.8042248Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8042589Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8042940Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8043435Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8043803Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8044073Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8044516Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8045095Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8045858Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8046845Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8047453Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8047893Z [1m[31mE       assert [tensor(0.002...orch.float64)] == approx([0.125...25 ± 3.9e-09])[0m
+2026-11-13T10:53:01.8048217Z [1m[31mE         [0m
+2026-11-13T10:53:01.8048495Z [1m[31mE         comparison failed. Mismatched elements: 6 / 6:[0m
+2026-11-13T10:53:01.8048828Z [1m[31mE         Max absolute difference: 0.123046875[0m
+2026-11-13T10:53:01.8049119Z [1m[31mE         Max relative difference: 63.0[0m
+2026-11-13T10:53:01.8049467Z [1m[31mE         Index | Obtained                            | Expected            [0m
+2026-11-13T10:53:01.8049879Z [1m[31mE         0     | tensor(0.0020, dtype=torch.float64) | 0.125 ± 1.2e-07     [0m
+2026-11-13T10:53:01.8050279Z [1m[31mE         1     | tensor(0.0020, dtype=torch.float64) | 0.0625 ± 6.2e-08    [0m
+2026-11-13T10:53:01.8050669Z [1m[31mE         2     | tensor(0.0020, dtype=torch.float64) | 0.03125 ± 3.1e-08   [0m
+2026-11-13T10:53:01.8051051Z [1m[31mE         3     | tensor(0.0020, dtype=torch.float64) | 0.015625 ± 1.6e-08  [0m
+2026-11-13T10:53:01.8051437Z [1m[31mE         4     | tensor(0.0020, dtype=torch.float64) | 0.0078125 ± 7.8e-09 [0m
+2026-11-13T10:53:01.8051823Z [1m[31mE         5     | tensor(0.0020, dtype=torch.float64) | 0.00390625 ± 3.9e-09[0m
+2026-11-13T10:53:01.8052032Z 
+2026-11-13T10:53:01.8052301Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8052741Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8053038Z GPU available: False, used: False
+2026-11-13T10:53:01.8053477Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8054291Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8054996Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8055399Z [31m[1m____ test_lr_monitor_tensor_history_matches_training[epoch-dtype0-True-SGD] ____[0m
+2026-11-13T10:53:01.8055663Z 
+2026-11-13T10:53:01.8055862Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history10')
+2026-11-13T10:53:01.8056255Z optimizer_type = <class 'torch.optim.sgd.SGD'>, tensor_lr = True
+2026-11-13T10:53:01.8056538Z dtype = torch.float32, interval = 'epoch'
+2026-11-13T10:53:01.8056684Z 
+2026-11-13T10:53:01.8057110Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.8058026Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8058735Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.8059678Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8060600Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.8061246Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.8061633Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.8061907Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.8062171Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.8062536Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8062882Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8063279Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8063563Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.8063844Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.8064143Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8064483Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8064832Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8065180Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8065514Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8065785Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8066125Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8066691Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8067461Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8068359Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8068957Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8069398Z [1m[31mE       assert [tensor(0.015...ensor(0.0156)] == approx([0.125...25 ± 3.1e-08])[0m
+2026-11-13T10:53:01.8069716Z [1m[31mE         [0m
+2026-11-13T10:53:01.8069984Z [1m[31mE         comparison failed. Mismatched elements: 3 / 3:[0m
+2026-11-13T10:53:01.8070301Z [1m[31mE         Max absolute difference: 0.109375[0m
+2026-11-13T10:53:01.8070583Z [1m[31mE         Max relative difference: 7.0[0m
+2026-11-13T10:53:01.8070889Z [1m[31mE         Index | Obtained       | Expected         [0m
+2026-11-13T10:53:01.8071203Z [1m[31mE         0     | tensor(0.0156) | 0.125 ± 1.2e-07  [0m
+2026-11-13T10:53:01.8071494Z [1m[31mE         1     | tensor(0.0156) | 0.0625 ± 6.2e-08 [0m
+2026-11-13T10:53:01.8071830Z [1m[31mE         2     | tensor(0.0156) | 0.03125 ± 3.1e-08[0m
+2026-11-13T10:53:01.8071987Z 
+2026-11-13T10:53:01.8072253Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8072792Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8073089Z GPU available: False, used: False
+2026-11-13T10:53:01.8073463Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8074274Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8074959Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8075466Z [31m[1m___ test_lr_monitor_tensor_history_matches_training[epoch-dtype0-True-AdamW] ___[0m
+2026-11-13T10:53:01.8075732Z 
+2026-11-13T10:53:01.8075927Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history11')
+2026-11-13T10:53:01.8076327Z optimizer_type = <class 'torch.optim.adamw.AdamW'>, tensor_lr = True
+2026-11-13T10:53:01.8076624Z dtype = torch.float32, interval = 'epoch'
+2026-11-13T10:53:01.8076780Z 
+2026-11-13T10:53:01.8077200Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.8077969Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8078692Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.8079551Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8080453Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.8081095Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.8081475Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.8081748Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.8082021Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.8082398Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8082737Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8083017Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8083380Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.8083658Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.8083954Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8084285Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8084636Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8084984Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8085313Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8085574Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8085909Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8086475Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8087239Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8088138Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8088888Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8089321Z [1m[31mE       assert [tensor(0.015...ensor(0.0156)] == approx([0.125...25 ± 3.1e-08])[0m
+2026-11-13T10:53:01.8089640Z [1m[31mE         [0m
+2026-11-13T10:53:01.8089907Z [1m[31mE         comparison failed. Mismatched elements: 3 / 3:[0m
+2026-11-13T10:53:01.8090223Z [1m[31mE         Max absolute difference: 0.109375[0m
+2026-11-13T10:53:01.8090502Z [1m[31mE         Max relative difference: 7.0[0m
+2026-11-13T10:53:01.8090921Z [1m[31mE         Index | Obtained       | Expected         [0m
+2026-11-13T10:53:01.8091242Z [1m[31mE         0     | tensor(0.0156) | 0.125 ± 1.2e-07  [0m
+2026-11-13T10:53:01.8091543Z [1m[31mE         1     | tensor(0.0156) | 0.0625 ± 6.2e-08 [0m
+2026-11-13T10:53:01.8091832Z [1m[31mE         2     | tensor(0.0156) | 0.03125 ± 3.1e-08[0m
+2026-11-13T10:53:01.8091996Z 
+2026-11-13T10:53:01.8092259Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8092671Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8092957Z GPU available: False, used: False
+2026-11-13T10:53:01.8093280Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8094094Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8094794Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8095196Z [31m[1m____ test_lr_monitor_tensor_history_matches_training[epoch-dtype1-True-SGD] ____[0m
+2026-11-13T10:53:01.8095453Z 
+2026-11-13T10:53:01.8095644Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history14')
+2026-11-13T10:53:01.8096036Z optimizer_type = <class 'torch.optim.sgd.SGD'>, tensor_lr = True
+2026-11-13T10:53:01.8096324Z dtype = torch.float64, interval = 'epoch'
+2026-11-13T10:53:01.8096480Z 
+2026-11-13T10:53:01.8096902Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.8097678Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8098382Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.8099237Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8100151Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.8100787Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.8101170Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.8101452Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.8101718Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.8102080Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8102425Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8102699Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8102964Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.8103350Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.8103763Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8104102Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8104450Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8104791Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8105118Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8105382Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8105808Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8106382Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8107143Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8108058Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8108654Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8109091Z [1m[31mE       assert [tensor(0.015...orch.float64)] == approx([0.125...25 ± 3.1e-08])[0m
+2026-11-13T10:53:01.8109410Z [1m[31mE         [0m
+2026-11-13T10:53:01.8109680Z [1m[31mE         comparison failed. Mismatched elements: 3 / 3:[0m
+2026-11-13T10:53:01.8110001Z [1m[31mE         Max absolute difference: 0.109375[0m
+2026-11-13T10:53:01.8110285Z [1m[31mE         Max relative difference: 7.0[0m
+2026-11-13T10:53:01.8110627Z [1m[31mE         Index | Obtained                            | Expected         [0m
+2026-11-13T10:53:01.8111019Z [1m[31mE         0     | tensor(0.0156, dtype=torch.float64) | 0.125 ± 1.2e-07  [0m
+2026-11-13T10:53:01.8111399Z [1m[31mE         1     | tensor(0.0156, dtype=torch.float64) | 0.0625 ± 6.2e-08 [0m
+2026-11-13T10:53:01.8111769Z [1m[31mE         2     | tensor(0.0156, dtype=torch.float64) | 0.03125 ± 3.1e-08[0m
+2026-11-13T10:53:01.8111972Z 
+2026-11-13T10:53:01.8112228Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8112637Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8112926Z GPU available: False, used: False
+2026-11-13T10:53:01.8113236Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8114054Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8114743Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8115147Z [31m[1m___ test_lr_monitor_tensor_history_matches_training[epoch-dtype1-True-AdamW] ___[0m
+2026-11-13T10:53:01.8115420Z 
+2026-11-13T10:53:01.8115605Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_lr_monitor_tensor_history15')
+2026-11-13T10:53:01.8115995Z optimizer_type = <class 'torch.optim.adamw.AdamW'>, tensor_lr = True
+2026-11-13T10:53:01.8116284Z dtype = torch.float64, interval = 'epoch'
+2026-11-13T10:53:01.8116437Z 
+2026-11-13T10:53:01.8116856Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33moptimizer_type[39;49;00m[33m"[39;49;00m, [torch.optim.SGD, torch.optim.AdamW])[90m[39;49;00m
+2026-11-13T10:53:01.8117623Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mtensor_lr[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8118328Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mdtype[39;49;00m[33m"[39;49;00m, [torch.float32, torch.float64])[90m[39;49;00m
+2026-11-13T10:53:01.8119385Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minterval[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mepoch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:53:01.8120286Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_lr_monitor_tensor_history_matches_training[39;49;00m(tmp_path, optimizer_type, tensor_lr, dtype, interval):[90m[39;49;00m
+2026-11-13T10:53:01.8120943Z         model = _TensorLRModel(optimizer_type, tensor_lr, dtype, interval)[90m[39;49;00m
+2026-11-13T10:53:01.8121331Z         monitor = LearningRateMonitor()[90m[39;49;00m
+2026-11-13T10:53:01.8121697Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:53:01.8121971Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:53:01.8122338Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8122679Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8122958Z             max_epochs=[94m3[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8123333Z             callbacks=[monitor],[90m[39;49;00m
+2026-11-13T10:53:01.8123614Z             logger=CSVLogger(tmp_path),[90m[39;49;00m
+2026-11-13T10:53:01.8123908Z             log_every_n_steps=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8124252Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8124601Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8124945Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8125278Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:53:01.8125536Z         )[90m[39;49;00m
+2026-11-13T10:53:01.8125876Z         data = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m], dtype=dtype)[90m[39;49;00m
+2026-11-13T10:53:01.8126450Z         trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(data), batch_size=[94m1[39;49;00m))[90m[39;49;00m
+2026-11-13T10:53:01.8127214Z         history = monitor.lrs[[33mf[39;49;00m[33m"[39;49;00m[33mlr-[39;49;00m[33m{[39;49;00moptimizer_type.[91m__name__[39;49;00m[33m}[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8128107Z         expected = model.step_lrs [94mif[39;49;00m interval == [33m"[39;49;00m[33mstep[39;49;00m[33m"[39;49;00m [94melse[39;49;00m model.step_lrs[::[94m2[39;49;00m][90m[39;49;00m
+2026-11-13T10:53:01.8128700Z >       [94massert[39;49;00m history == pytest.approx(expected)[90m[39;49;00m
+2026-11-13T10:53:01.8129135Z [1m[31mE       assert [tensor(0.015...orch.float64)] == approx([0.125...25 ± 3.1e-08])[0m
+2026-11-13T10:53:01.8129460Z [1m[31mE         [0m
+2026-11-13T10:53:01.8129733Z [1m[31mE         comparison failed. Mismatched elements: 3 / 3:[0m
+2026-11-13T10:53:01.8130055Z [1m[31mE         Max absolute difference: 0.109375[0m
+2026-11-13T10:53:01.8130342Z [1m[31mE         Max relative difference: 7.0[0m
+2026-11-13T10:53:01.8130690Z [1m[31mE         Index | Obtained                            | Expected         [0m
+2026-11-13T10:53:01.8131120Z [1m[31mE         0     | tensor(0.0156, dtype=torch.float64) | 0.125 ± 1.2e-07  [0m
+2026-11-13T10:53:01.8131492Z [1m[31mE         1     | tensor(0.0156, dtype=torch.float64) | 0.0625 ± 6.2e-08 [0m
+2026-11-13T10:53:01.8131864Z [1m[31mE         2     | tensor(0.0156, dtype=torch.float64) | 0.03125 ± 3.1e-08[0m
+2026-11-13T10:53:01.8132068Z 
+2026-11-13T10:53:01.8132332Z [1m[31mtests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m:86: AssertionError
+2026-11-13T10:53:01.8132751Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:53:01.8133040Z GPU available: False, used: False
+2026-11-13T10:53:01.8133370Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:53:01.8134181Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:53:01.8135029Z `Trainer.fit` stopped: `max_epochs=3` reached.
+2026-11-13T10:53:01.8135392Z [36m[1m=========================== short test summary info ============================[0m
+2026-11-13T10:53:01.8136602Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_snapshots_mutable_tensor_lr[shape0-dtype0][0m - assert [tensor(0.001...ensor(0.0010)] == approx([0.125...25 ± 6.2e-08])
+2026-11-13T10:53:01.8137235Z   
+2026-11-13T10:53:01.8137417Z   comparison failed. Mismatched elements: 2 / 2:
+2026-11-13T10:53:01.8137775Z   Max absolute difference: 0.12399999797344208
+2026-11-13T10:53:01.8138020Z   Max relative difference: 123.99999237060547
+2026-11-13T10:53:01.8138254Z   Index | Obtained       | Expected        
+2026-11-13T10:53:01.8138516Z   0     | tensor(0.0010) | 0.125 ± 1.2e-07 
+2026-11-13T10:53:01.8138759Z   1     | tensor(0.0010) | 0.0625 ± 6.2e-08
+2026-11-13T10:53:01.8139537Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_snapshots_mutable_tensor_lr[shape0-dtype1][0m - assert [tensor(0.001...orch.float64)] == approx([0.125...25 ± 6.2e-08])
+2026-11-13T10:53:01.8140157Z   
+2026-11-13T10:53:01.8140335Z   comparison failed. Mismatched elements: 2 / 2:
+2026-11-13T10:53:01.8140574Z   Max absolute difference: 0.124
+2026-11-13T10:53:01.8140779Z   Max relative difference: 124.0
+2026-11-13T10:53:01.8141011Z   Index | Obtained                            | Expected        
+2026-11-13T10:53:01.8141351Z   0     | tensor(0.0010, dtype=torch.float64) | 0.125 ± 1.2e-07 
+2026-11-13T10:53:01.8141668Z   1     | tensor(0.0010, dtype=torch.float64) | 0.0625 ± 6.2e-08
+2026-11-13T10:53:01.8142455Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_snapshots_mutable_tensor_lr[shape1-dtype0][0m - assert [tensor([0.00...sor([0.0010])] == approx([0.125...25 ± 6.2e-08])
+2026-11-13T10:53:01.8143083Z   
+2026-11-13T10:53:01.8143358Z   comparison failed. Mismatched elements: 2 / 2:
+2026-11-13T10:53:01.8143595Z   Max absolute difference: tensor([0.1240])
+2026-11-13T10:53:01.8143826Z   Max relative difference: tensor([124.0000])
+2026-11-13T10:53:01.8144061Z   Index | Obtained         | Expected        
+2026-11-13T10:53:01.8144314Z   0     | tensor([0.0010]) | 0.125 ± 1.2e-07 
+2026-11-13T10:53:01.8144553Z   1     | tensor([0.0010]) | 0.0625 ± 6.2e-08
+2026-11-13T10:53:01.8145318Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_snapshots_mutable_tensor_lr[shape1-dtype1][0m - assert [tensor([0.00...orch.float64)] == approx([0.125...25 ± 6.2e-08])
+2026-11-13T10:53:01.8145930Z   
+2026-11-13T10:53:01.8146108Z   comparison failed. Mismatched elements: 2 / 2:
+2026-11-13T10:53:01.8146418Z   Max absolute difference: tensor([0.1240], dtype=torch.float64)
+2026-11-13T10:53:01.8146748Z   Max relative difference: tensor([124.], dtype=torch.float64)
+2026-11-13T10:53:01.8147064Z   Index | Obtained                              | Expected        
+2026-11-13T10:53:01.8147403Z   0     | tensor([0.0010], dtype=torch.float64) | 0.125 ± 1.2e-07 
+2026-11-13T10:53:01.8147725Z   1     | tensor([0.0010], dtype=torch.float64) | 0.0625 ± 6.2e-08
+2026-11-13T10:53:01.8148574Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[step-dtype0-True-SGD][0m - assert [tensor(0.002...ensor(0.0020)] == approx([0.125...25 ± 3.9e-09])
+2026-11-13T10:53:01.8149221Z   
+2026-11-13T10:53:01.8149402Z   comparison failed. Mismatched elements: 6 / 6:
+2026-11-13T10:53:01.8149639Z   Max absolute difference: 0.123046875
+2026-11-13T10:53:01.8149853Z   Max relative difference: 63.0
+2026-11-13T10:53:01.8150070Z   Index | Obtained       | Expected            
+2026-11-13T10:53:01.8150342Z   0     | tensor(0.0020) | 0.125 ± 1.2e-07     
+2026-11-13T10:53:01.8150593Z   1     | tensor(0.0020) | 0.0625 ± 6.2e-08    
+2026-11-13T10:53:01.8151007Z   2     | tensor(0.0020) | 0.03125 ± 3.1e-08   
+2026-11-13T10:53:01.8151252Z   3     | tensor(0.0020) | 0.015625 ± 1.6e-08  
+2026-11-13T10:53:01.8151501Z   4     | tensor(0.0020) | 0.0078125 ± 7.8e-09 
+2026-11-13T10:53:01.8151750Z   5     | tensor(0.0020) | 0.00390625 ± 3.9e-09
+2026-11-13T10:53:01.8152562Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[step-dtype0-True-AdamW][0m - assert [tensor(0.002...ensor(0.0020)] == approx([0.125...25 ± 3.9e-09])
+2026-11-13T10:53:01.8153297Z   
+2026-11-13T10:53:01.8153571Z   comparison failed. Mismatched elements: 6 / 6:
+2026-11-13T10:53:01.8153815Z   Max absolute difference: 0.123046875
+2026-11-13T10:53:01.8154028Z   Max relative difference: 63.0
+2026-11-13T10:53:01.8154235Z   Index | Obtained       | Expected            
+2026-11-13T10:53:01.8154500Z   0     | tensor(0.0020) | 0.125 ± 1.2e-07     
+2026-11-13T10:53:01.8154758Z   1     | tensor(0.0020) | 0.0625 ± 6.2e-08    
+2026-11-13T10:53:01.8155005Z   2     | tensor(0.0020) | 0.03125 ± 3.1e-08   
+2026-11-13T10:53:01.8155244Z   3     | tensor(0.0020) | 0.015625 ± 1.6e-08  
+2026-11-13T10:53:01.8155487Z   4     | tensor(0.0020) | 0.0078125 ± 7.8e-09 
+2026-11-13T10:53:01.8155730Z   5     | tensor(0.0020) | 0.00390625 ± 3.9e-09
+2026-11-13T10:53:01.8156535Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[step-dtype1-True-SGD][0m - assert [tensor(0.002...orch.float64)] == approx([0.125...25 ± 3.9e-09])
+2026-11-13T10:53:01.8157168Z   
+2026-11-13T10:53:01.8157349Z   comparison failed. Mismatched elements: 6 / 6:
+2026-11-13T10:53:01.8157641Z   Max absolute difference: 0.123046875
+2026-11-13T10:53:01.8157941Z   Max relative difference: 63.0
+2026-11-13T10:53:01.8158262Z   Index | Obtained                            | Expected            
+2026-11-13T10:53:01.8158629Z   0     | tensor(0.0020, dtype=torch.float64) | 0.125 ± 1.2e-07     
+2026-11-13T10:53:01.8158966Z   1     | tensor(0.0020, dtype=torch.float64) | 0.0625 ± 6.2e-08    
+2026-11-13T10:53:01.8159286Z   2     | tensor(0.0020, dtype=torch.float64) | 0.03125 ± 3.1e-08   
+2026-11-13T10:53:01.8159610Z   3     | tensor(0.0020, dtype=torch.float64) | 0.015625 ± 1.6e-08  
+2026-11-13T10:53:01.8159938Z   4     | tensor(0.0020, dtype=torch.float64) | 0.0078125 ± 7.8e-09 
+2026-11-13T10:53:01.8160265Z   5     | tensor(0.0020, dtype=torch.float64) | 0.00390625 ± 3.9e-09
+2026-11-13T10:53:01.8161123Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[step-dtype1-True-AdamW][0m - assert [tensor(0.002...orch.float64)] == approx([0.125...25 ± 3.9e-09])
+2026-11-13T10:53:01.8161760Z   
+2026-11-13T10:53:01.8161926Z   comparison failed. Mismatched elements: 6 / 6:
+2026-11-13T10:53:01.8162157Z   Max absolute difference: 0.123046875
+2026-11-13T10:53:01.8162361Z   Max relative difference: 63.0
+2026-11-13T10:53:01.8162597Z   Index | Obtained                            | Expected            
+2026-11-13T10:53:01.8162929Z   0     | tensor(0.0020, dtype=torch.float64) | 0.125 ± 1.2e-07     
+2026-11-13T10:53:01.8163422Z   1     | tensor(0.0020, dtype=torch.float64) | 0.0625 ± 6.2e-08    
+2026-11-13T10:53:01.8163759Z   2     | tensor(0.0020, dtype=torch.float64) | 0.03125 ± 3.1e-08   
+2026-11-13T10:53:01.8164081Z   3     | tensor(0.0020, dtype=torch.float64) | 0.015625 ± 1.6e-08  
+2026-11-13T10:53:01.8164402Z   4     | tensor(0.0020, dtype=torch.float64) | 0.0078125 ± 7.8e-09 
+2026-11-13T10:53:01.8164727Z   5     | tensor(0.0020, dtype=torch.float64) | 0.00390625 ± 3.9e-09
+2026-11-13T10:53:01.8165576Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[epoch-dtype0-True-SGD][0m - assert [tensor(0.015...ensor(0.0156)] == approx([0.125...25 ± 3.1e-08])
+2026-11-13T10:53:01.8166212Z   
+2026-11-13T10:53:01.8166386Z   comparison failed. Mismatched elements: 3 / 3:
+2026-11-13T10:53:01.8166754Z   Max absolute difference: 0.109375
+2026-11-13T10:53:01.8166974Z   Max relative difference: 7.0
+2026-11-13T10:53:01.8167188Z   Index | Obtained       | Expected         
+2026-11-13T10:53:01.8167452Z   0     | tensor(0.0156) | 0.125 ± 1.2e-07  
+2026-11-13T10:53:01.8167693Z   1     | tensor(0.0156) | 0.0625 ± 6.2e-08 
+2026-11-13T10:53:01.8167930Z   2     | tensor(0.0156) | 0.03125 ± 3.1e-08
+2026-11-13T10:53:01.8169010Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[epoch-dtype0-True-AdamW][0m - assert [tensor(0.015...ensor(0.0156)] == approx([0.125...25 ± 3.1e-08])
+2026-11-13T10:53:01.8169723Z   
+2026-11-13T10:53:01.8169902Z   comparison failed. Mismatched elements: 3 / 3:
+2026-11-13T10:53:01.8170146Z   Max absolute difference: 0.109375
+2026-11-13T10:53:01.8170357Z   Max relative difference: 7.0
+2026-11-13T10:53:01.8170563Z   Index | Obtained       | Expected         
+2026-11-13T10:53:01.8170839Z   0     | tensor(0.0156) | 0.125 ± 1.2e-07  
+2026-11-13T10:53:01.8171078Z   1     | tensor(0.0156) | 0.0625 ± 6.2e-08 
+2026-11-13T10:53:01.8171315Z   2     | tensor(0.0156) | 0.03125 ± 3.1e-08
+2026-11-13T10:53:01.8172161Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[epoch-dtype1-True-SGD][0m - assert [tensor(0.015...orch.float64)] == approx([0.125...25 ± 3.1e-08])
+2026-11-13T10:53:01.8172806Z   
+2026-11-13T10:53:01.8172978Z   comparison failed. Mismatched elements: 3 / 3:
+2026-11-13T10:53:01.8173430Z   Max absolute difference: 0.109375
+2026-11-13T10:53:01.8173648Z   Max relative difference: 7.0
+2026-11-13T10:53:01.8173881Z   Index | Obtained                            | Expected         
+2026-11-13T10:53:01.8174228Z   0     | tensor(0.0156, dtype=torch.float64) | 0.125 ± 1.2e-07  
+2026-11-13T10:53:01.8174553Z   1     | tensor(0.0156, dtype=torch.float64) | 0.0625 ± 6.2e-08 
+2026-11-13T10:53:01.8174889Z   2     | tensor(0.0156, dtype=torch.float64) | 0.03125 ± 3.1e-08
+2026-11-13T10:53:01.8175750Z [31mFAILED[0m tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py::[1mtest_lr_monitor_tensor_history_matches_training[epoch-dtype1-True-AdamW][0m - assert [tensor(0.015...orch.float64)] == approx([0.125...25 ± 3.1e-08])
+2026-11-13T10:53:01.8176401Z   
+2026-11-13T10:53:01.8176588Z   comparison failed. Mismatched elements: 3 / 3:
+2026-11-13T10:53:01.8176824Z   Max absolute difference: 0.109375
+2026-11-13T10:53:01.8177037Z   Max relative difference: 7.0
+2026-11-13T10:53:01.8177273Z   Index | Obtained                            | Expected         
+2026-11-13T10:53:01.8177604Z   0     | tensor(0.0156, dtype=torch.float64) | 0.125 ± 1.2e-07  
+2026-11-13T10:53:01.8177918Z   1     | tensor(0.0156, dtype=torch.float64) | 0.0625 ± 6.2e-08 
+2026-11-13T10:53:01.8178228Z   2     | tensor(0.0156, dtype=torch.float64) | 0.03125 ± 3.1e-08
+2026-11-13T10:53:01.8178616Z [31m[31m[1m12 failed[0m, [32m8 passed[0m, [33m16 warnings[0m[31m in 0.76s[0m[0m
+2026-11-13T10:53:01.8178859Z 
+2026-11-13T10:53:01.8179048Z before {'tests': 20, 'failures': 12, 'errors': 0, 'skipped': 0, 'returncode': 1}
+2026-11-13T10:53:06.0351281Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                                     [100%][0m
+2026-11-13T10:53:06.0352608Z [33m[32m20 passed[0m, [33m[1m16 warnings[0m[33m in 0.39s[0m[0m
+2026-11-13T10:53:06.0353036Z 
+2026-11-13T10:53:06.0353566Z after {'tests': 20, 'failures': 0, 'errors': 0, 'skipped': 0, 'returncode': 0}
+2026-11-13T10:53:11.1075572Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                                [100%][0m
+2026-11-13T10:53:11.1076961Z [33m[32m24 passed[0m, [33m[1m1 skipped[0m, [33m[1m56 warnings[0m[33m in 1.23s[0m[0m
+2026-11-13T10:53:11.1121507Z 
+2026-11-13T10:53:11.1121822Z existing {'tests': 25, 'failures': 0, 'errors': 0, 'skipped': 1, 'returncode': 0}
+2026-11-13T10:53:11.1122248Z {
+2026-11-13T10:53:11.1122491Z   "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+2026-11-13T10:53:11.1122830Z   "head": "a914d621b0e19527b9d8c886d005634895e53018",
+2026-11-13T10:53:11.1123113Z   "before": {
+2026-11-13T10:53:11.1123494Z     "tests": 20,
+2026-11-13T10:53:11.1123692Z     "failures": 12,
+2026-11-13T10:53:11.1124227Z     "errors": 0,
+2026-11-13T10:53:11.1124458Z     "skipped": 0,
+2026-11-13T10:53:11.1124676Z     "returncode": 1
+2026-11-13T10:53:11.1124897Z   },
+2026-11-13T10:53:11.1125106Z   "after": {
+2026-11-13T10:53:11.1125324Z     "tests": 20,
+2026-11-13T10:53:11.1125544Z     "failures": 0,
+2026-11-13T10:53:11.1125773Z     "errors": 0,
+2026-11-13T10:53:11.1126005Z     "skipped": 0,
+2026-11-13T10:53:11.1126264Z     "returncode": 0
+2026-11-13T10:53:11.1126505Z   },
+2026-11-13T10:53:11.1126720Z   "existing": {
+2026-11-13T10:53:11.1126960Z     "tests": 25,
+2026-11-13T10:53:11.1127197Z     "failures": 0,
+2026-11-13T10:53:11.1127437Z     "errors": 0,
+2026-11-13T10:53:11.1127673Z     "skipped": 1,
+2026-11-13T10:53:11.1127923Z     "returncode": 0
+2026-11-13T10:53:11.1128162Z   }
+2026-11-13T10:53:11.1128375Z }
+2026-11-13T10:53:11.1205358Z ##[group]Run .venv/bin/ruff check src/lightning/pytorch/callbacks/lr_monitor.py tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py
+2026-11-13T10:53:11.1206127Z [36;1m.venv/bin/ruff check src/lightning/pytorch/callbacks/lr_monitor.py tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m
+2026-11-13T10:53:11.1206864Z [36;1m.venv/bin/ruff format --check --diff src/lightning/pytorch/callbacks/lr_monitor.py tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py[0m
+2026-11-13T10:53:11.1225072Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:53:11.1225288Z env:
+2026-11-13T10:53:11.1225460Z   PYTHONPATH: src:tests
+2026-11-13T10:53:11.1225643Z   OMP_NUM_THREADS: 1
+2026-11-13T10:53:11.1225817Z   MKL_NUM_THREADS: 1
+2026-11-13T10:53:11.1226041Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1226393Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:53:11.1226746Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1227042Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1227339Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1227637Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:53:11.1227933Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:53:11.1228171Z ##[endgroup]
+2026-11-13T10:53:11.1355945Z All checks passed!
+2026-11-13T10:53:11.1436090Z 2 files already formatted
+2026-11-13T10:53:11.1491540Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T10:53:11.1491794Z with:
+2026-11-13T10:53:11.1491981Z   name: lr-history-native-a914d621b0e1
+2026-11-13T10:53:11.1492349Z   path: before.log
+before.xml
+after.log
+after.xml
+existing.log
+existing.xml
+validation_result.json
+
+2026-11-13T10:53:11.1492712Z   if-no-files-found: warn
+2026-11-13T10:53:11.1492906Z   compression-level: 6
+2026-11-13T10:53:11.1493091Z   overwrite: false
+2026-11-13T10:53:11.1493501Z   include-hidden-files: false
+2026-11-13T10:53:11.1493701Z env:
+2026-11-13T10:53:11.1493863Z   PYTHONPATH: src:tests
+2026-11-13T10:53:11.1494048Z   OMP_NUM_THREADS: 1
+2026-11-13T10:53:11.1494220Z   MKL_NUM_THREADS: 1
+2026-11-13T10:53:11.1494438Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1494777Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:53:11.1495103Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1495426Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1495888Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:53:11.1496183Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:53:11.1496476Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:53:11.1496715Z ##[endgroup]
+2026-11-13T10:53:11.2872107Z (node:2302) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:53:11.2872669Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:53:11.2954701Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-13T10:53:11.2956720Z The least common ancestor is /home/runner/work/pytorch-lightning/pytorch-lightning. This will be the root directory of the artifact
+2026-11-13T10:53:11.2957499Z With the provided path, there will be 7 files uploaded
+2026-11-13T10:53:11.2958251Z Artifact name is valid!
+2026-11-13T10:53:11.2958596Z Root directory input is valid!
+2026-11-13T10:53:11.4953040Z Beginning upload of artifact content to blob storage
+2026-11-13T10:53:11.5205025Z (node:2302) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T10:53:11.5475716Z Uploaded bytes 7248
+2026-11-13T10:53:11.5654530Z Finished uploading artifact content to blob storage!
+2026-11-13T10:53:11.5655245Z SHA256 digest of uploaded artifact zip is 83849e7698547ad554d58f549d9a4f4790c7d4a8d94baa845bab64f52cbcc5ec
+2026-11-13T10:53:11.5656797Z Finalizing artifact upload
+2026-11-13T10:53:11.8619661Z Artifact lr-history-native-a914d621b0e1.zip successfully finalized. Artifact ID 14029533929
+2026-11-13T10:53:11.8620632Z Artifact lr-history-native-a914d621b0e1 has been successfully uploaded! Final size is 7248 bytes. Artifact ID is 14029533929
+2026-11-13T10:53:11.8626458Z Artifact download URL: https://github.com/Afloat16/pytorch-lightning/actions/runs/43412490775/artifacts/14029533929
+2026-11-13T10:53:11.8825227Z Post job cleanup.
+2026-11-13T10:53:11.9902943Z Pruning cache...
+2026-11-13T10:53:11.9912940Z (node:2314) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:53:11.9913906Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:53:11.9947134Z [command]/opt/hostedtoolcache/uv/0.13.8/x86_64/uv cache prune --ci
+2026-11-13T10:53:12.0039165Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:53:12.2755382Z Removed 20595 files (6.4MiB)
+2026-11-13T10:53:12.2777152Z Saving cache path: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:53:12.2900882Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/pytorch-lightning/pytorch-lightning --files-from manifest.txt --use-compress-program zstdmt
+2026-11-13T10:53:12.4183805Z (node:2314) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T10:53:12.6753775Z Sent 6646383 of 6646383 (100.0%), 24.0 MBs/sec
+2026-11-13T10:53:12.7428136Z cache saved with the key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:53:12.7553026Z Post job cleanup.
+2026-11-13T10:53:12.8575061Z (node:2337) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:53:12.8575976Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:53:12.8716593Z Post job cleanup.
+2026-11-13T10:53:12.9470938Z [command]/usr/bin/git version
+2026-11-13T10:53:12.9511048Z git version 2.56.0
+2026-11-13T10:53:12.9541800Z Temporarily overriding HOME='/home/runner/work/_temp/b4ad4752-ef47-41af-ae54-6c2af8550614' before making global git config changes
+2026-11-13T10:53:12.9543072Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T10:53:12.9547081Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:53:12.9590285Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T10:53:12.9622912Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T10:53:12.9890045Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T10:53:12.9918133Z http.https://github.com/.extraheader
+2026-11-13T10:53:12.9928475Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T10:53:12.9976154Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T10:53:13.0213352Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T10:53:13.0274818Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T10:53:13.0640113Z Cleaning up orphan processes
+2026-11-13T10:53:13.0960727Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
