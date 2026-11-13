@@ -1,0 +1,49 @@
+name: Validate LR finder partial accumulation steps
+on:
+  push:
+    branches: [validation/lr-finder-accumulation-tail-20261113]
+permissions:
+  contents: read
+jobs:
+  native-cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONPATH: src:tests
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+      - name: Install official CPU dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+          uv pip install --python .venv/bin/python -e . torch==2.9.1 pytest==9.0.2 pytest-timeout==2.4.0 pytest-rerunfailures==16.1 pytest-random-order==1.2.0 tensorboardX==2.6.4 "jsonargparse[signatures]==4.41.0" rich matplotlib psutil ruff==0.15.9
+      - name: Compare original and patched actual Trainer runs
+        run: .venv/bin/python validation/run_lr_tail.py
+      - name: Inspect differentiable logging independently
+        if: always()
+        run: .venv/bin/python validation/probe_log_graph.py
+      - name: Check changed files
+        if: always()
+        run: |
+          .venv/bin/ruff check src/lightning/pytorch/tuner/lr_finder.py tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py
+          .venv/bin/ruff format --check --diff src/lightning/pytorch/tuner/lr_finder.py tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lr-tail-native-a73ed5456e9c
+          path: |
+            before.log
+            before.xml
+            after.log
+            after.xml
+            existing.log
+            existing.xml
+            validation_result.json
