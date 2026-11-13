@@ -78,7 +78,7 @@ class _SmallDataModule(LightningDataModule):
         return DataLoader(_data(), batch_size=self.batch_size)
 
 
-def _trainer(tmp_path):
+def _trainer(tmp_path, method="fit"):
     return Trainer(
         default_root_dir=tmp_path,
         accelerator="cpu",
@@ -89,7 +89,7 @@ def _trainer(tmp_path):
         enable_model_summary=False,
         enable_progress_bar=False,
         num_sanity_val_steps=0,
-        limit_val_batches=0,
+        limit_val_batches=1.0 if method == "validate" else 0,
     )
 
 
@@ -109,9 +109,7 @@ def _tune(trainer, model, mode, datamodule=None, method="fit", init_val=2):
 @pytest.mark.parametrize("mode", ["power", "binsearch"])
 @pytest.mark.parametrize("owner", ["model", "hparams", "datamodule"])
 @pytest.mark.parametrize("initial_batch_size", [8, 16])
-def test_large_existing_batch_does_not_override_smaller_initial_value(
-    tmp_path, mode, owner, initial_batch_size
-):
+def test_large_existing_batch_does_not_override_smaller_initial_value(tmp_path, mode, owner, initial_batch_size):
     model = _SmallDatasetModel(initial_batch_size, owner)
     datamodule = _SmallDataModule(initial_batch_size) if owner == "datamodule" else None
     trainer = _trainer(tmp_path)
@@ -140,7 +138,7 @@ def test_large_existing_batch_does_not_override_smaller_initial_value(
 @pytest.mark.parametrize("method", ["fit", "validate", "test", "predict"])
 def test_smaller_initial_value_is_used_for_each_tuner_entrypoint(tmp_path, mode, method):
     model = _SmallDatasetModel(16)
-    trainer = _trainer(tmp_path)
+    trainer = _trainer(tmp_path, method)
 
     assert _tune(trainer, model, mode, method=method) == 4
     assert model.seen[method] == [(2, 2), (4, 4)]
