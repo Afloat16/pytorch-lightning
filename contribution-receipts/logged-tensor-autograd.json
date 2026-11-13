@@ -1,0 +1,46 @@
+{
+  "project": "Lightning-AI/pytorch-lightning",
+  "issue": "https://github.com/Lightning-AI/pytorch-lightning/issues/22172",
+  "pull_request": "https://github.com/Lightning-AI/pytorch-lightning/pull/22173",
+  "branch": "fix/logged-tensor-autograd-20261113",
+  "head": "c9e322333cc8211b985aab66634508db6e161fe2",
+  "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+  "validated_code_head": "c9e322333cc8211b985aab66634508db6e161fe2",
+  "validation_head": "2006003e0ce3ee364f20e218ce3ad224678373ee",
+  "validation_url": "https://github.com/Afloat16/pytorch-lightning/actions/runs/43412142890",
+  "native_before": {
+    "failed": 10,
+    "passed": 10
+  },
+  "native_after": {
+    "failed": 0,
+    "passed": 20
+  },
+  "existing": {
+    "passed": 21,
+    "skipped": 3
+  },
+  "validation_environment": "Python3.12 officialCPU PyTorch2.9.1 Ubuntu24.04",
+  "training_evidence": "Two real epochs of manual SGD with step/epoch logged losses, every gradient/weight and final momentum compared to plain PyTorch",
+  "style": "Ruff and format pass",
+  "dedup": {
+    "queries": [
+      "enable_graph",
+      "_enable_grad",
+      "logging autograd",
+      "__to_tensor detach"
+    ],
+    "related": [
+      16311,
+      19046,
+      2615,
+      7994,
+      4592
+    ],
+    "distinction": "Restores public logging graph preservation through both conversion and Metric.update; existing source construction and Fabric routing changes do not fix it"
+  },
+  "peer_review": "Independent full three-file source/test review passed",
+  "last_change": "Changelog only; production source/test bytes unchanged from native-tested head",
+  "merged_at": null,
+  "counts_for_merged": false
+}

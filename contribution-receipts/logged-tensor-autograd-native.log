@@ -1,0 +1,834 @@
+﻿2026-11-13T10:50:01.8223704Z Current runner version: '2.338.2'
+2026-11-13T10:50:01.8258556Z ##[group]Runner Image Provisioner
+2026-11-13T10:50:01.8259668Z Hosted Compute Agent
+2026-11-13T10:50:01.8260641Z Version: 20261103.629
+2026-11-13T10:50:01.8261580Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-13T10:50:01.8262608Z Build Date: 2026-11-03T17:26:59Z
+2026-11-13T10:50:01.8263514Z Worker ID: {bbb7d622-8e1c-44fd-abb8-6bd818492383}
+2026-11-13T10:50:01.8264648Z Region: eastus3
+2026-11-13T10:50:01.8265408Z Cloud: Azure
+2026-11-13T10:50:01.8266197Z ##[endgroup]
+2026-11-13T10:50:01.8268371Z ##[group]Operating System
+2026-11-13T10:50:01.8269260Z Ubuntu
+2026-11-13T10:50:01.8269934Z 24.04.5
+2026-11-13T10:50:01.8270751Z LTS
+2026-11-13T10:50:01.8271531Z ##[endgroup]
+2026-11-13T10:50:01.8272278Z ##[group]Runner Image
+2026-11-13T10:50:01.8273085Z Image: ubuntu-24.04
+2026-11-13T10:50:01.8273836Z Version: 20261111.370.1
+2026-11-13T10:50:01.8275824Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T10:50:01.8278446Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-13T10:50:01.8279799Z ##[endgroup]
+2026-11-13T10:50:01.8281335Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T10:50:01.8284577Z Contents: read
+2026-11-13T10:50:01.8285373Z Metadata: read
+2026-11-13T10:50:01.8286161Z ##[endgroup]
+2026-11-13T10:50:01.8288776Z Secret source: Actions
+2026-11-13T10:50:01.8290110Z Cache mode: write
+2026-11-13T10:50:01.8291432Z Prepare workflow directory
+2026-11-13T10:50:01.8687688Z Prepare all required actions
+2026-11-13T10:50:01.8736721Z Getting action download info
+2026-11-13T10:50:02.1412540Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T10:50:02.2552995Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T10:50:02.3649565Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+2026-11-13T10:50:02.8234580Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T10:50:03.0836047Z Complete job name: native-cpu
+2026-11-13T10:50:03.1691927Z ##[group]Run actions/checkout@v4
+2026-11-13T10:50:03.1692816Z with:
+2026-11-13T10:50:03.1693436Z   fetch-depth: 4
+2026-11-13T10:50:03.1694228Z   repository: Afloat16/pytorch-lightning
+2026-11-13T10:50:03.1698552Z   token: ***
+2026-11-13T10:50:03.1699089Z   ssh-strict: true
+2026-11-13T10:50:03.1699620Z   ssh-user: git
+2026-11-13T10:50:03.1700224Z   persist-credentials: true
+2026-11-13T10:50:03.1700823Z   clean: true
+2026-11-13T10:50:03.1701423Z   sparse-checkout-cone-mode: true
+2026-11-13T10:50:03.1702127Z   fetch-tags: false
+2026-11-13T10:50:03.1702667Z   show-progress: true
+2026-11-13T10:50:03.1703429Z   lfs: false
+2026-11-13T10:50:03.1704513Z   submodules: false
+2026-11-13T10:50:03.1705170Z   set-safe-directory: true
+2026-11-13T10:50:03.1705810Z   allow-unsafe-pr-checkout: false
+2026-11-13T10:50:03.1706773Z env:
+2026-11-13T10:50:03.1707326Z   PYTHONPATH: src:tests
+2026-11-13T10:50:03.1707903Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:03.1708463Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:03.1709172Z ##[endgroup]
+2026-11-13T10:50:03.4373751Z Syncing repository: Afloat16/pytorch-lightning
+2026-11-13T10:50:03.4377365Z ##[group]Getting Git version info
+2026-11-13T10:50:03.4380135Z Working directory is '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T10:50:03.4382828Z [command]/usr/bin/git version
+2026-11-13T10:50:03.4470856Z git version 2.56.1
+2026-11-13T10:50:03.4491736Z ##[endgroup]
+2026-11-13T10:50:03.4516025Z Temporarily overriding HOME='/home/runner/work/_temp/283e38cb-a839-47bf-b7fd-e4c57aa664f4' before making global git config changes
+2026-11-13T10:50:03.4519917Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T10:50:03.4523746Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:50:03.4575992Z Deleting the contents of '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T10:50:03.4580293Z ##[group]Initializing the repository
+2026-11-13T10:50:03.4585500Z [command]/usr/bin/git init /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:50:03.4704296Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T10:50:03.4707113Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T10:50:03.4710325Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T10:50:03.4712590Z hint: call:
+2026-11-13T10:50:03.4713993Z hint:
+2026-11-13T10:50:03.4715713Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T10:50:03.4717722Z hint:
+2026-11-13T10:50:03.4719706Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T10:50:03.4722955Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T10:50:03.4726610Z hint:
+2026-11-13T10:50:03.4728021Z hint: 	git branch -m <name>
+2026-11-13T10:50:03.4729636Z hint:
+2026-11-13T10:50:03.4731664Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T10:50:03.4735646Z Initialized empty Git repository in /home/runner/work/pytorch-lightning/pytorch-lightning/.git/
+2026-11-13T10:50:03.4743821Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:50:03.5383496Z ##[endgroup]
+2026-11-13T10:50:03.5386032Z ##[group]Disabling automatic garbage collection
+2026-11-13T10:50:03.5388521Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T10:50:03.5882979Z ##[endgroup]
+2026-11-13T10:50:03.5885152Z ##[group]Setting up auth
+2026-11-13T10:50:03.5889911Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T10:50:03.5928704Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T10:50:03.6399112Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T10:50:03.6435343Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T10:50:03.6630213Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T10:50:03.6665950Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T10:50:03.6860708Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T10:50:03.6904687Z ##[endgroup]
+2026-11-13T10:50:03.6906783Z ##[group]Fetching the repository
+2026-11-13T10:50:03.6918905Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=4 origin +2006003e0ce3ee364f20e218ce3ad224678373ee:refs/remotes/origin/validation/logged-tensor-autograd-20261113
+2026-11-13T10:50:04.7781508Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:50:04.7787024Z  * [new ref]         2006003e0ce3ee364f20e218ce3ad224678373ee -> origin/validation/logged-tensor-autograd-20261113
+2026-11-13T10:50:04.7793443Z ##[endgroup]
+2026-11-13T10:50:04.7795918Z ##[group]Determining the checkout info
+2026-11-13T10:50:04.7798595Z ##[endgroup]
+2026-11-13T10:50:04.7800121Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T10:50:04.7865348Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T10:50:04.7901181Z ##[group]Checking out the ref
+2026-11-13T10:50:04.7907392Z [command]/usr/bin/git checkout --progress --force -B validation/logged-tensor-autograd-20261113 refs/remotes/origin/validation/logged-tensor-autograd-20261113
+2026-11-13T10:50:04.9312500Z Switched to a new branch 'validation/logged-tensor-autograd-20261113'
+2026-11-13T10:50:04.9317741Z branch 'validation/logged-tensor-autograd-20261113' set up to track 'origin/validation/logged-tensor-autograd-20261113'.
+2026-11-13T10:50:04.9326745Z ##[endgroup]
+2026-11-13T10:50:04.9370993Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T10:50:04.9396974Z 2006003e0ce3ee364f20e218ce3ad224678373ee
+2026-11-13T10:50:04.9751275Z ##[group]Run actions/setup-python@v5
+2026-11-13T10:50:04.9752449Z with:
+2026-11-13T10:50:04.9753297Z   python-version: 3.12
+2026-11-13T10:50:04.9754361Z   check-latest: false
+2026-11-13T10:50:04.9762485Z   token: ***
+2026-11-13T10:50:04.9763372Z   update-environment: true
+2026-11-13T10:50:04.9764757Z   allow-prereleases: false
+2026-11-13T10:50:04.9765771Z   freethreaded: false
+2026-11-13T10:50:04.9766657Z env:
+2026-11-13T10:50:04.9767460Z   PYTHONPATH: src:tests
+2026-11-13T10:50:04.9768390Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:04.9769279Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:04.9770195Z ##[endgroup]
+2026-11-13T10:50:05.1177772Z ##[group]Installed versions
+2026-11-13T10:50:05.1291280Z (node:2311) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:50:05.1294886Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:50:05.1296745Z Successfully set up CPython (3.12.16)
+2026-11-13T10:50:05.1298760Z ##[endgroup]
+2026-11-13T10:50:05.1596289Z ##[group]Run astral-sh/setup-uv@v6
+2026-11-13T10:50:05.1597661Z with:
+2026-11-13T10:50:05.1598924Z   activate-environment: false
+2026-11-13T10:50:05.1601002Z   working-directory: /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:50:05.1603145Z   server-url: https://github.com
+2026-11-13T10:50:05.1613755Z   github-token: ***
+2026-11-13T10:50:05.1615472Z   enable-cache: auto
+2026-11-13T10:50:05.1618825Z   cache-dependency-glob: **/*requirements*.txt
+**/*requirements*.in
+**/*constraints*.txt
+**/*constraints*.in
+**/pyproject.toml
+**/uv.lock
+**/*.py.lock
+
+2026-11-13T10:50:05.1622273Z   restore-cache: true
+2026-11-13T10:50:05.1624785Z   save-cache: true
+2026-11-13T10:50:05.1626661Z   prune-cache: true
+2026-11-13T10:50:05.1628326Z   ignore-nothing-to-cache: false
+2026-11-13T10:50:05.1630285Z   ignore-empty-workdir: false
+2026-11-13T10:50:05.1632153Z   add-problem-matchers: true
+2026-11-13T10:50:05.1633949Z env:
+2026-11-13T10:50:05.1635799Z   PYTHONPATH: src:tests
+2026-11-13T10:50:05.1637827Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:05.1639531Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:05.1641074Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:05.1643308Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:50:05.1645741Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:05.1647743Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:05.1649682Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:05.1651821Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:50:05.1653598Z ##[endgroup]
+2026-11-13T10:50:05.3582421Z (node:2320) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:50:05.3585755Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:50:05.3822944Z Trying to find version for uv in: /home/runner/work/pytorch-lightning/pytorch-lightning/uv.toml
+2026-11-13T10:50:05.3826433Z Could not find file: /home/runner/work/pytorch-lightning/pytorch-lightning/uv.toml
+2026-11-13T10:50:05.3829711Z Trying to find version for uv in: /home/runner/work/pytorch-lightning/pytorch-lightning/pyproject.toml
+2026-11-13T10:50:05.3866889Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-11-13T10:50:05.3885891Z Getting latest version from GitHub API...
+2026-11-13T10:50:05.6783364Z manifest-file not provided, reading from local file.
+2026-11-13T10:50:05.6820652Z manifest-file does not contain version 0.13.8, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+2026-11-13T10:50:05.6823245Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-11-13T10:50:06.0878481Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/07599bb4-68fb-4c5c-9a08-0a36007c33ba -f /home/runner/work/_temp/185119ad-0fe7-4f0b-878d-fb6ca64f5e1a
+2026-11-13T10:50:06.4838848Z Added /home/runner/.local/bin to the path
+2026-11-13T10:50:06.4841244Z Added /opt/hostedtoolcache/uv/0.13.8/x86_64 to the path
+2026-11-13T10:50:06.4852227Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:06.4852819Z Successfully installed uv version 0.13.8
+2026-11-13T10:50:06.4855978Z Searching files using cache dependency glob: /home/runner/work/pytorch-lightning/pytorch-lightning/**/*requirements*.txt,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*requirements*.in,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*constraints*.txt,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*constraints*.in,/home/runner/work/pytorch-lightning/pytorch-lightning/**/pyproject.toml,/home/runner/work/pytorch-lightning/pytorch-lightning/**/uv.lock,/home/runner/work/pytorch-lightning/pytorch-lightning/**/*.py.lock
+2026-11-13T10:50:06.4914325Z /home/runner/work/pytorch-lightning/pytorch-lightning/.actions/requirements.txt
+2026-11-13T10:50:06.6616368Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/fabric/fp8_distributed_transformer/requirements.txt
+2026-11-13T10:50:06.6648457Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/fabric/reinforcement_learning/requirements.txt
+2026-11-13T10:50:06.6695882Z /home/runner/work/pytorch-lightning/pytorch-lightning/examples/pytorch/fp8_distributed_transformer/requirements.txt
+2026-11-13T10:50:06.6716306Z /home/runner/work/pytorch-lightning/pytorch-lightning/pyproject.toml
+2026-11-13T10:50:06.6743823Z /home/runner/work/pytorch-lightning/pytorch-lightning/requirements.txt
+2026-11-13T10:50:06.7392609Z Found 6 files to hash.
+2026-11-13T10:50:06.8591592Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:50:06.9468192Z No GitHub Actions cache found for key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:50:06.9602505Z ##[group]Run uv venv .venv
+2026-11-13T10:50:06.9602883Z [36;1muv venv .venv[0m
+2026-11-13T10:50:06.9603389Z [36;1muv pip install --python .venv/bin/python torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu[0m
+2026-11-13T10:50:06.9604843Z [36;1muv pip install --python .venv/bin/python -e . torch==2.9.1 pytest==9.0.2 pytest-timeout==2.4.0 pytest-rerunfailures==16.1 pytest-random-order==1.2.0 tensorboardX==2.6.4 "jsonargparse[signatures]==4.41.0" rich matplotlib psutil ruff==0.15.9[0m
+2026-11-13T10:50:06.9627410Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:50:06.9627699Z env:
+2026-11-13T10:50:06.9627915Z   PYTHONPATH: src:tests
+2026-11-13T10:50:06.9628144Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:06.9628353Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:06.9628720Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:06.9629275Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:50:06.9629872Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:06.9630280Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:06.9630632Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:06.9630995Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:50:06.9631344Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:06.9631628Z ##[endgroup]
+2026-11-13T10:50:06.9777702Z Using CPython 3.12.16 interpreter at: /opt/hostedtoolcache/Python/3.12.16/x64/bin/python
+2026-11-13T10:50:06.9779294Z Creating virtual environment at: .venv
+2026-11-13T10:50:06.9782605Z Activate with: .venv/bin/activate
+2026-11-13T10:50:07.3466657Z Resolved 10 packages in 315ms
+2026-11-13T10:50:07.3542365Z Downloading setuptools (1.2MiB)
+2026-11-13T10:50:07.3629956Z Downloading networkx (2.0MiB)
+2026-11-13T10:50:07.3721819Z Downloading torch (175.8MiB)
+2026-11-13T10:50:07.3835397Z  Downloaded setuptools
+2026-11-13T10:50:07.3971977Z Downloading sympy (6.0MiB)
+2026-11-13T10:50:07.4839035Z  Downloaded networkx
+2026-11-13T10:50:07.5600448Z  Downloaded sympy
+2026-11-13T10:50:09.0643514Z  Downloaded torch
+2026-11-13T10:50:09.0856746Z Prepared 10 packages in 1.73s
+2026-11-13T10:50:09.2958482Z Installed 10 packages in 209ms
+2026-11-13T10:50:09.2959052Z  + filelock==4.2.4
+2026-11-13T10:50:09.2959426Z  + fsspec==2026.9.0
+2026-11-13T10:50:09.2959790Z  + jinja2==3.1.6
+2026-11-13T10:50:09.2960212Z  + markupsafe==3.0.3
+2026-11-13T10:50:09.2960612Z  + mpmath==1.3.0
+2026-11-13T10:50:09.2960995Z  + networkx==3.7
+2026-11-13T10:50:09.2961384Z  + setuptools==78.1.0
+2026-11-13T10:50:09.2961699Z  + sympy==1.14.0
+2026-11-13T10:50:09.2962041Z  + torch==2.9.1+cpu
+2026-11-13T10:50:09.2962439Z  + typing-extensions==4.16.0
+2026-11-13T10:50:11.1367218Z Resolved 53 packages in 1.72s
+2026-11-13T10:50:11.1392017Z    Building lightning @ file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:50:11.1683090Z Downloading fonttools (5.2MiB)
+2026-11-13T10:50:11.1695551Z Downloading numpy (16.0MiB)
+2026-11-13T10:50:11.1696253Z Downloading matplotlib (9.4MiB)
+2026-11-13T10:50:11.1730910Z Downloading aiohttp (1.8MiB)
+2026-11-13T10:50:11.1731745Z Downloading pillow (6.8MiB)
+2026-11-13T10:50:11.1733662Z Downloading kiwisolver (1.4MiB)
+2026-11-13T10:50:11.1737513Z Downloading ruff (10.7MiB)
+2026-11-13T10:50:11.1747358Z Downloading pygments (1.2MiB)
+2026-11-13T10:50:11.3150796Z  Downloaded pygments
+2026-11-13T10:50:11.3297636Z  Downloaded kiwisolver
+2026-11-13T10:50:11.3335437Z  Downloaded aiohttp
+2026-11-13T10:50:11.4320336Z  Downloaded fonttools
+2026-11-13T10:50:11.4407801Z  Downloaded pillow
+2026-11-13T10:50:11.4784270Z  Downloaded matplotlib
+2026-11-13T10:50:11.4905217Z  Downloaded ruff
+2026-11-13T10:50:11.5493898Z  Downloaded numpy
+2026-11-13T10:50:11.5693335Z       Built lightning @ file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:50:11.5710084Z Prepared 42 packages in 433ms
+2026-11-13T10:50:11.5965532Z Installed 43 packages in 25ms
+2026-11-13T10:50:11.5966451Z  + aiohappyeyeballs==2.7.1
+2026-11-13T10:50:11.5966746Z  + aiohttp==3.14.5
+2026-11-13T10:50:11.5966993Z  + aiosignal==1.4.0
+2026-11-13T10:50:11.5967259Z  + attrs==26.1.0
+2026-11-13T10:50:11.5967506Z  + contourpy==1.4.0
+2026-11-13T10:50:11.5967757Z  + cycler==0.12.1
+2026-11-13T10:50:11.5968037Z  + docstring-parser==0.18.0
+2026-11-13T10:50:11.5969587Z  + fonttools==4.68.0
+2026-11-13T10:50:11.5969969Z  + frozenlist==1.8.0
+2026-11-13T10:50:11.5970264Z  + idna==3.20
+2026-11-13T10:50:11.5970539Z  + iniconfig==2.3.1
+2026-11-13T10:50:11.5970865Z  + jsonargparse==4.41.0
+2026-11-13T10:50:11.5971185Z  + kiwisolver==1.5.1
+2026-11-13T10:50:11.5971742Z  + lightning==2.7.0.dev0 (from file:///home/runner/work/pytorch-lightning/pytorch-lightning)
+2026-11-13T10:50:11.5972360Z  + lightning-utilities==0.15.3
+2026-11-13T10:50:11.5972717Z  + markdown-it-py==4.3.0
+2026-11-13T10:50:11.5973035Z  + matplotlib==3.11.2
+2026-11-13T10:50:11.5973319Z  + mdurl==0.1.2
+2026-11-13T10:50:11.5973593Z  + multidict==7.2.1
+2026-11-13T10:50:11.5973875Z  + numpy==2.5.4
+2026-11-13T10:50:11.5974305Z  + packaging==26.3
+2026-11-13T10:50:11.5974616Z  + pillow==13.0.0
+2026-11-13T10:50:11.5974916Z  + pluggy==1.7.0
+2026-11-13T10:50:11.5975185Z  + propcache==0.5.4
+2026-11-13T10:50:11.5975438Z  + protobuf==7.36.2
+2026-11-13T10:50:11.5975714Z  + psutil==7.2.2
+2026-11-13T10:50:11.5975988Z  + pygments==2.21.0
+2026-11-13T10:50:11.5976263Z  + pyparsing==3.3.3
+2026-11-13T10:50:11.5976545Z  + pytest==9.0.2
+2026-11-13T10:50:11.5976845Z  + pytest-random-order==1.2.0
+2026-11-13T10:50:11.5977457Z  + pytest-rerunfailures==16.1
+2026-11-13T10:50:11.5977813Z  + pytest-timeout==2.4.0
+2026-11-13T10:50:11.5978513Z  + python-dateutil==4.0.0
+2026-11-13T10:50:11.5979281Z  + pytorch-lightning==2.6.6
+2026-11-13T10:50:11.5979594Z  + pyyaml==6.0.3
+2026-11-13T10:50:11.5979938Z  + rich==15.0.0
+2026-11-13T10:50:11.5980202Z  + ruff==0.15.9
+2026-11-13T10:50:11.5980472Z  + tensorboardx==2.6.4
+2026-11-13T10:50:11.5980766Z  + torchmetrics==1.9.0
+2026-11-13T10:50:11.5981043Z  + tqdm==4.70.1
+2026-11-13T10:50:11.5981621Z  + typeshed-client==2.15.0
+2026-11-13T10:50:11.5982040Z  + tzdata==2026.6
+2026-11-13T10:50:11.5982463Z  + yarl==1.25.1
+2026-11-13T10:50:11.6136990Z ##[group]Run .venv/bin/python validation/run_log_graph.py
+2026-11-13T10:50:11.6137425Z [36;1m.venv/bin/python validation/run_log_graph.py[0m
+2026-11-13T10:50:11.6151365Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:50:11.6151611Z env:
+2026-11-13T10:50:11.6151836Z   PYTHONPATH: src:tests
+2026-11-13T10:50:11.6152069Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:11.6152297Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:11.6152568Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:11.6152971Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:50:11.6153370Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:11.6153720Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:11.6154242Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:11.6154625Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:50:11.6155028Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:11.6155321Z ##[endgroup]
+2026-11-13T10:50:11.9842749Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T10:50:11.9843844Z  * branch            84df182f50ab34301aabb3c0eb4031815bfb413d -> FETCH_HEAD
+2026-11-13T10:50:11.9845077Z  * branch            c9e322333cc8211b985aab66634508db6e161fe2 -> FETCH_HEAD
+2026-11-13T10:50:23.6516037Z [32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[31mF[0m[31m                                                     [100%][0m
+2026-11-13T10:50:23.6517216Z =================================== FAILURES ===================================
+2026-11-13T10:50:23.6517986Z [31m[1m__________________ test_logged_tensor_graph[mean-False-True] ___________________[0m
+2026-11-13T10:50:23.6518390Z 
+2026-11-13T10:50:23.6518613Z enable_graph = True, on_step = False, reduce_fx = 'mean'
+2026-11-13T10:50:23.6518911Z 
+2026-11-13T10:50:23.6519670Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6521092Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6522635Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6523781Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6524858Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6525588Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6526261Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6526799Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6527530Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6528047Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6528471Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6528835Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6529208Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6529721Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6530081Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6530428Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6530737Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6531722Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6533123Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6534632Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6535378Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6535809Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6536178Z [1m[31mE        +  where False = tensor(7.).requires_grad[0m
+2026-11-13T10:50:23.6536388Z 
+2026-11-13T10:50:23.6536654Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6537195Z [31m[1m___________________ test_logged_tensor_graph[mean-True-True] ___________________[0m
+2026-11-13T10:50:23.6537476Z 
+2026-11-13T10:50:23.6537620Z enable_graph = True, on_step = True, reduce_fx = 'mean'
+2026-11-13T10:50:23.6537827Z 
+2026-11-13T10:50:23.6538325Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6539220Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6540518Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6541619Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6542328Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6542911Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6543582Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6544236Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6544719Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6545213Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6545620Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6546101Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6546475Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6546828Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6547182Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6547536Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6547863Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6548627Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6550008Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6551230Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6551962Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6552400Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6552756Z [1m[31mE        +  where False = tensor(9.).requires_grad[0m
+2026-11-13T10:50:23.6552967Z 
+2026-11-13T10:50:23.6553223Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6553766Z [31m[1m___________________ test_logged_tensor_graph[sum-False-True] ___________________[0m
+2026-11-13T10:50:23.6554048Z 
+2026-11-13T10:50:23.6554365Z enable_graph = True, on_step = False, reduce_fx = 'sum'
+2026-11-13T10:50:23.6554578Z 
+2026-11-13T10:50:23.6555091Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6556005Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6557355Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6558538Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6559256Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6559851Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6560535Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6561060Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6561482Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6562135Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6562548Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6562901Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6563270Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6563616Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6564197Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6564611Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6564918Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6565581Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6567000Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6568235Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6568966Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6569398Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6569751Z [1m[31mE        +  where False = tensor(13.).requires_grad[0m
+2026-11-13T10:50:23.6569973Z 
+2026-11-13T10:50:23.6570222Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6570753Z [31m[1m___________________ test_logged_tensor_graph[sum-True-True] ____________________[0m
+2026-11-13T10:50:23.6571037Z 
+2026-11-13T10:50:23.6571175Z enable_graph = True, on_step = True, reduce_fx = 'sum'
+2026-11-13T10:50:23.6571378Z 
+2026-11-13T10:50:23.6571881Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6572793Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6574431Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6575588Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6576329Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6576914Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6577584Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6578110Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6578529Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6579029Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6579440Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6579790Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6580143Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6580489Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6580863Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6581207Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6581504Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6582180Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6583607Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6585089Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6585825Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6586257Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6586614Z [1m[31mE        +  where False = tensor(9.).requires_grad[0m
+2026-11-13T10:50:23.6586832Z 
+2026-11-13T10:50:23.6587092Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6587626Z [31m[1m___________________ test_logged_tensor_graph[min-False-True] ___________________[0m
+2026-11-13T10:50:23.6587916Z 
+2026-11-13T10:50:23.6588057Z enable_graph = True, on_step = False, reduce_fx = 'min'
+2026-11-13T10:50:23.6588266Z 
+2026-11-13T10:50:23.6588754Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6589648Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6590948Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6592053Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6592758Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6593344Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6594007Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6594623Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6595050Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6595548Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6595956Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6596309Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6596669Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6597013Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6597356Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6597701Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6598010Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6598674Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6600107Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6601425Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6602154Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6602593Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6603182Z [1m[31mE        +  where False = tensor(4.).requires_grad[0m
+2026-11-13T10:50:23.6603411Z 
+2026-11-13T10:50:23.6603677Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6604326Z [31m[1m___________________ test_logged_tensor_graph[min-True-True] ____________________[0m
+2026-11-13T10:50:23.6604724Z 
+2026-11-13T10:50:23.6604856Z enable_graph = True, on_step = True, reduce_fx = 'min'
+2026-11-13T10:50:23.6605072Z 
+2026-11-13T10:50:23.6605574Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6606487Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6607788Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6608895Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6609610Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6610203Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6610865Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6611390Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6611810Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6612311Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6612849Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6613211Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6613567Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6613908Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6614437Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6614804Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6615108Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6615764Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6617115Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6618349Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6619437Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6619866Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6620214Z [1m[31mE        +  where False = tensor(9.).requires_grad[0m
+2026-11-13T10:50:23.6620419Z 
+2026-11-13T10:50:23.6620675Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6621207Z [31m[1m___________________ test_logged_tensor_graph[max-False-True] ___________________[0m
+2026-11-13T10:50:23.6621495Z 
+2026-11-13T10:50:23.6621696Z enable_graph = True, on_step = False, reduce_fx = 'max'
+2026-11-13T10:50:23.6621906Z 
+2026-11-13T10:50:23.6622402Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6623308Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6624937Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6626110Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6626817Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6627406Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6628082Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6628609Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6629031Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6629526Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6629935Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6630286Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6630651Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6631005Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6631351Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6631693Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6631995Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6632657Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6634028Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6635437Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6636170Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6636643Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6637003Z [1m[31mE        +  where False = tensor(9.).requires_grad[0m
+2026-11-13T10:50:23.6637301Z 
+2026-11-13T10:50:23.6637556Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6638097Z [31m[1m___________________ test_logged_tensor_graph[max-True-True] ____________________[0m
+2026-11-13T10:50:23.6638391Z 
+2026-11-13T10:50:23.6638526Z enable_graph = True, on_step = True, reduce_fx = 'max'
+2026-11-13T10:50:23.6638738Z 
+2026-11-13T10:50:23.6639249Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6640221Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_step[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6641546Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mreduce_fx[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6642655Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_tensor_graph[39;49;00m(enable_graph, on_step, reduce_fx):[90m[39;49;00m
+2026-11-13T10:50:23.6643360Z         inputs = torch.tensor([[94m2.0[39;49;00m, [94m3.0[39;49;00m], requires_grad=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6643952Z         results = _ResultCollection(training=[94mTrue[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6644814Z         [94mfor[39;49;00m index, batch_size [95min[39;49;00m [96menumerate[39;49;00m(([94m2[39;49;00m, [94m3[39;49;00m)):[90m[39;49;00m
+2026-11-13T10:50:23.6645396Z             results.log([90m[39;49;00m
+2026-11-13T10:50:23.6645825Z                 [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6646325Z                 [33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6646738Z                 inputs[index].square(),[90m[39;49;00m
+2026-11-13T10:50:23.6647095Z                 on_step=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6647452Z                 on_epoch=[94mTrue[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6647792Z                 reduce_fx=reduce_fx,[90m[39;49;00m
+2026-11-13T10:50:23.6648130Z                 enable_graph=enable_graph,[90m[39;49;00m
+2026-11-13T10:50:23.6648468Z                 batch_size=batch_size,[90m[39;49;00m
+2026-11-13T10:50:23.6648775Z             )[90m[39;49;00m
+2026-11-13T10:50:23.6649441Z         value = results.metrics(on_step=on_step)[[33m"[39;49;00m[33mcallback[39;49;00m[33m"[39;49;00m][[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6650806Z         expected_values = {[33m"[39;49;00m[33mmean[39;49;00m[33m"[39;49;00m: [94m7.0[39;49;00m, [33m"[39;49;00m[33msum[39;49;00m[33m"[39;49;00m: [94m13.0[39;49;00m, [33m"[39;49;00m[33mmin[39;49;00m[33m"[39;49;00m: [94m4.0[39;49;00m, [33m"[39;49;00m[33mmax[39;49;00m[33m"[39;49;00m: [94m9.0[39;49;00m}[90m[39;49;00m
+2026-11-13T10:50:23.6652035Z         [94massert[39;49;00m value.item() == pytest.approx([94m9.0[39;49;00m [94mif[39;49;00m on_step [94melse[39;49;00m expected_values[reduce_fx])[90m[39;49;00m
+2026-11-13T10:50:23.6652764Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6653208Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6653560Z [1m[31mE        +  where False = tensor(9.).requires_grad[0m
+2026-11-13T10:50:23.6653767Z 
+2026-11-13T10:50:23.6654023Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:42: AssertionError
+2026-11-13T10:50:23.6654735Z [31m[1m___________ test_logged_loss_drives_manual_optimization[False-True] ____________[0m
+2026-11-13T10:50:23.6655041Z 
+2026-11-13T10:50:23.6655363Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_logged_loss_drives_manual1')
+2026-11-13T10:50:23.6655782Z on_epoch = False, enable_graph = True
+2026-11-13T10:50:23.6655953Z 
+2026-11-13T10:50:23.6656492Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6657416Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_epoch[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6658348Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_loss_drives_manual_optimization[39;49;00m(tmp_path, on_epoch, enable_graph):[90m[39;49;00m
+2026-11-13T10:50:23.6659084Z         inputs = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m, [94m3.0[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6659628Z         model = _LoggedGradientModel(on_epoch, enable_graph)[90m[39;49;00m
+2026-11-13T10:50:23.6660026Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:50:23.6660358Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:50:23.6660804Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6661235Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6661578Z             max_epochs=[94m2[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6661931Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6662328Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6662753Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6663171Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6663576Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6663901Z         )[90m[39;49;00m
+2026-11-13T10:50:23.6664637Z >       trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(inputs), batch_size=[94m2[39;49;00m))[90m[39;49;00m
+2026-11-13T10:50:23.6665035Z 
+2026-11-13T10:50:23.6665263Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:134: 
+2026-11-13T10:50:23.6665639Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T10:50:23.6666068Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:595: in fit
+2026-11-13T10:50:23.6666475Z     [0mcall._call_and_handle_interrupt([90m[39;49;00m
+2026-11-13T10:50:23.6666945Z [1m[31msrc/lightning/pytorch/trainer/call.py[0m:49: in _call_and_handle_interrupt
+2026-11-13T10:50:23.6667442Z     [0m[94mreturn[39;49;00m trainer_fn(*args, **kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6667839Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6668234Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:641: in _fit_impl
+2026-11-13T10:50:23.6668790Z     [0m[96mself[39;49;00m._run(model, ckpt_path=ckpt_path, weights_only=weights_only)[90m[39;49;00m
+2026-11-13T10:50:23.6669310Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:1090: in _run
+2026-11-13T10:50:23.6669734Z     [0mresults = [96mself[39;49;00m._run_stage()[90m[39;49;00m
+2026-11-13T10:50:23.6670089Z               ^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6670481Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:1134: in _run_stage
+2026-11-13T10:50:23.6670901Z     [0m[96mself[39;49;00m.fit_loop.run()[90m[39;49;00m
+2026-11-13T10:50:23.6671303Z [1m[31msrc/lightning/pytorch/loops/fit_loop.py[0m:216: in run
+2026-11-13T10:50:23.6671698Z     [0m[96mself[39;49;00m.advance()[90m[39;49;00m
+2026-11-13T10:50:23.6672087Z [1m[31msrc/lightning/pytorch/loops/fit_loop.py[0m:478: in advance
+2026-11-13T10:50:23.6672590Z     [0m[96mself[39;49;00m.epoch_loop.run([96mself[39;49;00m._data_fetcher)[90m[39;49;00m
+2026-11-13T10:50:23.6673113Z [1m[31msrc/lightning/pytorch/loops/training_epoch_loop.py[0m:153: in run
+2026-11-13T10:50:23.6673649Z     [0m[96mself[39;49;00m.advance(data_fetcher)[90m[39;49;00m
+2026-11-13T10:50:23.6674791Z [1m[31msrc/lightning/pytorch/loops/training_epoch_loop.py[0m:354: in advance
+2026-11-13T10:50:23.6675446Z     [0mbatch_output = [96mself[39;49;00m.manual_optimization.run(kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6675915Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6676342Z [1m[31msrc/lightning/pytorch/loops/optimization/manual.py[0m:95: in run
+2026-11-13T10:50:23.6676772Z     [0m[96mself[39;49;00m.advance(kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6677316Z [1m[31msrc/lightning/pytorch/loops/optimization/manual.py[0m:115: in advance
+2026-11-13T10:50:23.6678085Z     [0mtraining_step_output = call._call_strategy_hook(trainer, [33m"[39;49;00m[33mtraining_step[39;49;00m[33m"[39;49;00m, *kwargs.values())[90m[39;49;00m
+2026-11-13T10:50:23.6678772Z                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6679281Z [1m[31msrc/lightning/pytorch/trainer/call.py[0m:329: in _call_strategy_hook
+2026-11-13T10:50:23.6679718Z     [0moutput = fn(*args, **kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6680068Z              ^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6680493Z [1m[31msrc/lightning/pytorch/strategies/strategy.py[0m:391: in training_step
+2026-11-13T10:50:23.6681101Z     [0m[94mreturn[39;49;00m [96mself[39;49;00m.lightning_module.training_step(*args, **kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6681621Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6682064Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:99: in training_step
+2026-11-13T10:50:23.6682494Z     [0m[96mself[39;49;00m._step(loss)[90m[39;49;00m
+2026-11-13T10:50:23.6682811Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T10:50:23.6683022Z 
+2026-11-13T10:50:23.6683146Z self = _LoggedGradientModel()
+2026-11-13T10:50:23.6683436Z reference_loss = tensor(10., grad_fn=<MeanBackward0>)
+2026-11-13T10:50:23.6683633Z 
+2026-11-13T10:50:23.6683966Z     [0m[94mdef[39;49;00m[90m [39;49;00m[92m_step[39;49;00m([96mself[39;49;00m, reference_loss):[90m[39;49;00m
+2026-11-13T10:50:23.6684792Z         value = [96mself[39;49;00m.trainer.callback_metrics[[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6685524Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m [96mself[39;49;00m.enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6686002Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6686356Z [1m[31mE        +  where False = tensor(10.).requires_grad[0m
+2026-11-13T10:50:23.6686782Z [1m[31mE        +  and   True = _LoggedGradientModel().enable_graph[0m
+2026-11-13T10:50:23.6687014Z 
+2026-11-13T10:50:23.6687264Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:103: AssertionError
+2026-11-13T10:50:23.6687706Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:50:23.6688081Z GPU available: False, used: False
+2026-11-13T10:50:23.6688342Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:50:23.6689372Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:50:23.6690402Z [31m[1m____________ test_logged_loss_drives_manual_optimization[True-True] ____________[0m
+2026-11-13T10:50:23.6690710Z 
+2026-11-13T10:50:23.6690935Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_logged_loss_drives_manual3')
+2026-11-13T10:50:23.6691331Z on_epoch = True, enable_graph = True
+2026-11-13T10:50:23.6691493Z 
+2026-11-13T10:50:23.6692004Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33menable_graph[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6693015Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mon_epoch[39;49;00m[33m"[39;49;00m, [[94mFalse[39;49;00m, [94mTrue[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6693908Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_logged_loss_drives_manual_optimization[39;49;00m(tmp_path, on_epoch, enable_graph):[90m[39;49;00m
+2026-11-13T10:50:23.6694944Z         inputs = torch.tensor([[94m1.0[39;49;00m, [94m2.0[39;49;00m, [94m3.0[39;49;00m])[90m[39;49;00m
+2026-11-13T10:50:23.6695668Z         model = _LoggedGradientModel(on_epoch, enable_graph)[90m[39;49;00m
+2026-11-13T10:50:23.6696267Z         trainer = Trainer([90m[39;49;00m
+2026-11-13T10:50:23.6696778Z             default_root_dir=tmp_path,[90m[39;49;00m
+2026-11-13T10:50:23.6697236Z             accelerator=[33m"[39;49;00m[33mcpu[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6697655Z             devices=[94m1[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6698005Z             max_epochs=[94m2[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6698350Z             logger=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6698737Z             enable_checkpointing=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6699170Z             enable_model_summary=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6699585Z             enable_progress_bar=[94mFalse[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6699980Z             num_sanity_val_steps=[94m0[39;49;00m,[90m[39;49;00m
+2026-11-13T10:50:23.6700307Z         )[90m[39;49;00m
+2026-11-13T10:50:23.6700839Z >       trainer.fit(model, train_dataloaders=DataLoader(TensorDataset(inputs), batch_size=[94m2[39;49;00m))[90m[39;49;00m
+2026-11-13T10:50:23.6701232Z 
+2026-11-13T10:50:23.6701441Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:134: 
+2026-11-13T10:50:23.6701808Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T10:50:23.6702232Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:595: in fit
+2026-11-13T10:50:23.6702644Z     [0mcall._call_and_handle_interrupt([90m[39;49;00m
+2026-11-13T10:50:23.6703104Z [1m[31msrc/lightning/pytorch/trainer/call.py[0m:49: in _call_and_handle_interrupt
+2026-11-13T10:50:23.6703600Z     [0m[94mreturn[39;49;00m trainer_fn(*args, **kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6703982Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6704697Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:641: in _fit_impl
+2026-11-13T10:50:23.6705262Z     [0m[96mself[39;49;00m._run(model, ckpt_path=ckpt_path, weights_only=weights_only)[90m[39;49;00m
+2026-11-13T10:50:23.6705782Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:1090: in _run
+2026-11-13T10:50:23.6706211Z     [0mresults = [96mself[39;49;00m._run_stage()[90m[39;49;00m
+2026-11-13T10:50:23.6706577Z               ^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6706972Z [1m[31msrc/lightning/pytorch/trainer/trainer.py[0m:1134: in _run_stage
+2026-11-13T10:50:23.6707400Z     [0m[96mself[39;49;00m.fit_loop.run()[90m[39;49;00m
+2026-11-13T10:50:23.6707801Z [1m[31msrc/lightning/pytorch/loops/fit_loop.py[0m:217: in run
+2026-11-13T10:50:23.6708199Z     [0m[96mself[39;49;00m.on_advance_end()[90m[39;49;00m
+2026-11-13T10:50:23.6708634Z [1m[31msrc/lightning/pytorch/loops/fit_loop.py[0m:492: in on_advance_end
+2026-11-13T10:50:23.6709296Z     [0mcall._call_lightning_module_hook(trainer, [33m"[39;49;00m[33mon_train_epoch_end[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+2026-11-13T10:50:23.6709965Z [1m[31msrc/lightning/pytorch/trainer/call.py[0m:177: in _call_lightning_module_hook
+2026-11-13T10:50:23.6710423Z     [0moutput = fn(*args, **kwargs)[90m[39;49;00m
+2026-11-13T10:50:23.6710748Z              ^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+2026-11-13T10:50:23.6711177Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:114: in on_train_epoch_end
+2026-11-13T10:50:23.6711787Z     [0m[96mself[39;49;00m._step(reference_loss)[90m[39;49;00m
+2026-11-13T10:50:23.6712140Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T10:50:23.6712358Z 
+2026-11-13T10:50:23.6712469Z self = _LoggedGradientModel()
+2026-11-13T10:50:23.6712764Z reference_loss = tensor(18.6667, grad_fn=<DivBackward0>)
+2026-11-13T10:50:23.6712977Z 
+2026-11-13T10:50:23.6713315Z     [0m[94mdef[39;49;00m[90m [39;49;00m[92m_step[39;49;00m([96mself[39;49;00m, reference_loss):[90m[39;49;00m
+2026-11-13T10:50:23.6714316Z         value = [96mself[39;49;00m.trainer.callback_metrics[[33m"[39;49;00m[33mobjective[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+2026-11-13T10:50:23.6715288Z >       [94massert[39;49;00m value.requires_grad [95mis[39;49;00m [96mself[39;49;00m.enable_graph[90m[39;49;00m
+2026-11-13T10:50:23.6715874Z [1m[31mE       assert False is True[0m
+2026-11-13T10:50:23.6716240Z [1m[31mE        +  where False = tensor(18.6667).requires_grad[0m
+2026-11-13T10:50:23.6716667Z [1m[31mE        +  and   True = _LoggedGradientModel().enable_graph[0m
+2026-11-13T10:50:23.6716907Z 
+2026-11-13T10:50:23.6717155Z [1m[31mtests/tests_pytorch/core/test_logging_graph.py[0m:103: AssertionError
+2026-11-13T10:50:23.6717601Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T10:50:23.6717946Z GPU available: False, used: False
+2026-11-13T10:50:23.6718207Z TPU available: False, using: 0 TPU cores
+2026-11-13T10:50:23.6719216Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T10:50:23.6720188Z [36m[1m=========================== short test summary info ============================[0m
+2026-11-13T10:50:23.6721415Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[mean-False-True][0m - assert False is True
+2026-11-13T10:50:23.6721969Z  +  where False = tensor(7.).requires_grad
+2026-11-13T10:50:23.6722632Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[mean-True-True][0m - assert False is True
+2026-11-13T10:50:23.6723165Z  +  where False = tensor(9.).requires_grad
+2026-11-13T10:50:23.6723793Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[sum-False-True][0m - assert False is True
+2026-11-13T10:50:23.6724633Z  +  where False = tensor(13.).requires_grad
+2026-11-13T10:50:23.6725343Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[sum-True-True][0m - assert False is True
+2026-11-13T10:50:23.6725858Z  +  where False = tensor(9.).requires_grad
+2026-11-13T10:50:23.6726512Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[min-False-True][0m - assert False is True
+2026-11-13T10:50:23.6727032Z  +  where False = tensor(4.).requires_grad
+2026-11-13T10:50:23.6727643Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[min-True-True][0m - assert False is True
+2026-11-13T10:50:23.6728158Z  +  where False = tensor(9.).requires_grad
+2026-11-13T10:50:23.6728770Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[max-False-True][0m - assert False is True
+2026-11-13T10:50:23.6729274Z  +  where False = tensor(9.).requires_grad
+2026-11-13T10:50:23.6729921Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_tensor_graph[max-True-True][0m - assert False is True
+2026-11-13T10:50:23.6730412Z  +  where False = tensor(9.).requires_grad
+2026-11-13T10:50:23.6731090Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_loss_drives_manual_optimization[False-True][0m - assert False is True
+2026-11-13T10:50:23.6731656Z  +  where False = tensor(10.).requires_grad
+2026-11-13T10:50:23.6731951Z  +  and   True = _LoggedGradientModel().enable_graph
+2026-11-13T10:50:23.6732783Z [31mFAILED[0m tests/tests_pytorch/core/test_logging_graph.py::[1mtest_logged_loss_drives_manual_optimization[True-True][0m - assert False is True
+2026-11-13T10:50:23.6733349Z  +  where False = tensor(18.6667).requires_grad
+2026-11-13T10:50:23.6733661Z  +  and   True = _LoggedGradientModel().enable_graph
+2026-11-13T10:50:23.6734277Z [31m[31m[1m10 failed[0m, [32m10 passed[0m, [33m4 warnings[0m[31m in 0.68s[0m[0m
+2026-11-13T10:50:23.6734585Z 
+2026-11-13T10:50:23.6734806Z before {'tests': 20, 'failures': 10, 'errors': 0, 'skipped': 0, 'returncode': 1}
+2026-11-13T10:50:27.8813362Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                                     [100%][0m
+2026-11-13T10:50:27.8814797Z [33m[32m20 passed[0m, [33m[1m4 warnings[0m[33m in 0.27s[0m[0m
+2026-11-13T10:50:27.8815084Z 
+2026-11-13T10:50:27.8815301Z after {'tests': 20, 'failures': 0, 'errors': 0, 'skipped': 0, 'returncode': 0}
+2026-11-13T10:50:32.5096676Z [33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                                 [100%][0m
+2026-11-13T10:50:32.5099024Z [33m[32m21 passed[0m, [33m[1m3 skipped[0m, [33m[1m13 warnings[0m[33m in 0.66s[0m[0m
+2026-11-13T10:50:32.5099768Z 
+2026-11-13T10:50:32.5100672Z existing {'tests': 24, 'failures': 0, 'errors': 0, 'skipped': 3, 'returncode': 0}
+2026-11-13T10:50:32.5101278Z {
+2026-11-13T10:50:32.5101651Z   "base": "84df182f50ab34301aabb3c0eb4031815bfb413d",
+2026-11-13T10:50:32.5102164Z   "head": "c9e322333cc8211b985aab66634508db6e161fe2",
+2026-11-13T10:50:32.5102615Z   "before": {
+2026-11-13T10:50:32.5102837Z     "tests": 20,
+2026-11-13T10:50:32.5103103Z     "failures": 10,
+2026-11-13T10:50:32.5103338Z     "errors": 0,
+2026-11-13T10:50:32.5103541Z     "skipped": 0,
+2026-11-13T10:50:32.5103735Z     "returncode": 1
+2026-11-13T10:50:32.5103923Z   },
+2026-11-13T10:50:32.5104289Z   "after": {
+2026-11-13T10:50:32.5104574Z     "tests": 20,
+2026-11-13T10:50:32.5104771Z     "failures": 0,
+2026-11-13T10:50:32.5104960Z     "errors": 0,
+2026-11-13T10:50:32.5105148Z     "skipped": 0,
+2026-11-13T10:50:32.5105342Z     "returncode": 0
+2026-11-13T10:50:32.5105528Z   },
+2026-11-13T10:50:32.5105699Z   "existing": {
+2026-11-13T10:50:32.5105900Z     "tests": 24,
+2026-11-13T10:50:32.5106090Z     "failures": 0,
+2026-11-13T10:50:32.5106273Z     "errors": 0,
+2026-11-13T10:50:32.5106457Z     "skipped": 3,
+2026-11-13T10:50:32.5106645Z     "returncode": 0
+2026-11-13T10:50:32.5106832Z   }
+2026-11-13T10:50:32.5107002Z }
+2026-11-13T10:50:32.5268078Z ##[group]Run .venv/bin/ruff check src/lightning/pytorch/core/module.py src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py
+2026-11-13T10:50:32.5269374Z [36;1m.venv/bin/ruff check src/lightning/pytorch/core/module.py src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py[0m
+2026-11-13T10:50:32.5270549Z [36;1m.venv/bin/ruff format --check --diff src/lightning/pytorch/core/module.py src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py[0m
+2026-11-13T10:50:32.5285472Z shell: /usr/bin/bash -e {0}
+2026-11-13T10:50:32.5285898Z env:
+2026-11-13T10:50:32.5286187Z   PYTHONPATH: src:tests
+2026-11-13T10:50:32.5286527Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:32.5286830Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:32.5287188Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5287801Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:50:32.5288318Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5288941Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5289380Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5289811Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:50:32.5290311Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:32.5290709Z ##[endgroup]
+2026-11-13T10:50:32.5429475Z All checks passed!
+2026-11-13T10:50:32.5526504Z 3 files already formatted
+2026-11-13T10:50:32.5595688Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T10:50:32.5596062Z with:
+2026-11-13T10:50:32.5596373Z   name: logged-graph-native-c9e322333cc8
+2026-11-13T10:50:32.5596942Z   path: before.log
+before.xml
+after.log
+after.xml
+existing.log
+existing.xml
+validation_result.json
+
+2026-11-13T10:50:32.5597465Z   if-no-files-found: warn
+2026-11-13T10:50:32.5597761Z   compression-level: 6
+2026-11-13T10:50:32.5598094Z   overwrite: false
+2026-11-13T10:50:32.5598422Z   include-hidden-files: false
+2026-11-13T10:50:32.5598786Z env:
+2026-11-13T10:50:32.5599051Z   PYTHONPATH: src:tests
+2026-11-13T10:50:32.5599333Z   OMP_NUM_THREADS: 1
+2026-11-13T10:50:32.5599644Z   MKL_NUM_THREADS: 1
+2026-11-13T10:50:32.5599993Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5600474Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T10:50:32.5600988Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5601529Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5601965Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T10:50:32.5602403Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T10:50:32.5602906Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:32.5603281Z ##[endgroup]
+2026-11-13T10:50:32.7330021Z (node:2503) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:50:32.7331131Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:50:32.7428109Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-13T10:50:32.7430692Z The least common ancestor is /home/runner/work/pytorch-lightning/pytorch-lightning. This will be the root directory of the artifact
+2026-11-13T10:50:32.7431453Z With the provided path, there will be 7 files uploaded
+2026-11-13T10:50:32.7432158Z Artifact name is valid!
+2026-11-13T10:50:32.7432582Z Root directory input is valid!
+2026-11-13T10:50:33.0037334Z Beginning upload of artifact content to blob storage
+2026-11-13T10:50:33.0353929Z (node:2503) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T10:50:33.1517481Z Uploaded bytes 6607
+2026-11-13T10:50:33.1857680Z Finished uploading artifact content to blob storage!
+2026-11-13T10:50:33.1858910Z SHA256 digest of uploaded artifact zip is 4f9fde1922766718e8700ddbb18515614cb32cb163a32367d7a6680aeef6ef00
+2026-11-13T10:50:33.1859735Z Finalizing artifact upload
+2026-11-13T10:50:33.5467614Z Artifact logged-graph-native-c9e322333cc8.zip successfully finalized. Artifact ID 14030311091
+2026-11-13T10:50:33.5469109Z Artifact logged-graph-native-c9e322333cc8 has been successfully uploaded! Final size is 6607 bytes. Artifact ID is 14030311091
+2026-11-13T10:50:33.5475620Z Artifact download URL: https://github.com/Afloat16/pytorch-lightning/actions/runs/43412142890/artifacts/14030311091
+2026-11-13T10:50:33.5725084Z Post job cleanup.
+2026-11-13T10:50:33.6996767Z Pruning cache...
+2026-11-13T10:50:33.7008846Z (node:2515) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:50:33.7009809Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:50:33.7080940Z [command]/opt/hostedtoolcache/uv/0.13.8/x86_64/uv cache prune --ci
+2026-11-13T10:50:33.7179743Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:33.9209238Z Removed 20595 files (6.4MiB)
+2026-11-13T10:50:33.9233549Z Saving cache path: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T10:50:33.9379160Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/pytorch-lightning/pytorch-lightning --files-from manifest.txt --use-compress-program zstdmt
+2026-11-13T10:50:34.1248472Z (node:2515) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T10:50:34.5023198Z Sent 6631914 of 6631914 (100.0%), 16.4 MBs/sec
+2026-11-13T10:50:34.5816573Z cache saved with the key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-16af25613d0c1ebf017b91fbf5cb58b32d7a5d3d7e05692425ab09a65e296c58
+2026-11-13T10:50:34.5941150Z Post job cleanup.
+2026-11-13T10:50:34.7154849Z (node:2538) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T10:50:34.7156474Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T10:50:34.7341652Z Post job cleanup.
+2026-11-13T10:50:34.8253216Z [command]/usr/bin/git version
+2026-11-13T10:50:34.8301813Z git version 2.56.1
+2026-11-13T10:50:34.8343908Z Temporarily overriding HOME='/home/runner/work/_temp/5b90f129-6b6b-47cc-a7cc-1d16d569352a' before making global git config changes
+2026-11-13T10:50:34.8345334Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T10:50:34.8351307Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T10:50:34.8393884Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T10:50:34.8428475Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T10:50:34.8651682Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T10:50:34.8681122Z http.https://github.com/.extraheader
+2026-11-13T10:50:34.8692364Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T10:50:34.8727077Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T10:50:34.8966666Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T10:50:34.9005040Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T10:50:34.9393545Z Cleaning up orphan processes
+2026-11-13T10:50:34.9695004Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
