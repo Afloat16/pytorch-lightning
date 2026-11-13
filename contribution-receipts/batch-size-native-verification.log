@@ -1,0 +1,1366 @@
+﻿2026-11-13T09:33:55.3823221Z Current runner version: '2.338.2'
+2026-11-13T09:33:55.3851975Z ##[group]Runner Image Provisioner
+2026-11-13T09:33:55.3853168Z Hosted Compute Agent
+2026-11-13T09:33:55.3853892Z Version: 20261028.624
+2026-11-13T09:33:55.3854968Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-13T09:33:55.3855900Z Build Date: 2026-10-28T21:51:42Z
+2026-11-13T09:33:55.3856679Z Worker ID: {3474f056-161f-4640-b969-249ce9a15343}
+2026-11-13T09:33:55.3857490Z Region: eastus2
+2026-11-13T09:33:55.3858006Z Cloud: Azure
+2026-11-13T09:33:55.3858504Z ##[endgroup]
+2026-11-13T09:33:55.3859668Z ##[group]Operating System
+2026-11-13T09:33:55.3860182Z Ubuntu
+2026-11-13T09:33:55.3860719Z 26.04.1
+2026-11-13T09:33:55.3861141Z LTS
+2026-11-13T09:33:55.3861554Z ##[endgroup]
+2026-11-13T09:33:55.3862070Z ##[group]Runner Image
+2026-11-13T09:33:55.3862571Z Image: ubuntu-26.04
+2026-11-13T09:33:55.3863506Z Version: 20261101.186.1
+2026-11-13T09:33:55.3864873Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-13T09:33:55.3866170Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+2026-11-13T09:33:55.3866951Z ##[endgroup]
+2026-11-13T09:33:55.3867968Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T09:33:55.3869750Z Contents: read
+2026-11-13T09:33:55.3870336Z Metadata: read
+2026-11-13T09:33:55.3870810Z ##[endgroup]
+2026-11-13T09:33:55.3872538Z Secret source: Actions
+2026-11-13T09:33:55.3873646Z Cache mode: write
+2026-11-13T09:33:55.3875038Z Prepare workflow directory
+2026-11-13T09:33:55.4305734Z Prepare all required actions
+2026-11-13T09:33:55.4361260Z Getting action download info
+2026-11-13T09:33:55.6103751Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T09:33:55.6935592Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T09:33:55.7959470Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T09:33:56.0273068Z Complete job name: native-cpu
+2026-11-13T09:33:56.0972555Z ##[group]Run actions/checkout@v4
+2026-11-13T09:33:56.0973223Z with:
+2026-11-13T09:33:56.0973602Z   ref: b255e50037312cc3eb2e52c90d948c021174c2af
+2026-11-13T09:33:56.0974070Z   fetch-depth: 5
+2026-11-13T09:33:56.0974595Z   repository: Afloat16/pytorch-lightning
+2026-11-13T09:33:56.0977897Z   token: ***
+2026-11-13T09:33:56.0978247Z   ssh-strict: true
+2026-11-13T09:33:56.0978600Z   ssh-user: git
+2026-11-13T09:33:56.0978958Z   persist-credentials: true
+2026-11-13T09:33:56.0979346Z   clean: true
+2026-11-13T09:33:56.0979702Z   sparse-checkout-cone-mode: true
+2026-11-13T09:33:56.0980111Z   fetch-tags: false
+2026-11-13T09:33:56.0980465Z   show-progress: true
+2026-11-13T09:33:56.0980812Z   lfs: false
+2026-11-13T09:33:56.0981142Z   submodules: false
+2026-11-13T09:33:56.0981497Z   set-safe-directory: true
+2026-11-13T09:33:56.0981893Z   allow-unsafe-pr-checkout: false
+2026-11-13T09:33:56.0982567Z env:
+2026-11-13T09:33:56.0982918Z   PYTHONPATH: src:tests
+2026-11-13T09:33:56.0983318Z   OMP_NUM_THREADS: 1
+2026-11-13T09:33:56.0983665Z   MKL_NUM_THREADS: 1
+2026-11-13T09:33:56.0984010Z ##[endgroup]
+2026-11-13T09:33:56.3064819Z Syncing repository: Afloat16/pytorch-lightning
+2026-11-13T09:33:56.3067190Z ##[group]Getting Git version info
+2026-11-13T09:33:56.3068367Z Working directory is '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T09:33:56.3070077Z [command]/usr/bin/git version
+2026-11-13T09:33:56.3079238Z git version 2.56.0
+2026-11-13T09:33:56.3095148Z ##[endgroup]
+2026-11-13T09:33:56.3107572Z Temporarily overriding HOME='/home/runner/work/_temp/db59683b-7c63-4218-807e-effa1418330a' before making global git config changes
+2026-11-13T09:33:56.3109363Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T09:33:56.3112362Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T09:33:56.3167277Z Deleting the contents of '/home/runner/work/pytorch-lightning/pytorch-lightning'
+2026-11-13T09:33:56.3169380Z ##[group]Initializing the repository
+2026-11-13T09:33:56.3173307Z [command]/usr/bin/git init /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T09:33:56.3267998Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T09:33:56.3268995Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T09:33:56.3269821Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T09:33:56.3270473Z hint: call:
+2026-11-13T09:33:56.3270829Z hint:
+2026-11-13T09:33:56.3271303Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T09:33:56.3271846Z hint:
+2026-11-13T09:33:56.3272444Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T09:33:56.3273364Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T09:33:56.3274244Z hint:
+2026-11-13T09:33:56.3274986Z hint: 	git branch -m <name>
+2026-11-13T09:33:56.3275415Z hint:
+2026-11-13T09:33:56.3275948Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T09:33:56.3289204Z Initialized empty Git repository in /home/runner/work/pytorch-lightning/pytorch-lightning/.git/
+2026-11-13T09:33:56.3299253Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/pytorch-lightning
+2026-11-13T09:33:56.3405618Z ##[endgroup]
+2026-11-13T09:33:56.3406437Z ##[group]Disabling automatic garbage collection
+2026-11-13T09:33:56.3409153Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T09:33:56.3442269Z ##[endgroup]
+2026-11-13T09:33:56.3442939Z ##[group]Setting up auth
+2026-11-13T09:33:56.3448783Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T09:33:56.3480325Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T09:33:56.3967349Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T09:33:56.4000049Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T09:33:56.4248160Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T09:33:56.4285893Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T09:33:56.4528225Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T09:33:56.5043540Z ##[endgroup]
+2026-11-13T09:33:56.5045151Z ##[group]Fetching the repository
+2026-11-13T09:33:56.5054101Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=5 origin b255e50037312cc3eb2e52c90d948c021174c2af
+2026-11-13T09:33:57.7278923Z From https://github.com/Afloat16/pytorch-lightning
+2026-11-13T09:33:57.7280940Z  * branch            b255e50037312cc3eb2e52c90d948c021174c2af -> FETCH_HEAD
+2026-11-13T09:33:57.7286829Z ##[endgroup]
+2026-11-13T09:33:57.7288427Z ##[group]Determining the checkout info
+2026-11-13T09:33:57.7290575Z ##[endgroup]
+2026-11-13T09:33:57.7291907Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T09:33:57.7371482Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T09:33:57.7409194Z ##[group]Checking out the ref
+2026-11-13T09:33:57.7410449Z [command]/usr/bin/git checkout --progress --force b255e50037312cc3eb2e52c90d948c021174c2af
+2026-11-13T09:33:57.8512853Z Note: switching to 'b255e50037312cc3eb2e52c90d948c021174c2af'.
+2026-11-13T09:33:57.8513721Z 
+2026-11-13T09:33:57.8514563Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-13T09:33:57.8516026Z changes and commit them, and you can discard any commits you make in this
+2026-11-13T09:33:57.8517794Z state without impacting any branches by switching back to a branch.
+2026-11-13T09:33:57.8518579Z 
+2026-11-13T09:33:57.8519247Z If you want to create a new branch to retain commits you create, you may
+2026-11-13T09:33:57.8520513Z do so (now or later) by using -c with the switch command. Example:
+2026-11-13T09:33:57.8521197Z 
+2026-11-13T09:33:57.8521599Z   git switch -c <new-branch-name>
+2026-11-13T09:33:57.8522089Z 
+2026-11-13T09:33:57.8522582Z Or undo this operation with:
+2026-11-13T09:33:57.8523163Z 
+2026-11-13T09:33:57.8523833Z   git switch -
+2026-11-13T09:33:57.8524346Z 
+2026-11-13T09:33:57.8525481Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-13T09:33:57.8526519Z 
+2026-11-13T09:33:57.8527499Z HEAD is now at b255e50 Cover native datamodule validation and prediction trial lengths
+2026-11-13T09:33:57.8531187Z ##[endgroup]
+2026-11-13T09:33:57.8565755Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T09:33:57.8588125Z b255e50037312cc3eb2e52c90d948c021174c2af
+2026-11-13T09:33:57.8966001Z ##[group]Run actions/setup-python@v5
+2026-11-13T09:33:57.8966969Z with:
+2026-11-13T09:33:57.8967694Z   python-version: 3.12
+2026-11-13T09:33:57.8968496Z   check-latest: false
+2026-11-13T09:33:57.8976940Z   token: ***
+2026-11-13T09:33:57.8977703Z   update-environment: true
+2026-11-13T09:33:57.8978572Z   allow-prereleases: false
+2026-11-13T09:33:57.8979469Z   freethreaded: false
+2026-11-13T09:33:57.8980252Z env:
+2026-11-13T09:33:57.8980937Z   PYTHONPATH: src:tests
+2026-11-13T09:33:57.8981743Z   OMP_NUM_THREADS: 1
+2026-11-13T09:33:57.8982497Z   MKL_NUM_THREADS: 1
+2026-11-13T09:33:57.8983245Z ##[endgroup]
+2026-11-13T09:33:58.0140195Z ##[group]Installed versions
+2026-11-13T09:33:58.0217295Z (node:2189) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T09:33:58.0220467Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T09:33:58.0222532Z Successfully set up CPython (3.12.16)
+2026-11-13T09:33:58.0224829Z ##[endgroup]
+2026-11-13T09:33:58.0413541Z ##[group]Run python -m pip install --upgrade pip
+2026-11-13T09:33:58.0415403Z [36;1mpython -m pip install --upgrade pip[0m
+2026-11-13T09:33:58.0417359Z [36;1mpython -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu[0m
+2026-11-13T09:33:58.0421055Z [36;1mpython -m pip install -e . torch==2.9.1 pytest==9.0.2 pytest-timeout==2.4.0 pytest-rerunfailures==16.1 pytest-random-order==1.2.0 tensorboardX==2.6.4 "jsonargparse[signatures]==4.41.0" rich matplotlib psutil ruff==0.15.9[0m
+2026-11-13T09:33:58.0426033Z [36;1mpython -m pip freeze > installed-dependencies.txt[0m
+2026-11-13T09:33:58.1092458Z shell: /usr/bin/bash -e {0}
+2026-11-13T09:33:58.1093408Z env:
+2026-11-13T09:33:58.1094143Z   PYTHONPATH: src:tests
+2026-11-13T09:33:58.1095117Z   OMP_NUM_THREADS: 1
+2026-11-13T09:33:58.1095912Z   MKL_NUM_THREADS: 1
+2026-11-13T09:33:58.1096880Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:33:58.1098461Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T09:33:58.1099970Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:33:58.1101337Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:33:58.1102855Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:33:58.1104748Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T09:33:58.1106204Z ##[endgroup]
+2026-11-13T09:33:58.7848145Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (26.2.2)
+2026-11-13T09:33:58.8552118Z Collecting pip
+2026-11-13T09:33:58.8929441Z   Downloading pip-26.3-py3-none-any.whl.metadata (4.6 kB)
+2026-11-13T09:33:58.9034777Z Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+2026-11-13T09:33:58.9466782Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 65.7 MB/s  0:00:00
+2026-11-13T09:33:58.9826097Z Installing collected packages: pip
+2026-11-13T09:33:58.9826580Z   Attempting uninstall: pip
+2026-11-13T09:33:58.9842191Z     Found existing installation: pip 26.2.2
+2026-11-13T09:33:59.0184046Z     Uninstalling pip-26.2.2:
+2026-11-13T09:33:59.0233573Z       Successfully uninstalled pip-26.2.2
+2026-11-13T09:33:59.9279431Z Successfully installed pip-26.3
+2026-11-13T09:34:00.3757399Z Looking in indexes: https://download.pytorch.org/whl/cpu
+2026-11-13T09:34:00.4887463Z Collecting torch==2.9.1
+2026-11-13T09:34:00.5543595Z   Downloading torch-2.9.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+2026-11-13T09:34:00.5835475Z Collecting filelock (from torch==2.9.1)
+2026-11-13T09:34:00.6129235Z   Downloading filelock-4.2.4-py3-none-any.whl.metadata (2.0 kB)
+2026-11-13T09:34:00.6344710Z Collecting typing-extensions>=4.10.0 (from torch==2.9.1)
+2026-11-13T09:34:00.6410901Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-13T09:34:00.6553349Z Collecting setuptools (from torch==2.9.1)
+2026-11-13T09:34:00.6628521Z   Downloading setuptools-78.1.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-13T09:34:00.6830981Z Collecting sympy>=1.13.3 (from torch==2.9.1)
+2026-11-13T09:34:00.6896014Z   Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-13T09:34:00.7251153Z Collecting networkx>=2.5.1 (from torch==2.9.1)
+2026-11-13T09:34:00.7318614Z   Downloading networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
+2026-11-13T09:34:00.7486169Z Collecting jinja2 (from torch==2.9.1)
+2026-11-13T09:34:00.7560665Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-11-13T09:34:00.7783881Z Collecting fsspec>=0.8.5 (from torch==2.9.1)
+2026-11-13T09:34:00.7852632Z   Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+2026-11-13T09:34:00.8103207Z Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.9.1)
+2026-11-13T09:34:00.8171420Z   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-13T09:34:00.8388481Z Collecting MarkupSafe>=2.0 (from jinja2->torch==2.9.1)
+2026-11-13T09:34:00.8467840Z   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-13T09:34:00.8645276Z Downloading torch-2.9.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (184.4 MB)
+2026-11-13T09:34:02.4069190Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.4/184.4 MB 120.7 MB/s  0:00:01
+2026-11-13T09:34:02.4139183Z Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+2026-11-13T09:34:02.4350481Z Downloading networkx-3.7-py3-none-any.whl (2.1 MB)
+2026-11-13T09:34:02.4630206Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 85.0 MB/s  0:00:00
+2026-11-13T09:34:02.4701693Z Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-13T09:34:02.5153915Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 139.8 MB/s  0:00:00
+2026-11-13T09:34:02.5223721Z Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-13T09:34:02.5287470Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 62.4 MB/s  0:00:00
+2026-11-13T09:34:02.5353690Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-13T09:34:02.5436219Z Downloading filelock-4.2.4-py3-none-any.whl (162 kB)
+2026-11-13T09:34:02.5532696Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-11-13T09:34:02.5632146Z Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-13T09:34:02.5723485Z Downloading setuptools-78.1.0-py3-none-any.whl (1.3 MB)
+2026-11-13T09:34:02.6030103Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 35.6 MB/s  0:00:00
+2026-11-13T09:34:02.9082119Z Installing collected packages: mpmath, typing-extensions, sympy, setuptools, networkx, MarkupSafe, fsspec, filelock, jinja2, torch
+2026-11-13T09:34:18.3400208Z 
+2026-11-13T09:34:18.3414136Z Successfully installed MarkupSafe-3.0.3 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 setuptools-78.1.0 sympy-1.14.0 torch-2.9.1+cpu typing-extensions-4.16.0
+2026-11-13T09:34:18.6930953Z Obtaining file:///home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T09:34:18.6947194Z   Installing build dependencies: started
+2026-11-13T09:34:19.5493324Z   Installing build dependencies: finished with status 'done'
+2026-11-13T09:34:19.5501652Z   Checking if build backend supports build_editable: started
+2026-11-13T09:34:19.9011594Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-11-13T09:34:19.9018583Z   Getting requirements to build editable: started
+2026-11-13T09:34:20.1337894Z   Getting requirements to build editable: finished with status 'done'
+2026-11-13T09:34:20.1346180Z   /tmp/pip-build-env-p8172_dg/overlay/lib/python3.12/site-packages/setuptools/dist.py:332: BuildBackendWarning: Normalizing '2.7.0.dev' to '2.7.0.dev0'
+2026-11-13T09:34:20.1347534Z     self.metadata.version = self._normalize_version(self.metadata.version)
+2026-11-13T09:34:20.1348859Z   /tmp/pip-build-env-p8172_dg/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: BuildBackendWarning: License classifiers are deprecated.
+2026-11-13T09:34:20.1349629Z   !!
+2026-11-13T09:34:20.1349842Z   
+2026-11-13T09:34:20.1350150Z           ********************************************************************************
+2026-11-13T09:34:20.1350726Z           Please consider removing the following classifiers in favor of a SPDX license expression:
+2026-11-13T09:34:20.1351254Z   
+2026-11-13T09:34:20.1351625Z           License :: OSI Approved :: Apache Software License
+2026-11-13T09:34:20.1352001Z   
+2026-11-13T09:34:20.1352512Z           See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-11-13T09:34:20.1353182Z           ********************************************************************************
+2026-11-13T09:34:20.1353551Z   
+2026-11-13T09:34:20.1353746Z   !!
+2026-11-13T09:34:20.1353987Z     self._finalize_license_expression()
+2026-11-13T09:34:20.1357548Z   Preparing editable metadata (pyproject.toml): started
+2026-11-13T09:34:20.5111533Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-11-13T09:34:20.5115069Z   /tmp/pip-build-env-p8172_dg/overlay/lib/python3.12/site-packages/setuptools/dist.py:332: BuildBackendWarning: Normalizing '2.7.0.dev' to '2.7.0.dev0'
+2026-11-13T09:34:20.5115725Z     self.metadata.version = self._normalize_version(self.metadata.version)
+2026-11-13T09:34:20.5116740Z   /tmp/pip-build-env-p8172_dg/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: BuildBackendWarning: License classifiers are deprecated.
+2026-11-13T09:34:20.5117404Z   !!
+2026-11-13T09:34:20.5117558Z   
+2026-11-13T09:34:20.5117755Z           ********************************************************************************
+2026-11-13T09:34:20.5118168Z           Please consider removing the following classifiers in favor of a SPDX license expression:
+2026-11-13T09:34:20.5118504Z   
+2026-11-13T09:34:20.5118742Z           License :: OSI Approved :: Apache Software License
+2026-11-13T09:34:20.5118981Z   
+2026-11-13T09:34:20.5119427Z           See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-11-13T09:34:20.5119887Z           ********************************************************************************
+2026-11-13T09:34:20.5120140Z   
+2026-11-13T09:34:20.5120284Z   !!
+2026-11-13T09:34:20.5120456Z     self._finalize_license_expression()
+2026-11-13T09:34:20.5360066Z Requirement already satisfied: torch==2.9.1 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (2.9.1+cpu)
+2026-11-13T09:34:20.6414938Z Collecting pytest==9.0.2
+2026-11-13T09:34:20.7579190Z   Downloading pytest-9.0.2-py3-none-any.whl.metadata (7.6 kB)
+2026-11-13T09:34:21.0315190Z Collecting pytest-timeout==2.4.0
+2026-11-13T09:34:21.0673711Z   Downloading pytest_timeout-2.4.0-py3-none-any.whl.metadata (20 kB)
+2026-11-13T09:34:21.1080896Z Collecting pytest-rerunfailures==16.1
+2026-11-13T09:34:21.1449219Z   Downloading pytest_rerunfailures-16.1-py3-none-any.whl.metadata (21 kB)
+2026-11-13T09:34:21.1671438Z Collecting pytest-random-order==1.2.0
+2026-11-13T09:34:21.2033752Z   Downloading pytest_random_order-1.2.0-py3-none-any.whl.metadata (9.6 kB)
+2026-11-13T09:34:21.2212864Z Collecting tensorboardX==2.6.4
+2026-11-13T09:34:21.2579682Z   Downloading tensorboardx-2.6.4-py3-none-any.whl.metadata (6.2 kB)
+2026-11-13T09:34:21.2829600Z Collecting jsonargparse==4.41.0 (from jsonargparse[signatures]==4.41.0)
+2026-11-13T09:34:21.3202540Z   Downloading jsonargparse-4.41.0-py3-none-any.whl.metadata (12 kB)
+2026-11-13T09:34:21.3739275Z Collecting rich
+2026-11-13T09:34:21.4098960Z   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+2026-11-13T09:34:21.5191377Z Collecting matplotlib
+2026-11-13T09:34:21.5553786Z   Downloading matplotlib-3.11.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+2026-11-13T09:34:21.6580680Z Collecting psutil
+2026-11-13T09:34:21.6944577Z   Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+2026-11-13T09:34:21.9420765Z Collecting ruff==0.15.9
+2026-11-13T09:34:21.9790036Z   Downloading ruff-0.15.9-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+2026-11-13T09:34:22.0121744Z Collecting PyYAML<8.0,>5.4 (from lightning==2.7.0.dev0)
+2026-11-13T09:34:22.0482176Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-13T09:34:22.0516266Z Requirement already satisfied: fsspec<2028.0,>=2022.5.0 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0) (2026.9.0)
+2026-11-13T09:34:22.0635560Z Collecting lightning-utilities<2.0,>=0.10.0 (from lightning==2.7.0.dev0)
+2026-11-13T09:34:22.0993077Z   Downloading lightning_utilities-0.15.3-py3-none-any.whl.metadata (5.5 kB)
+2026-11-13T09:34:22.1083372Z Collecting packaging<28.0,>=23.0 (from lightning==2.7.0.dev0)
+2026-11-13T09:34:22.1092662Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-13T09:34:22.1279103Z Collecting torchmetrics<3.0,>0.7.0 (from lightning==2.7.0.dev0)
+2026-11-13T09:34:22.1639637Z   Downloading torchmetrics-1.9.0-py3-none-any.whl.metadata (23 kB)
+2026-11-13T09:34:22.2014249Z Collecting tqdm<6.0,>=4.57.0 (from lightning==2.7.0.dev0)
+2026-11-13T09:34:22.2374603Z   Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+2026-11-13T09:34:22.2501496Z Requirement already satisfied: typing-extensions<6.0,>4.5.0 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from lightning==2.7.0.dev0) (4.16.0)
+2026-11-13T09:34:22.2960792Z Collecting pytorch-lightning (from lightning==2.7.0.dev0)
+2026-11-13T09:34:22.3321975Z   Downloading pytorch_lightning-2.6.6-py3-none-any.whl.metadata (21 kB)
+2026-11-13T09:34:22.3441271Z Requirement already satisfied: filelock in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from torch==2.9.1) (4.2.4)
+2026-11-13T09:34:22.3446215Z Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from torch==2.9.1) (78.1.0)
+2026-11-13T09:34:22.3449461Z Requirement already satisfied: sympy>=1.13.3 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from torch==2.9.1) (1.14.0)
+2026-11-13T09:34:22.3452484Z Requirement already satisfied: networkx>=2.5.1 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from torch==2.9.1) (3.7)
+2026-11-13T09:34:22.3455338Z Requirement already satisfied: jinja2 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from torch==2.9.1) (3.1.6)
+2026-11-13T09:34:22.3561096Z Collecting iniconfig>=1.0.1 (from pytest==9.0.2)
+2026-11-13T09:34:22.3922828Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-11-13T09:34:22.4059619Z Collecting pluggy<2,>=1.5 (from pytest==9.0.2)
+2026-11-13T09:34:22.4421940Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-11-13T09:34:22.4592253Z Collecting pygments>=2.7.2 (from pytest==9.0.2)
+2026-11-13T09:34:22.4950407Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-13T09:34:22.6444286Z Collecting numpy (from tensorboardX==2.6.4)
+2026-11-13T09:34:22.6807142Z   Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+2026-11-13T09:34:22.7893971Z Collecting protobuf>=3.20 (from tensorboardX==2.6.4)
+2026-11-13T09:34:22.8254239Z   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+2026-11-13T09:34:22.8401187Z Collecting docstring-parser>=0.17 (from jsonargparse[signatures]==4.41.0)
+2026-11-13T09:34:22.8761451Z   Downloading docstring_parser-0.18.0-py3-none-any.whl.metadata (3.5 kB)
+2026-11-13T09:34:23.0095118Z Collecting typeshed-client>=2.8.2 (from jsonargparse[signatures]==4.41.0)
+2026-11-13T09:34:23.0467048Z   Downloading typeshed_client-2.15.0-py3-none-any.whl.metadata (11 kB)
+2026-11-13T09:34:23.4507029Z Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:23.4870808Z   Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+2026-11-13T09:34:23.5093529Z Collecting markdown-it-py>=2.2.0 (from rich)
+2026-11-13T09:34:23.5456198Z   Downloading markdown_it_py-4.3.0-py3-none-any.whl.metadata (7.9 kB)
+2026-11-13T09:34:23.5976895Z Collecting contourpy>=1.0.1 (from matplotlib)
+2026-11-13T09:34:23.6340623Z   Downloading contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-11-13T09:34:23.6479807Z Collecting cycler>=0.10 (from matplotlib)
+2026-11-13T09:34:23.6841144Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-11-13T09:34:23.8004348Z Collecting fonttools>=4.28.2 (from matplotlib)
+2026-11-13T09:34:23.8369504Z   Downloading fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+2026-11-13T09:34:23.9290276Z Collecting kiwisolver>=1.3.1 (from matplotlib)
+2026-11-13T09:34:23.9652789Z   Downloading kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+2026-11-13T09:34:24.1269814Z Collecting pillow>=9 (from matplotlib)
+2026-11-13T09:34:24.1633220Z   Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-13T09:34:24.1926090Z Collecting pyparsing>=3 (from matplotlib)
+2026-11-13T09:34:24.2288466Z   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-11-13T09:34:24.2728679Z Collecting python-dateutil>=2.7 (from matplotlib)
+2026-11-13T09:34:24.3089302Z   Downloading python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-11-13T09:34:24.3248678Z Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:24.3605306Z   Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl.metadata (5.9 kB)
+2026-11-13T09:34:24.3728146Z Collecting aiosignal>=1.4.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:24.4087525Z   Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+2026-11-13T09:34:24.4230537Z Collecting attrs>=17.3.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:24.4589989Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-11-13T09:34:24.5371847Z Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:24.5734091Z   Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (20 kB)
+2026-11-13T09:34:24.7695405Z Collecting multidict<8.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:24.8058154Z   Downloading multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+2026-11-13T09:34:24.8576830Z Collecting propcache>=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:24.8940509Z   Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (25 kB)
+2026-11-13T09:34:25.2786071Z Collecting yarl<2.0,>=1.25.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:25.3148783Z   Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (111 kB)
+2026-11-13T09:34:25.3433942Z Collecting idna>=2.0 (from yarl<2.0,>=1.25.1->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<2028.0,>=2022.5.0->lightning==2.7.0.dev0)
+2026-11-13T09:34:25.3798020Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-13T09:34:25.4028061Z Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich)
+2026-11-13T09:34:25.4388583Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+2026-11-13T09:34:25.4751708Z Collecting tzdata (from python-dateutil>=2.7->matplotlib)
+2026-11-13T09:34:25.5113219Z   Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-11-13T09:34:25.5152839Z Requirement already satisfied: mpmath<1.4,>=1.1.0 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from sympy>=1.13.3->torch==2.9.1) (1.3.0)
+2026-11-13T09:34:25.5182244Z Requirement already satisfied: MarkupSafe>=2.0 in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (from jinja2->torch==2.9.1) (3.0.3)
+2026-11-13T09:34:25.5613120Z Downloading pytest-9.0.2-py3-none-any.whl (374 kB)
+2026-11-13T09:34:25.6392981Z Downloading pytest_timeout-2.4.0-py3-none-any.whl (14 kB)
+2026-11-13T09:34:25.6768935Z Downloading pytest_rerunfailures-16.1-py3-none-any.whl (14 kB)
+2026-11-13T09:34:25.7151472Z Downloading pytest_random_order-1.2.0-py3-none-any.whl (10 kB)
+2026-11-13T09:34:25.7533100Z Downloading tensorboardx-2.6.4-py3-none-any.whl (87 kB)
+2026-11-13T09:34:25.7978977Z Downloading jsonargparse-4.41.0-py3-none-any.whl (228 kB)
+2026-11-13T09:34:25.8444671Z Downloading ruff-0.15.9-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.3 MB)
+2026-11-13T09:34:26.0799067Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 48.2 MB/s  0:00:00
+2026-11-13T09:34:26.1162261Z Downloading lightning_utilities-0.15.3-py3-none-any.whl (31 kB)
+2026-11-13T09:34:26.1190756Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-13T09:34:26.1551158Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-11-13T09:34:26.1940385Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-13T09:34:26.2024100Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 84.0 MB/s  0:00:00
+2026-11-13T09:34:26.2387385Z Downloading torchmetrics-1.9.0-py3-none-any.whl (983 kB)
+2026-11-13T09:34:26.2465580Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 983.4/983.4 kB 120.1 MB/s  0:00:00
+2026-11-13T09:34:26.2830370Z Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+2026-11-13T09:34:26.3726486Z Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+2026-11-13T09:34:26.4315075Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-11-13T09:34:26.4550001Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 46.5 MB/s  0:00:00
+2026-11-13T09:34:26.4913274Z Downloading matplotlib-3.11.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)
+2026-11-13T09:34:26.5991340Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.9/9.9 MB 90.8 MB/s  0:00:00
+2026-11-13T09:34:26.6358322Z Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+2026-11-13T09:34:26.6742926Z Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.9 MB)
+2026-11-13T09:34:26.6982168Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 76.5 MB/s  0:00:00
+2026-11-13T09:34:26.7348701Z Downloading multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (516 kB)
+2026-11-13T09:34:26.7756696Z Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (117 kB)
+2026-11-13T09:34:26.8139182Z Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+2026-11-13T09:34:26.9463287Z Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+2026-11-13T09:34:26.9843868Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+2026-11-13T09:34:27.0226870Z Downloading contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (383 kB)
+2026-11-13T09:34:27.0616046Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-11-13T09:34:27.1239684Z Downloading docstring_parser-0.18.0-py3-none-any.whl (22 kB)
+2026-11-13T09:34:27.2388123Z Downloading fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+2026-11-13T09:34:27.4426768Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 25.7 MB/s  0:00:00
+2026-11-13T09:34:27.4792720Z Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+2026-11-13T09:34:27.5176480Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-13T09:34:27.7111377Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-11-13T09:34:27.7494116Z Downloading kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+2026-11-13T09:34:27.8855334Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.5/1.5 MB 9.1 MB/s  0:00:00
+2026-11-13T09:34:27.9220492Z Downloading markdown_it_py-4.3.0-py3-none-any.whl (96 kB)
+2026-11-13T09:34:27.9600830Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+2026-11-13T09:34:27.9981467Z Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+2026-11-13T09:34:28.1698350Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 97.3 MB/s  0:00:00
+2026-11-13T09:34:28.2061624Z Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+2026-11-13T09:34:28.2620793Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 128.8 MB/s  0:00:00
+2026-11-13T09:34:28.2983504Z Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (250 kB)
+2026-11-13T09:34:28.3379887Z Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+2026-11-13T09:34:28.3775472Z Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-11-13T09:34:28.4157909Z Downloading python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+2026-11-13T09:34:28.4601741Z Downloading typeshed_client-2.15.0-py3-none-any.whl (808 kB)
+2026-11-13T09:34:28.4865657Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 808.0/808.0 kB 22.6 MB/s  0:00:00
+2026-11-13T09:34:28.5230052Z Downloading pytorch_lightning-2.6.6-py3-none-any.whl (853 kB)
+2026-11-13T09:34:28.5306564Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 853.0/853.0 kB 106.7 MB/s  0:00:00
+2026-11-13T09:34:28.5668391Z Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+2026-11-13T09:34:28.7366328Z Building wheels for collected packages: lightning
+2026-11-13T09:34:28.7373114Z   Building editable for lightning (pyproject.toml): started
+2026-11-13T09:34:28.9951846Z   Building editable for lightning (pyproject.toml): finished with status 'done'
+2026-11-13T09:34:28.9955109Z   /tmp/pip-build-env-p8172_dg/overlay/lib/python3.12/site-packages/setuptools/dist.py:332: BuildBackendWarning: Normalizing '2.7.0.dev' to '2.7.0.dev0'
+2026-11-13T09:34:28.9956135Z     self.metadata.version = self._normalize_version(self.metadata.version)
+2026-11-13T09:34:28.9957674Z   /tmp/pip-build-env-p8172_dg/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: BuildBackendWarning: License classifiers are deprecated.
+2026-11-13T09:34:28.9958411Z   !!
+2026-11-13T09:34:28.9958617Z   
+2026-11-13T09:34:28.9958882Z           ********************************************************************************
+2026-11-13T09:34:28.9959456Z           Please consider removing the following classifiers in favor of a SPDX license expression:
+2026-11-13T09:34:28.9960094Z   
+2026-11-13T09:34:28.9960446Z           License :: OSI Approved :: Apache Software License
+2026-11-13T09:34:28.9960856Z   
+2026-11-13T09:34:28.9961388Z           See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-11-13T09:34:28.9962060Z           ********************************************************************************
+2026-11-13T09:34:28.9962466Z   
+2026-11-13T09:34:28.9962676Z   !!
+2026-11-13T09:34:28.9962938Z     self._finalize_license_expression()
+2026-11-13T09:34:28.9963855Z   Created wheel for lightning: filename=lightning-2.7.0.dev0-0.editable-py3-none-any.whl size=14325 sha256=21caccf396207b142764ead128c95222d6264c977e5fdbfc73605f59d44a03f7
+2026-11-13T09:34:28.9965201Z   Stored in directory: /tmp/pip-ephem-wheel-cache-jv5havoc/wheels/1e/75/d6/5cab5434c4700b3df443c6fcff887324a7a33ede12a36a3d02
+2026-11-13T09:34:29.0003282Z Successfully built lightning
+2026-11-13T09:34:29.1023001Z Installing collected packages: tzdata, typeshed-client, tqdm, ruff, PyYAML, pyparsing, pygments, psutil, protobuf, propcache, pluggy, pillow, packaging, numpy, multidict, mdurl, kiwisolver, iniconfig, idna, frozenlist, fonttools, docstring-parser, cycler, attrs, aiohappyeyeballs, yarl, tensorboardX, python-dateutil, pytest, markdown-it-py, lightning-utilities, jsonargparse, contourpy, aiosignal, torchmetrics, rich, pytest-timeout, pytest-rerunfailures, pytest-random-order, matplotlib, aiohttp, pytorch-lightning, lightning
+2026-11-13T09:34:36.8022272Z 
+2026-11-13T09:34:36.8061522Z Successfully installed PyYAML-6.0.3 aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 attrs-26.1.0 contourpy-1.4.0 cycler-0.12.1 docstring-parser-0.18.0 fonttools-4.68.0 frozenlist-1.8.0 idna-3.20 iniconfig-2.3.1 jsonargparse-4.41.0 kiwisolver-1.5.1 lightning-2.7.0.dev0 lightning-utilities-0.15.3 markdown-it-py-4.3.0 matplotlib-3.11.2 mdurl-0.1.2 multidict-7.2.1 numpy-2.5.4 packaging-26.3 pillow-13.0.0 pluggy-1.7.0 propcache-0.5.4 protobuf-7.36.2 psutil-7.2.2 pygments-2.21.0 pyparsing-3.3.3 pytest-9.0.2 pytest-random-order-1.2.0 pytest-rerunfailures-16.1 pytest-timeout-2.4.0 python-dateutil-4.0.0 pytorch-lightning-2.6.6 rich-15.0.0 ruff-0.15.9 tensorboardX-2.6.4 torchmetrics-1.9.0 tqdm-4.70.1 typeshed-client-2.15.0 tzdata-2026.6 yarl-1.25.1
+2026-11-13T09:34:37.2789127Z ##[group]Run test "$(git rev-parse HEAD)" = "b255e50037312cc3eb2e52c90d948c021174c2af"
+2026-11-13T09:34:37.2789619Z [36;1mtest "$(git rev-parse HEAD)" = "b255e50037312cc3eb2e52c90d948c021174c2af"[0m
+2026-11-13T09:34:37.2789928Z [36;1mset +e[0m
+2026-11-13T09:34:37.2790450Z [36;1mpython -m pytest -q tests/tests_pytorch/tuner/test_batch_size_decrease.py tests/tests_pytorch/tuner/test_scale_batch_size.py --junitxml=patched.xml > patched.log 2>&1[0m
+2026-11-13T09:34:37.2790998Z [36;1mstatus=$?[0m
+2026-11-13T09:34:37.2791180Z [36;1mcat patched.log[0m
+2026-11-13T09:34:37.2791370Z [36;1mexit "$status"[0m
+2026-11-13T09:34:37.2837652Z shell: /usr/bin/bash -e {0}
+2026-11-13T09:34:37.2837874Z env:
+2026-11-13T09:34:37.2838048Z   PYTHONPATH: src:tests
+2026-11-13T09:34:37.2838234Z   OMP_NUM_THREADS: 1
+2026-11-13T09:34:37.2838584Z   MKL_NUM_THREADS: 1
+2026-11-13T09:34:37.2838817Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:34:37.2839204Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T09:34:37.2839538Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:34:37.2839834Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:34:37.2840126Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:34:37.2840416Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T09:34:37.2840674Z ##[endgroup]
+2026-11-13T09:35:21.5327144Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[33ms[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m [ 90%]
+2026-11-13T09:35:21.5328775Z [0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                                                                 [100%][0m
+2026-11-13T09:35:21.5329715Z [33m[32m76 passed[0m, [33m[1m4 skipped[0m, [33m[1m217 warnings[0m[33m in 39.16s[0m[0m
+2026-11-13T09:35:21.5360975Z ##[group]Run git checkout 84df182f50ab34301aabb3c0eb4031815bfb413d -- src/lightning/pytorch/tuner/batch_size_scaling.py
+2026-11-13T09:35:21.5361701Z [36;1mgit checkout 84df182f50ab34301aabb3c0eb4031815bfb413d -- src/lightning/pytorch/tuner/batch_size_scaling.py[0m
+2026-11-13T09:35:21.5362140Z [36;1mpython - <<'PY'[0m
+2026-11-13T09:35:21.5362347Z [36;1mimport subprocess[0m
+2026-11-13T09:35:21.5362542Z [36;1mimport sys[0m
+2026-11-13T09:35:21.5362748Z [36;1mimport xml.etree.ElementTree as ET[0m
+2026-11-13T09:35:21.5363000Z [36;1mwith open("baseline.log", "w") as log:[0m
+2026-11-13T09:35:21.5363635Z [36;1m    result = subprocess.run([sys.executable, "-m", "pytest", "-q", "tests/tests_pytorch/tuner/test_batch_size_decrease.py", "--junitxml=baseline.xml"], stdout=log, stderr=subprocess.STDOUT, check=False)[0m
+2026-11-13T09:35:21.5364273Z [36;1mprint(open("baseline.log").read(), flush=True)[0m
+2026-11-13T09:35:21.5364795Z [36;1msuites = ET.parse("baseline.xml").getroot()[0m
+2026-11-13T09:35:21.5365254Z [36;1mtotals = {name: sum(int(s.get(name, 0)) for s in suites.iter("testsuite")) for name in ("tests", "failures", "errors", "skipped")}[0m
+2026-11-13T09:35:21.5365763Z [36;1mprint("Unchanged upstream regression totals:", totals, flush=True)[0m
+2026-11-13T09:35:21.5382614Z [36;1massert result.returncode == 1 and totals["errors"] == 0 and totals["failures"] > 0[0m
+2026-11-13T09:35:21.5383002Z [36;1mPY[0m
+2026-11-13T09:35:21.5383370Z [36;1mpython -m pytest -q tests/tests_pytorch/tuner/test_scale_batch_size.py --junitxml=baseline-existing.xml[0m
+2026-11-13T09:35:21.5427948Z shell: /usr/bin/bash -e {0}
+2026-11-13T09:35:21.5428157Z env:
+2026-11-13T09:35:21.5428325Z   PYTHONPATH: src:tests
+2026-11-13T09:35:21.5428514Z   OMP_NUM_THREADS: 1
+2026-11-13T09:35:21.5428685Z   MKL_NUM_THREADS: 1
+2026-11-13T09:35:21.5428911Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:35:21.5429255Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T09:35:21.5429588Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:35:21.5429885Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:35:21.5430185Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:35:21.5430485Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T09:35:21.5430915Z ##[endgroup]
+2026-11-13T09:35:33.4299485Z [31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[32m.[0m[31mF[0m[31mF[0m[31m                                               [100%][0m
+2026-11-13T09:35:33.4300722Z =================================== FAILURES ===================================
+2026-11-13T09:35:33.4301479Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[8-model-power] _[0m
+2026-11-13T09:35:33.4301929Z 
+2026-11-13T09:35:33.4302166Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does0')
+2026-11-13T09:35:33.4302551Z mode = 'power', owner = 'model', initial_batch_size = 8
+2026-11-13T09:35:33.4302731Z 
+2026-11-13T09:35:33.4303376Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4304766Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4306905Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4307956Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4309151Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4310018Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4310730Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4311612Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4312284Z     [90m[39;49;00m
+2026-11-13T09:35:33.4312561Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4312854Z     [90m[39;49;00m
+2026-11-13T09:35:33.4313139Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4313518Z [1m[31mE       assert 8 == 4[0m
+2026-11-13T09:35:33.4313744Z 
+2026-11-13T09:35:33.4314163Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4315027Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4315507Z GPU available: False, used: False
+2026-11-13T09:35:33.4315845Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4317284Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4318367Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4318694Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4319076Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4319581Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4320241Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4321077Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does0/.scale_batch_size_2c7ea765-bf2f-4948-99be-cd7fd1966f39.ckpt
+2026-11-13T09:35:33.4322552Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does0/.scale_batch_size_2c7ea765-bf2f-4948-99be-cd7fd1966f39.ckpt
+2026-11-13T09:35:33.4323630Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[8-model-binsearch] _[0m
+2026-11-13T09:35:33.4324007Z 
+2026-11-13T09:35:33.4324323Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does1')
+2026-11-13T09:35:33.4326340Z mode = 'binsearch', owner = 'model', initial_batch_size = 8
+2026-11-13T09:35:33.4326660Z 
+2026-11-13T09:35:33.4327721Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4329739Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4331193Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4332398Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4333663Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4334575Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4335633Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4336469Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4336885Z     [90m[39;49;00m
+2026-11-13T09:35:33.4337168Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4337658Z     [90m[39;49;00m
+2026-11-13T09:35:33.4338118Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4338639Z [1m[31mE       assert 8 == 4[0m
+2026-11-13T09:35:33.4338857Z 
+2026-11-13T09:35:33.4339152Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4339567Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4340001Z GPU available: False, used: False
+2026-11-13T09:35:33.4340379Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4341707Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4342754Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4343310Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4343864Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4344204Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4344744Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4345833Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does1/.scale_batch_size_29998726-c13b-4b66-a467-57df0671ecb6.ckpt
+2026-11-13T09:35:33.4347031Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does1/.scale_batch_size_29998726-c13b-4b66-a467-57df0671ecb6.ckpt
+2026-11-13T09:35:33.4348412Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[8-hparams-power] _[0m
+2026-11-13T09:35:33.4348924Z 
+2026-11-13T09:35:33.4349213Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does2')
+2026-11-13T09:35:33.4349596Z mode = 'power', owner = 'hparams', initial_batch_size = 8
+2026-11-13T09:35:33.4349777Z 
+2026-11-13T09:35:33.4350530Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4352302Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4353601Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4355095Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4355851Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4357428Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4358063Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4358771Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4359511Z     [90m[39;49;00m
+2026-11-13T09:35:33.4359985Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4360346Z     [90m[39;49;00m
+2026-11-13T09:35:33.4360608Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4360904Z [1m[31mE       assert 8 == 4[0m
+2026-11-13T09:35:33.4361044Z 
+2026-11-13T09:35:33.4361374Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4362096Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4362630Z GPU available: False, used: False
+2026-11-13T09:35:33.4362970Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4363869Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4365270Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4365853Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4366169Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4366465Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4367062Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4368172Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does2/.scale_batch_size_1a15d735-e408-4186-9f33-eff50519d055.ckpt
+2026-11-13T09:35:33.4369079Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does2/.scale_batch_size_1a15d735-e408-4186-9f33-eff50519d055.ckpt
+2026-11-13T09:35:33.4370281Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[8-hparams-binsearch] _[0m
+2026-11-13T09:35:33.4370997Z 
+2026-11-13T09:35:33.4371213Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does3')
+2026-11-13T09:35:33.4371598Z mode = 'binsearch', owner = 'hparams', initial_batch_size = 8
+2026-11-13T09:35:33.4371790Z 
+2026-11-13T09:35:33.4372633Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4374357Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4376258Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4377231Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4378376Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4379361Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4380171Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4381223Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4381727Z     [90m[39;49;00m
+2026-11-13T09:35:33.4382004Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4382359Z     [90m[39;49;00m
+2026-11-13T09:35:33.4382803Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4383339Z [1m[31mE       assert 8 == 4[0m
+2026-11-13T09:35:33.4383567Z 
+2026-11-13T09:35:33.4383967Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4384535Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4384842Z GPU available: False, used: False
+2026-11-13T09:35:33.4385105Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4386564Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4387409Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4387728Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4388255Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4388790Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4389421Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4390091Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does3/.scale_batch_size_c6acca16-302a-4c86-bc39-2de288acb102.ckpt
+2026-11-13T09:35:33.4391348Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does3/.scale_batch_size_c6acca16-302a-4c86-bc39-2de288acb102.ckpt
+2026-11-13T09:35:33.4392432Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[8-datamodule-power] _[0m
+2026-11-13T09:35:33.4392739Z 
+2026-11-13T09:35:33.4392943Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does4')
+2026-11-13T09:35:33.4393617Z mode = 'power', owner = 'datamodule', initial_batch_size = 8
+2026-11-13T09:35:33.4394142Z 
+2026-11-13T09:35:33.4395083Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4396877Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4398284Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4399675Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4400600Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4401809Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4402538Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4403409Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4404043Z     [90m[39;49;00m
+2026-11-13T09:35:33.4404609Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4405103Z     [90m[39;49;00m
+2026-11-13T09:35:33.4405570Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4406096Z [1m[31mE       assert 8 == 4[0m
+2026-11-13T09:35:33.4406297Z 
+2026-11-13T09:35:33.4406542Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4406954Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4407458Z GPU available: False, used: False
+2026-11-13T09:35:33.4407840Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4409073Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4409909Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4410473Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4411018Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4411453Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4411812Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4412622Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does4/.scale_batch_size_c3b61e4b-03dd-43a6-a003-ffb2079e2b5d.ckpt
+2026-11-13T09:35:33.4414081Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does4/.scale_batch_size_c3b61e4b-03dd-43a6-a003-ffb2079e2b5d.ckpt
+2026-11-13T09:35:33.4415081Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[8-datamodule-binsearch] _[0m
+2026-11-13T09:35:33.4415622Z 
+2026-11-13T09:35:33.4415964Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does5')
+2026-11-13T09:35:33.4416630Z mode = 'binsearch', owner = 'datamodule', initial_batch_size = 8
+2026-11-13T09:35:33.4416838Z 
+2026-11-13T09:35:33.4417390Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4419436Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4420483Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4421413Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4422560Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4423491Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4424076Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4424808Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4425525Z     [90m[39;49;00m
+2026-11-13T09:35:33.4425986Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4426448Z     [90m[39;49;00m
+2026-11-13T09:35:33.4426712Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4427000Z [1m[31mE       assert 8 == 4[0m
+2026-11-13T09:35:33.4427315Z 
+2026-11-13T09:35:33.4427717Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4428437Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4428943Z GPU available: False, used: False
+2026-11-13T09:35:33.4429196Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4430449Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4431626Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4431941Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4432244Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4432627Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4433290Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4434321Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does5/.scale_batch_size_39398c9c-2fbc-435d-a7a6-6346483c1688.ckpt
+2026-11-13T09:35:33.4435479Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does5/.scale_batch_size_39398c9c-2fbc-435d-a7a6-6346483c1688.ckpt
+2026-11-13T09:35:33.4436766Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[16-model-power] _[0m
+2026-11-13T09:35:33.4437146Z 
+2026-11-13T09:35:33.4437333Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does6')
+2026-11-13T09:35:33.4437700Z mode = 'power', owner = 'model', initial_batch_size = 16
+2026-11-13T09:35:33.4437880Z 
+2026-11-13T09:35:33.4438884Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4440375Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4442100Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4443168Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4444026Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4445430Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4446038Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4446682Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4447427Z     [90m[39;49;00m
+2026-11-13T09:35:33.4447890Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4448255Z     [90m[39;49;00m
+2026-11-13T09:35:33.4448521Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4448819Z [1m[31mE       assert 16 == 4[0m
+2026-11-13T09:35:33.4448959Z 
+2026-11-13T09:35:33.4449322Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4450205Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4450713Z GPU available: False, used: False
+2026-11-13T09:35:33.4450979Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4451804Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4452893Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4453455Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4453957Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4454257Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4454897Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4456040Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does6/.scale_batch_size_17dd9a70-d2ea-441e-8643-458f087bd8d7.ckpt
+2026-11-13T09:35:33.4457094Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does6/.scale_batch_size_17dd9a70-d2ea-441e-8643-458f087bd8d7.ckpt
+2026-11-13T09:35:33.4458410Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[16-model-binsearch] _[0m
+2026-11-13T09:35:33.4458832Z 
+2026-11-13T09:35:33.4459021Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does7')
+2026-11-13T09:35:33.4459401Z mode = 'binsearch', owner = 'model', initial_batch_size = 16
+2026-11-13T09:35:33.4459633Z 
+2026-11-13T09:35:33.4460605Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4462089Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4463821Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4465118Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4466256Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4467126Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4468089Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4468936Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4469414Z     [90m[39;49;00m
+2026-11-13T09:35:33.4469691Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4470042Z     [90m[39;49;00m
+2026-11-13T09:35:33.4470480Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4471010Z [1m[31mE       assert 16 == 4[0m
+2026-11-13T09:35:33.4471248Z 
+2026-11-13T09:35:33.4471642Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4472069Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4472370Z GPU available: False, used: False
+2026-11-13T09:35:33.4472593Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4474019Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4475211Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4475531Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4475920Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4476437Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4477104Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4477922Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does7/.scale_batch_size_d21c584e-1adf-473e-a2c5-84c7bc5c743b.ckpt
+2026-11-13T09:35:33.4479272Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does7/.scale_batch_size_d21c584e-1adf-473e-a2c5-84c7bc5c743b.ckpt
+2026-11-13T09:35:33.4480286Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[16-hparams-power] _[0m
+2026-11-13T09:35:33.4480576Z 
+2026-11-13T09:35:33.4480819Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does8')
+2026-11-13T09:35:33.4481477Z mode = 'power', owner = 'hparams', initial_batch_size = 16
+2026-11-13T09:35:33.4481806Z 
+2026-11-13T09:35:33.4482648Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4484563Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4485695Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4487221Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4488113Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4489414Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4490227Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4490716Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4491285Z     [90m[39;49;00m
+2026-11-13T09:35:33.4491758Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4492255Z     [90m[39;49;00m
+2026-11-13T09:35:33.4492683Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4492988Z [1m[31mE       assert 16 == 4[0m
+2026-11-13T09:35:33.4493127Z 
+2026-11-13T09:35:33.4493365Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4493922Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4494566Z GPU available: False, used: False
+2026-11-13T09:35:33.4494951Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4496004Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4497195Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4497758Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4498234Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4498531Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4498901Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4500013Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does8/.scale_batch_size_fa243c3f-31ca-454a-a046-c4412a17d95b.ckpt
+2026-11-13T09:35:33.4501171Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does8/.scale_batch_size_fa243c3f-31ca-454a-a046-c4412a17d95b.ckpt
+2026-11-13T09:35:33.4501968Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[16-hparams-binsearch] _[0m
+2026-11-13T09:35:33.4502485Z 
+2026-11-13T09:35:33.4502834Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does9')
+2026-11-13T09:35:33.4503500Z mode = 'binsearch', owner = 'hparams', initial_batch_size = 16
+2026-11-13T09:35:33.4503771Z 
+2026-11-13T09:35:33.4504334Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4506460Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4507709Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4509115Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4509757Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4510917Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4511958Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4512436Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4512923Z     [90m[39;49;00m
+2026-11-13T09:35:33.4513373Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4513876Z     [90m[39;49;00m
+2026-11-13T09:35:33.4514332Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4514838Z [1m[31mE       assert 16 == 4[0m
+2026-11-13T09:35:33.4514979Z 
+2026-11-13T09:35:33.4515216Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4515811Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4516346Z GPU available: False, used: False
+2026-11-13T09:35:33.4516729Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4517731Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4518812Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4519366Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4519847Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4520299Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4520749Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4521867Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does9/.scale_batch_size_17d8bc47-4ddf-43c8-a735-b86ae823eae0.ckpt
+2026-11-13T09:35:33.4522937Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does9/.scale_batch_size_17d8bc47-4ddf-43c8-a735-b86ae823eae0.ckpt
+2026-11-13T09:35:33.4524029Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[16-datamodule-power] _[0m
+2026-11-13T09:35:33.4524736Z 
+2026-11-13T09:35:33.4525048Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does10')
+2026-11-13T09:35:33.4525462Z mode = 'power', owner = 'datamodule', initial_batch_size = 16
+2026-11-13T09:35:33.4525652Z 
+2026-11-13T09:35:33.4526407Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4528173Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4529779Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4530789Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4531683Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4532906Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4533509Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4534587Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4535309Z     [90m[39;49;00m
+2026-11-13T09:35:33.4535711Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4535996Z     [90m[39;49;00m
+2026-11-13T09:35:33.4536257Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4536552Z [1m[31mE       assert 16 == 4[0m
+2026-11-13T09:35:33.4536787Z 
+2026-11-13T09:35:33.4537206Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4537918Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4538396Z GPU available: False, used: False
+2026-11-13T09:35:33.4538625Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4539531Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4540826Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4541275Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4541594Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4541896Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4542525Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4543812Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does10/.scale_batch_size_d0a317db-1fc3-443e-bf6d-da44a23f6919.ckpt
+2026-11-13T09:35:33.4544938Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does10/.scale_batch_size_d0a317db-1fc3-443e-bf6d-da44a23f6919.ckpt
+2026-11-13T09:35:33.4546309Z [31m[1m_ test_large_existing_batch_does_not_override_smaller_initial_value[16-datamodule-binsearch] _[0m
+2026-11-13T09:35:33.4546710Z 
+2026-11-13T09:35:33.4546902Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does11')
+2026-11-13T09:35:33.4547514Z mode = 'binsearch', owner = 'datamodule', initial_batch_size = 16
+2026-11-13T09:35:33.4547878Z 
+2026-11-13T09:35:33.4548835Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4550264Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mowner[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mmodel[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mhparams[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4551774Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m8[39;49;00m, [94m16[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4552838Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_large_existing_batch_does_not_override_smaller_initial_value[39;49;00m(tmp_path, mode, owner, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4553976Z         model = _SmallDatasetModel(initial_batch_size, owner)[90m[39;49;00m
+2026-11-13T09:35:33.4555003Z         datamodule = _SmallDataModule(initial_batch_size) [94mif[39;49;00m owner == [33m"[39;49;00m[33mdatamodule[39;49;00m[33m"[39;49;00m [94melse[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4556052Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4556802Z         before = {name: value.clone() [94mfor[39;49;00m name, value [95min[39;49;00m model.state_dict().items()}[90m[39;49;00m
+2026-11-13T09:35:33.4557345Z     [90m[39;49;00m
+2026-11-13T09:35:33.4557661Z         size = _tune(trainer, model, mode, datamodule)[90m[39;49;00m
+2026-11-13T09:35:33.4558124Z     [90m[39;49;00m
+2026-11-13T09:35:33.4558601Z >       [94massert[39;49;00m size == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4559119Z [1m[31mE       assert 16 == 4[0m
+2026-11-13T09:35:33.4559325Z 
+2026-11-13T09:35:33.4559597Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:122: AssertionError
+2026-11-13T09:35:33.4559999Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4560506Z GPU available: False, used: False
+2026-11-13T09:35:33.4560892Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4562117Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4563085Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4563695Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4564228Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4564719Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4565091Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4566104Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does11/.scale_batch_size_ef6de969-b6d6-461c-a473-89dd27cd1520.ckpt
+2026-11-13T09:35:33.4567478Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_large_existing_batch_does11/.scale_batch_size_ef6de969-b6d6-461c-a473-89dd27cd1520.ckpt
+2026-11-13T09:35:33.4568568Z [31m[1m___ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[fit-power] ____[0m
+2026-11-13T09:35:33.4569047Z 
+2026-11-13T09:35:33.4569370Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_0')
+2026-11-13T09:35:33.4569772Z mode = 'power', method = 'fit'
+2026-11-13T09:35:33.4569898Z 
+2026-11-13T09:35:33.4570506Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4572518Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4574119Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4575083Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4575432Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4575791Z     [90m[39;49;00m
+2026-11-13T09:35:33.4576163Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4576570Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4577340Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e97b30>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='fit')[0m
+2026-11-13T09:35:33.4577893Z 
+2026-11-13T09:35:33.4578131Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4578629Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4578934Z GPU available: False, used: False
+2026-11-13T09:35:33.4579303Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4580138Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4580844Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4581155Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4581473Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4581763Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4582242Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4582861Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_0/.scale_batch_size_58c80418-16eb-4bae-970a-305e5feaa03d.ckpt
+2026-11-13T09:35:33.4583664Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_0/.scale_batch_size_58c80418-16eb-4bae-970a-305e5feaa03d.ckpt
+2026-11-13T09:35:33.4584358Z [31m[1m_ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[fit-binsearch] __[0m
+2026-11-13T09:35:33.4584799Z 
+2026-11-13T09:35:33.4585102Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_1')
+2026-11-13T09:35:33.4585441Z mode = 'binsearch', method = 'fit'
+2026-11-13T09:35:33.4585577Z 
+2026-11-13T09:35:33.4586258Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4587493Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4588664Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4589218Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4589560Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4589828Z     [90m[39;49;00m
+2026-11-13T09:35:33.4590199Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4590605Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4591489Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e90c20>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='fit')[0m
+2026-11-13T09:35:33.4592057Z 
+2026-11-13T09:35:33.4592289Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4592698Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4592996Z GPU available: False, used: False
+2026-11-13T09:35:33.4593213Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4594126Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4595049Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4595368Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4595678Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4595970Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4596579Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4597208Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_1/.scale_batch_size_2cbfdd35-dd84-4264-b73c-94abb62a3de6.ckpt
+2026-11-13T09:35:33.4598024Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_1/.scale_batch_size_2cbfdd35-dd84-4264-b73c-94abb62a3de6.ckpt
+2026-11-13T09:35:33.4598720Z [31m[1m_ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[validate-power] _[0m
+2026-11-13T09:35:33.4599047Z 
+2026-11-13T09:35:33.4599274Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_2')
+2026-11-13T09:35:33.4599615Z mode = 'power', method = 'validate'
+2026-11-13T09:35:33.4599758Z 
+2026-11-13T09:35:33.4600314Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4601554Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4602723Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4603390Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4603736Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4604012Z     [90m[39;49;00m
+2026-11-13T09:35:33.4604683Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4605102Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4605876Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e97020>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='validate')[0m
+2026-11-13T09:35:33.4606439Z 
+2026-11-13T09:35:33.4606676Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4607134Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4607475Z GPU available: False, used: False
+2026-11-13T09:35:33.4607705Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4608517Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4609299Z `Trainer(limit_val_batches=1.0)` was configured so 100% of the batches will be used..
+2026-11-13T09:35:33.4609716Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4610044Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4610397Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4610763Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4611381Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_2/.scale_batch_size_6a09a523-7d1c-4a58-bde1-632d5fa6b46d.ckpt
+2026-11-13T09:35:33.4612280Z Loaded model weights from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_2/.scale_batch_size_6a09a523-7d1c-4a58-bde1-632d5fa6b46d.ckpt
+2026-11-13T09:35:33.4613045Z [31m[1m_ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[validate-binsearch] _[0m
+2026-11-13T09:35:33.4613449Z 
+2026-11-13T09:35:33.4613638Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_3')
+2026-11-13T09:35:33.4613979Z mode = 'binsearch', method = 'validate'
+2026-11-13T09:35:33.4614130Z 
+2026-11-13T09:35:33.4614837Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4616201Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4617250Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4617808Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4618255Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4618523Z     [90m[39;49;00m
+2026-11-13T09:35:33.4618894Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4619292Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4620192Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e92db0>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='validate')[0m
+2026-11-13T09:35:33.4620868Z 
+2026-11-13T09:35:33.4621106Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4621511Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4621819Z GPU available: False, used: False
+2026-11-13T09:35:33.4622044Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4622860Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4623759Z `Trainer(limit_val_batches=1.0)` was configured so 100% of the batches will be used..
+2026-11-13T09:35:33.4624108Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4624562Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4624940Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4625303Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4625921Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_3/.scale_batch_size_70a4af41-2ccc-44cf-87da-8d79bd5f2c61.ckpt
+2026-11-13T09:35:33.4626866Z Loaded model weights from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_3/.scale_batch_size_70a4af41-2ccc-44cf-87da-8d79bd5f2c61.ckpt
+2026-11-13T09:35:33.4627562Z [31m[1m___ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[test-power] ___[0m
+2026-11-13T09:35:33.4627827Z 
+2026-11-13T09:35:33.4628021Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_4')
+2026-11-13T09:35:33.4628349Z mode = 'power', method = 'test'
+2026-11-13T09:35:33.4628483Z 
+2026-11-13T09:35:33.4629065Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4630378Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4631608Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4632268Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4632628Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4632895Z     [90m[39;49;00m
+2026-11-13T09:35:33.4633273Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4633694Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4634609Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e1cf20>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='test')[0m
+2026-11-13T09:35:33.4635212Z 
+2026-11-13T09:35:33.4635454Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4635849Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4636151Z GPU available: False, used: False
+2026-11-13T09:35:33.4636418Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4637448Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4638166Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4638479Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4638833Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4639203Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4639853Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_4/.scale_batch_size_fe132105-a8f1-469e-aa28-50996092e53c.ckpt
+2026-11-13T09:35:33.4640732Z Loaded model weights from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_4/.scale_batch_size_fe132105-a8f1-469e-aa28-50996092e53c.ckpt
+2026-11-13T09:35:33.4641448Z [31m[1m_ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[test-binsearch] _[0m
+2026-11-13T09:35:33.4641714Z 
+2026-11-13T09:35:33.4641909Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_5')
+2026-11-13T09:35:33.4642247Z mode = 'binsearch', method = 'test'
+2026-11-13T09:35:33.4642385Z 
+2026-11-13T09:35:33.4643042Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4644281Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4645654Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4646207Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4646551Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4646817Z     [90m[39;49;00m
+2026-11-13T09:35:33.4647179Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4647746Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4648586Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e90830>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='test')[0m
+2026-11-13T09:35:33.4649143Z 
+2026-11-13T09:35:33.4649378Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4649776Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4650078Z GPU available: False, used: False
+2026-11-13T09:35:33.4650301Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4651211Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4651934Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4652249Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4652608Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4652972Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4653687Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_5/.scale_batch_size_5affb2a1-308c-4cac-9297-ce39e0fc1d0a.ckpt
+2026-11-13T09:35:33.4654788Z Loaded model weights from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_5/.scale_batch_size_5affb2a1-308c-4cac-9297-ce39e0fc1d0a.ckpt
+2026-11-13T09:35:33.4655508Z [31m[1m_ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[predict-power] __[0m
+2026-11-13T09:35:33.4655779Z 
+2026-11-13T09:35:33.4655968Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_6')
+2026-11-13T09:35:33.4656418Z mode = 'power', method = 'predict'
+2026-11-13T09:35:33.4656553Z 
+2026-11-13T09:35:33.4657107Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4658350Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4659494Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4660050Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4660400Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4660663Z     [90m[39;49;00m
+2026-11-13T09:35:33.4661036Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4661444Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4662314Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e97170>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='predict')[0m
+2026-11-13T09:35:33.4662875Z 
+2026-11-13T09:35:33.4663105Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4663532Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4663847Z GPU available: False, used: False
+2026-11-13T09:35:33.4664199Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4665308Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4666024Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4666340Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4666701Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4667174Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4667802Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_6/.scale_batch_size_a91f15e1-ff8d-4225-b82c-41a3861fa103.ckpt
+2026-11-13T09:35:33.4668614Z Loaded model weights from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_6/.scale_batch_size_a91f15e1-ff8d-4225-b82c-41a3861fa103.ckpt
+2026-11-13T09:35:33.4669316Z [31m[1m_ test_smaller_initial_value_is_used_for_each_tuner_entrypoint[predict-binsearch] _[0m
+2026-11-13T09:35:33.4669695Z 
+2026-11-13T09:35:33.4669879Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_7')
+2026-11-13T09:35:33.4670216Z mode = 'binsearch', method = 'predict'
+2026-11-13T09:35:33.4670362Z 
+2026-11-13T09:35:33.4671016Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4672379Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmethod[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mvalidate[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mtest[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mpredict[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4673438Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[39;49;00m(tmp_path, mode, method):[90m[39;49;00m
+2026-11-13T09:35:33.4673983Z         model = _SmallDatasetModel([94m16[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4674322Z         trainer = _trainer(tmp_path, method)[90m[39;49;00m
+2026-11-13T09:35:33.4674765Z     [90m[39;49;00m
+2026-11-13T09:35:33.4675136Z >       [94massert[39;49;00m _tune(trainer, model, mode, method=method) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4675545Z [1m[31mE       AssertionError: assert 16 == 4[0m
+2026-11-13T09:35:33.4676325Z [1m[31mE        +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17cd7a70>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='predict')[0m
+2026-11-13T09:35:33.4676885Z 
+2026-11-13T09:35:33.4677233Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:145: AssertionError
+2026-11-13T09:35:33.4677634Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4677933Z GPU available: False, used: False
+2026-11-13T09:35:33.4678158Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4678974Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4679780Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4680098Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4680449Z The batch size 16 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4680811Z Finished batch size finder, will continue with full run using batch size 16
+2026-11-13T09:35:33.4681551Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_7/.scale_batch_size_fbc11076-ca2a-4d87-b762-6b1c3d6c6e77.ckpt
+2026-11-13T09:35:33.4682456Z Loaded model weights from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_smaller_initial_value_is_7/.scale_batch_size_fbc11076-ca2a-4d87-b762-6b1c3d6c6e77.ckpt
+2026-11-13T09:35:33.4683148Z [31m[1m__________ test_existing_smaller_batch_keeps_the_same_search[1-power] __________[0m
+2026-11-13T09:35:33.4683401Z 
+2026-11-13T09:35:33.4683589Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_existing_smaller_batch_ke0')
+2026-11-13T09:35:33.4683929Z mode = 'power', initial_batch_size = 1
+2026-11-13T09:35:33.4684081Z 
+2026-11-13T09:35:33.4684863Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4685755Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m1[39;49;00m, [94m2[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4686531Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_existing_smaller_batch_keeps_the_same_search[39;49;00m(tmp_path, mode, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4687080Z         model = _SmallDatasetModel(initial_batch_size)[90m[39;49;00m
+2026-11-13T09:35:33.4687467Z     [90m[39;49;00m
+2026-11-13T09:35:33.4687829Z         [94massert[39;49;00m _tune(_trainer(tmp_path), model, mode) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4688634Z >       [94massert[39;49;00m model.seen[[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m] == [([94m2[39;49;00m, [94m2[39;49;00m), ([94m4[39;49;00m, [94m4[39;49;00m)][90m[39;49;00m
+2026-11-13T09:35:33.4689180Z [1m[31mE       assert [(2, 1), (4, 4)] == [(2, 2), (4, 4)][0m
+2026-11-13T09:35:33.4689447Z [1m[31mE         [0m
+2026-11-13T09:35:33.4690001Z [1m[31mE         At index 0 diff: [0m([94m2[39;49;00m, [94m1[39;49;00m)[90m[39;49;00m != [0m([94m2[39;49;00m, [94m2[39;49;00m)[90m[39;49;00m[0m
+2026-11-13T09:35:33.4690405Z [1m[31mE         [0m
+2026-11-13T09:35:33.4690611Z [1m[31mE         Full diff:[0m
+2026-11-13T09:35:33.4690878Z [1m[31mE         [0m[90m [39;49;00m [[90m[39;49;00m[0m
+2026-11-13T09:35:33.4691178Z [1m[31mE         [90m [39;49;00m     ([90m[39;49;00m[0m
+2026-11-13T09:35:33.4691475Z [1m[31mE         [90m [39;49;00m         2,[90m[39;49;00m[0m
+2026-11-13T09:35:33.4691783Z [1m[31mE         [91m-         2,[39;49;00m[90m[39;49;00m[0m
+2026-11-13T09:35:33.4692154Z [1m[31mE         ?         ^[90m[39;49;00m[0m
+2026-11-13T09:35:33.4692445Z [1m[31mE         [92m+         1,[39;49;00m[90m[39;49;00m[0m
+2026-11-13T09:35:33.4692726Z [1m[31mE         ?         ^[90m[39;49;00m[0m
+2026-11-13T09:35:33.4693008Z [1m[31mE         [90m [39;49;00m     ),[90m[39;49;00m[0m
+2026-11-13T09:35:33.4693310Z [1m[31mE         [90m [39;49;00m     ([90m[39;49;00m[0m
+2026-11-13T09:35:33.4693611Z [1m[31mE         [90m [39;49;00m         4,[90m[39;49;00m[0m
+2026-11-13T09:35:33.4693905Z [1m[31mE         [90m [39;49;00m         4,[90m[39;49;00m[0m
+2026-11-13T09:35:33.4694546Z [1m[31mE         [90m [39;49;00m     ),[90m[39;49;00m[0m
+2026-11-13T09:35:33.4694847Z [1m[31mE         [90m [39;49;00m ][90m[39;49;00m[0m
+2026-11-13T09:35:33.4695013Z 
+2026-11-13T09:35:33.4695250Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:156: AssertionError
+2026-11-13T09:35:33.4695652Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4695947Z GPU available: False, used: False
+2026-11-13T09:35:33.4696169Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4697079Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4697906Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4698173Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4698431Z Batch size 2 succeeded, trying batch size 4
+2026-11-13T09:35:33.4698690Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4698995Z Finished batch size finder, will continue with full run using batch size 4
+2026-11-13T09:35:33.4699717Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_existing_smaller_batch_ke0/.scale_batch_size_f59ab9bf-666f-4fa5-9916-947f8a97c5b8.ckpt
+2026-11-13T09:35:33.4700541Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_existing_smaller_batch_ke0/.scale_batch_size_f59ab9bf-666f-4fa5-9916-947f8a97c5b8.ckpt
+2026-11-13T09:35:33.4701229Z [31m[1m________ test_existing_smaller_batch_keeps_the_same_search[1-binsearch] ________[0m
+2026-11-13T09:35:33.4701498Z 
+2026-11-13T09:35:33.4701688Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_existing_smaller_batch_ke1')
+2026-11-13T09:35:33.4702126Z mode = 'binsearch', initial_batch_size = 1
+2026-11-13T09:35:33.4702282Z 
+2026-11-13T09:35:33.4702836Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4704059Z     [37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33minitial_batch_size[39;49;00m[33m"[39;49;00m, [[94m1[39;49;00m, [94m2[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4705272Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_existing_smaller_batch_keeps_the_same_search[39;49;00m(tmp_path, mode, initial_batch_size):[90m[39;49;00m
+2026-11-13T09:35:33.4705947Z         model = _SmallDatasetModel(initial_batch_size)[90m[39;49;00m
+2026-11-13T09:35:33.4706407Z     [90m[39;49;00m
+2026-11-13T09:35:33.4706866Z         [94massert[39;49;00m _tune(_trainer(tmp_path), model, mode) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4707788Z >       [94massert[39;49;00m model.seen[[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m] == [([94m2[39;49;00m, [94m2[39;49;00m), ([94m4[39;49;00m, [94m4[39;49;00m)][90m[39;49;00m
+2026-11-13T09:35:33.4708433Z [1m[31mE       assert [(2, 1), (4, 4)] == [(2, 2), (4, 4)][0m
+2026-11-13T09:35:33.4720817Z [1m[31mE         [0m
+2026-11-13T09:35:33.4721458Z [1m[31mE         At index 0 diff: [0m([94m2[39;49;00m, [94m1[39;49;00m)[90m[39;49;00m != [0m([94m2[39;49;00m, [94m2[39;49;00m)[90m[39;49;00m[0m
+2026-11-13T09:35:33.4721899Z [1m[31mE         [0m
+2026-11-13T09:35:33.4722124Z [1m[31mE         Full diff:[0m
+2026-11-13T09:35:33.4722402Z [1m[31mE         [0m[90m [39;49;00m [[90m[39;49;00m[0m
+2026-11-13T09:35:33.4722715Z [1m[31mE         [90m [39;49;00m     ([90m[39;49;00m[0m
+2026-11-13T09:35:33.4723023Z [1m[31mE         [90m [39;49;00m         2,[90m[39;49;00m[0m
+2026-11-13T09:35:33.4723436Z [1m[31mE         [91m-         2,[39;49;00m[90m[39;49;00m[0m
+2026-11-13T09:35:33.4723740Z [1m[31mE         ?         ^[90m[39;49;00m[0m
+2026-11-13T09:35:33.4724032Z [1m[31mE         [92m+         1,[39;49;00m[90m[39;49;00m[0m
+2026-11-13T09:35:33.4724307Z [1m[31mE         ?         ^[90m[39;49;00m[0m
+2026-11-13T09:35:33.4724782Z [1m[31mE         [90m [39;49;00m     ),[90m[39;49;00m[0m
+2026-11-13T09:35:33.4725082Z [1m[31mE         [90m [39;49;00m     ([90m[39;49;00m[0m
+2026-11-13T09:35:33.4725391Z [1m[31mE         [90m [39;49;00m         4,[90m[39;49;00m[0m
+2026-11-13T09:35:33.4725687Z [1m[31mE         [90m [39;49;00m         4,[90m[39;49;00m[0m
+2026-11-13T09:35:33.4726032Z [1m[31mE         [90m [39;49;00m     ),[90m[39;49;00m[0m
+2026-11-13T09:35:33.4726366Z [1m[31mE         [90m [39;49;00m ][90m[39;49;00m[0m
+2026-11-13T09:35:33.4726705Z 
+2026-11-13T09:35:33.4726957Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:156: AssertionError
+2026-11-13T09:35:33.4727391Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4727690Z GPU available: False, used: False
+2026-11-13T09:35:33.4727915Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4728864Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4729630Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4729900Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4730153Z Batch size 2 succeeded, trying batch size 4
+2026-11-13T09:35:33.4730398Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4730710Z Finished batch size finder, will continue with full run using batch size 4
+2026-11-13T09:35:33.4731381Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_existing_smaller_batch_ke1/.scale_batch_size_047aa824-d182-4e33-9abe-509eb374f508.ckpt
+2026-11-13T09:35:33.4732233Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_existing_smaller_batch_ke1/.scale_batch_size_047aa824-d182-4e33-9abe-509eb374f508.ckpt
+2026-11-13T09:35:33.4732924Z [31m[1m_ test_a_second_search_can_start_below_the_previous_dataset_sized_batch[power] _[0m
+2026-11-13T09:35:33.4733192Z 
+2026-11-13T09:35:33.4733384Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start0')
+2026-11-13T09:35:33.4733841Z mode = 'power'
+2026-11-13T09:35:33.4733940Z 
+2026-11-13T09:35:33.4734744Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4735674Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_a_second_search_can_start_below_the_previous_dataset_sized_batch[39;49;00m(tmp_path, mode):[90m[39;49;00m
+2026-11-13T09:35:33.4736232Z         model = _SmallDatasetModel([94m2[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4736565Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4737035Z         [94massert[39;49;00m _tune(trainer, model, mode, init_val=[94m8[39;49;00m) == [94m8[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4737662Z         model.seen[[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m].clear()[90m[39;49;00m
+2026-11-13T09:35:33.4737988Z     [90m[39;49;00m
+2026-11-13T09:35:33.4738380Z >       [94massert[39;49;00m _tune(trainer, model, mode, init_val=[94m2[39;49;00m) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4738793Z [1m[31mE       AssertionError: assert 8 == 4[0m
+2026-11-13T09:35:33.4739544Z [1m[31mE        +  where 8 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e93560>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', init_val=2)[0m
+2026-11-13T09:35:33.4740086Z 
+2026-11-13T09:35:33.4740326Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:166: AssertionError
+2026-11-13T09:35:33.4740841Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4741138Z GPU available: False, used: False
+2026-11-13T09:35:33.4741360Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4742177Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4742879Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4743214Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4743514Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4744009Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4744809Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start0/.scale_batch_size_48f7f340-b5e6-469a-a311-c79ac83439ad.ckpt
+2026-11-13T09:35:33.4745648Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start0/.scale_batch_size_48f7f340-b5e6-469a-a311-c79ac83439ad.ckpt
+2026-11-13T09:35:33.4746176Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4746595Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4746893Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4747173Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4747531Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4748124Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start0/.scale_batch_size_4ce1642a-fd23-41c8-878b-6fed27f9f0f1.ckpt
+2026-11-13T09:35:33.4748959Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start0/.scale_batch_size_4ce1642a-fd23-41c8-878b-6fed27f9f0f1.ckpt
+2026-11-13T09:35:33.4749725Z [31m[1m_ test_a_second_search_can_start_below_the_previous_dataset_sized_batch[binsearch] _[0m
+2026-11-13T09:35:33.4750004Z 
+2026-11-13T09:35:33.4750193Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start1')
+2026-11-13T09:35:33.4750518Z mode = 'binsearch'
+2026-11-13T09:35:33.4750748Z 
+2026-11-13T09:35:33.4751308Z     [0m[37m@pytest[39;49;00m.mark.parametrize([33m"[39;49;00m[33mmode[39;49;00m[33m"[39;49;00m, [[33m"[39;49;00m[33mpower[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbinsearch[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+2026-11-13T09:35:33.4752299Z     [94mdef[39;49;00m[90m [39;49;00m[92mtest_a_second_search_can_start_below_the_previous_dataset_sized_batch[39;49;00m(tmp_path, mode):[90m[39;49;00m
+2026-11-13T09:35:33.4752860Z         model = _SmallDatasetModel([94m2[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4753185Z         trainer = _trainer(tmp_path)[90m[39;49;00m
+2026-11-13T09:35:33.4753641Z         [94massert[39;49;00m _tune(trainer, model, mode, init_val=[94m8[39;49;00m) == [94m8[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4754152Z         model.seen[[33m"[39;49;00m[33mfit[39;49;00m[33m"[39;49;00m].clear()[90m[39;49;00m
+2026-11-13T09:35:33.4754660Z     [90m[39;49;00m
+2026-11-13T09:35:33.4755046Z >       [94massert[39;49;00m _tune(trainer, model, mode, init_val=[94m2[39;49;00m) == [94m4[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4755463Z [1m[31mE       AssertionError: assert 8 == 4[0m
+2026-11-13T09:35:33.4756228Z [1m[31mE        +  where 8 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17d38aa0>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', init_val=2)[0m
+2026-11-13T09:35:33.4756782Z 
+2026-11-13T09:35:33.4757012Z [1m[31mtests/tests_pytorch/tuner/test_batch_size_decrease.py[0m:166: AssertionError
+2026-11-13T09:35:33.4757519Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T09:35:33.4757817Z GPU available: False, used: False
+2026-11-13T09:35:33.4758040Z TPU available: False, using: 0 TPU cores
+2026-11-13T09:35:33.4758861Z 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-11-13T09:35:33.4759562Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4759860Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4760212Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4760698Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4761308Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start1/.scale_batch_size_55982aa8-6088-4aa5-b314-9dfaa6ab2025.ckpt
+2026-11-13T09:35:33.4762116Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start1/.scale_batch_size_55982aa8-6088-4aa5-b314-9dfaa6ab2025.ckpt
+2026-11-13T09:35:33.4762749Z `weights_only` was not set, defaulting to `False`.
+2026-11-13T09:35:33.4763048Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4763371Z `Trainer.fit` stopped: `max_steps=1` reached.
+2026-11-13T09:35:33.4763657Z The batch size 8 is greater or equal than the length of your dataset: 8.
+2026-11-13T09:35:33.4764061Z Finished batch size finder, will continue with full run using batch size 8
+2026-11-13T09:35:33.4764839Z Restoring states from the checkpoint path at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start1/.scale_batch_size_64e10a4b-ce80-4c61-9134-ddcfd3ae80eb.ckpt
+2026-11-13T09:35:33.4765796Z Restored all states from the checkpoint at /tmp/pytest-of-runner/pytest-1/test_a_second_search_can_start1/.scale_batch_size_64e10a4b-ce80-4c61-9134-ddcfd3ae80eb.ckpt
+2026-11-13T09:35:33.4766447Z [36m[1m=========================== short test summary info ============================[0m
+2026-11-13T09:35:33.4767884Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[8-model-power][0m - assert 8 == 4
+2026-11-13T09:35:33.4769000Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[8-model-binsearch][0m - assert 8 == 4
+2026-11-13T09:35:33.4769991Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[8-hparams-power][0m - assert 8 == 4
+2026-11-13T09:35:33.4771095Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[8-hparams-binsearch][0m - assert 8 == 4
+2026-11-13T09:35:33.4772087Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[8-datamodule-power][0m - assert 8 == 4
+2026-11-13T09:35:33.4773079Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[8-datamodule-binsearch][0m - assert 8 == 4
+2026-11-13T09:35:33.4774169Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[16-model-power][0m - assert 16 == 4
+2026-11-13T09:35:33.4775392Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[16-model-binsearch][0m - assert 16 == 4
+2026-11-13T09:35:33.4776466Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[16-hparams-power][0m - assert 16 == 4
+2026-11-13T09:35:33.4777449Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[16-hparams-binsearch][0m - assert 16 == 4
+2026-11-13T09:35:33.4778446Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[16-datamodule-power][0m - assert 16 == 4
+2026-11-13T09:35:33.4779552Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_large_existing_batch_does_not_override_smaller_initial_value[16-datamodule-binsearch][0m - assert 16 == 4
+2026-11-13T09:35:33.4780565Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[fit-power][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4781741Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e97b30>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='fit')
+2026-11-13T09:35:33.4782807Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[fit-binsearch][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4783745Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e90c20>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='fit')
+2026-11-13T09:35:33.4785062Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[validate-power][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4786011Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e97020>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='validate')
+2026-11-13T09:35:33.4787262Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[validate-binsearch][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4788212Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e92db0>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='validate')
+2026-11-13T09:35:33.4789449Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[test-power][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4790371Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e1cf20>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='test')
+2026-11-13T09:35:33.4791417Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[test-binsearch][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4792461Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e90830>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='test')
+2026-11-13T09:35:33.4793506Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[predict-power][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4794572Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e97170>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', method='predict')
+2026-11-13T09:35:33.4795822Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_smaller_initial_value_is_used_for_each_tuner_entrypoint[predict-binsearch][0m - AssertionError: assert 16 == 4
+2026-11-13T09:35:33.4796766Z  +  where 16 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17cd7a70>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', method='predict')
+2026-11-13T09:35:33.4797911Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_existing_smaller_batch_keeps_the_same_search[1-power][0m - assert [(2, 1), (4, 4)] == [(2, 2), (4, 4)]
+2026-11-13T09:35:33.4798444Z   
+2026-11-13T09:35:33.4798847Z   At index 0 diff: [0m([94m2[39;49;00m, [94m1[39;49;00m)[90m[39;49;00m != [0m([94m2[39;49;00m, [94m2[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4799202Z   
+2026-11-13T09:35:33.4799346Z   Full diff:
+2026-11-13T09:35:33.4799548Z   [0m[90m [39;49;00m [[90m[39;49;00m
+2026-11-13T09:35:33.4799908Z   [90m [39;49;00m     ([90m[39;49;00m
+2026-11-13T09:35:33.4800149Z   [90m [39;49;00m         2,[90m[39;49;00m
+2026-11-13T09:35:33.4800504Z   [91m-         2,[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4800738Z   ?         ^[90m[39;49;00m
+2026-11-13T09:35:33.4800961Z   [92m+         1,[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4801184Z   ?         ^[90m[39;49;00m
+2026-11-13T09:35:33.4801396Z   [90m [39;49;00m     ),[90m[39;49;00m
+2026-11-13T09:35:33.4801626Z   [90m [39;49;00m     ([90m[39;49;00m
+2026-11-13T09:35:33.4801869Z   [90m [39;49;00m         4,[90m[39;49;00m
+2026-11-13T09:35:33.4802102Z   [90m [39;49;00m         4,[90m[39;49;00m
+2026-11-13T09:35:33.4802342Z   [90m [39;49;00m     ),[90m[39;49;00m
+2026-11-13T09:35:33.4802574Z   [90m [39;49;00m ][90m[39;49;00m
+2026-11-13T09:35:33.4803344Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_existing_smaller_batch_keeps_the_same_search[1-binsearch][0m - assert [(2, 1), (4, 4)] == [(2, 2), (4, 4)]
+2026-11-13T09:35:33.4803891Z   
+2026-11-13T09:35:33.4804270Z   At index 0 diff: [0m([94m2[39;49;00m, [94m1[39;49;00m)[90m[39;49;00m != [0m([94m2[39;49;00m, [94m2[39;49;00m)[90m[39;49;00m
+2026-11-13T09:35:33.4804804Z   
+2026-11-13T09:35:33.4804964Z   Full diff:
+2026-11-13T09:35:33.4805161Z   [0m[90m [39;49;00m [[90m[39;49;00m
+2026-11-13T09:35:33.4805397Z   [90m [39;49;00m     ([90m[39;49;00m
+2026-11-13T09:35:33.4805736Z   [90m [39;49;00m         2,[90m[39;49;00m
+2026-11-13T09:35:33.4805989Z   [91m-         2,[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4806220Z   ?         ^[90m[39;49;00m
+2026-11-13T09:35:33.4806566Z   [92m+         1,[39;49;00m[90m[39;49;00m
+2026-11-13T09:35:33.4806795Z   ?         ^[90m[39;49;00m
+2026-11-13T09:35:33.4807012Z   [90m [39;49;00m     ),[90m[39;49;00m
+2026-11-13T09:35:33.4807242Z   [90m [39;49;00m     ([90m[39;49;00m
+2026-11-13T09:35:33.4807481Z   [90m [39;49;00m         4,[90m[39;49;00m
+2026-11-13T09:35:33.4807723Z   [90m [39;49;00m         4,[90m[39;49;00m
+2026-11-13T09:35:33.4807984Z   [90m [39;49;00m     ),[90m[39;49;00m
+2026-11-13T09:35:33.4808281Z   [90m [39;49;00m ][90m[39;49;00m
+2026-11-13T09:35:33.4808959Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_a_second_search_can_start_below_the_previous_dataset_sized_batch[power][0m - AssertionError: assert 8 == 4
+2026-11-13T09:35:33.4809883Z  +  where 8 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17e93560>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'power', init_val=2)
+2026-11-13T09:35:33.4810934Z [31mFAILED[0m tests/tests_pytorch/tuner/test_batch_size_decrease.py::[1mtest_a_second_search_can_start_below_the_previous_dataset_sized_batch[binsearch][0m - AssertionError: assert 8 == 4
+2026-11-13T09:35:33.4812000Z  +  where 8 = _tune(<lightning.pytorch.trainer.trainer.Trainer object at 0x724a17d38aa0>, _SmallDatasetModel(\n  (layer): Linear(in_features=3, out_features=1, bias=True)\n), 'binsearch', init_val=2)
+2026-11-13T09:35:33.4812741Z [31m[31m[1m24 failed[0m, [32m2 passed[0m, [33m46 warnings[0m[31m in 8.13s[0m[0m
+2026-11-13T09:35:33.4812973Z 
+2026-11-13T09:35:33.4813182Z Unchanged upstream regression totals: {'tests': 26, 'failures': 24, 'errors': 0, 'skipped': 0}
+2026-11-13T09:36:04.0457059Z [32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[33ms[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33ms[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[33m                   [100%][0m
+2026-11-13T09:36:04.0459085Z [33m[32m50 passed[0m, [33m[1m4 skipped[0m, [33m[1m161 warnings[0m[33m in 27.54s[0m[0m
+2026-11-13T09:36:04.7015686Z ##[group]Run git checkout b255e50037312cc3eb2e52c90d948c021174c2af -- src/lightning/pytorch/tuner/batch_size_scaling.py
+2026-11-13T09:36:04.7016366Z [36;1mgit checkout b255e50037312cc3eb2e52c90d948c021174c2af -- src/lightning/pytorch/tuner/batch_size_scaling.py[0m
+2026-11-13T09:36:04.7017032Z [36;1mpython -m ruff check src/lightning/pytorch/tuner/batch_size_scaling.py tests/tests_pytorch/tuner/test_batch_size_decrease.py[0m
+2026-11-13T09:36:04.7017749Z [36;1mpython -m ruff format --check --diff src/lightning/pytorch/tuner/batch_size_scaling.py tests/tests_pytorch/tuner/test_batch_size_decrease.py[0m
+2026-11-13T09:36:04.7018233Z [36;1mgit diff --exit-code[0m
+2026-11-13T09:36:04.7063532Z shell: /usr/bin/bash -e {0}
+2026-11-13T09:36:04.7063749Z env:
+2026-11-13T09:36:04.7063926Z   PYTHONPATH: src:tests
+2026-11-13T09:36:04.7064118Z   OMP_NUM_THREADS: 1
+2026-11-13T09:36:04.7064296Z   MKL_NUM_THREADS: 1
+2026-11-13T09:36:04.7064771Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7065136Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T09:36:04.7065467Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7065768Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7066059Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7066357Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T09:36:04.7066617Z ##[endgroup]
+2026-11-13T09:36:04.7450552Z All checks passed!
+2026-11-13T09:36:04.7708243Z 2 files already formatted
+2026-11-13T09:36:04.7801110Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T09:36:04.7801352Z with:
+2026-11-13T09:36:04.7801544Z   name: batch-size-smaller-start-before-after
+2026-11-13T09:36:04.7801959Z   path: patched.xml
+patched.log
+baseline.xml
+baseline.log
+baseline-existing.xml
+installed-dependencies.txt
+
+2026-11-13T09:36:04.7802353Z   if-no-files-found: warn
+2026-11-13T09:36:04.7802569Z   compression-level: 6
+2026-11-13T09:36:04.7802749Z   overwrite: false
+2026-11-13T09:36:04.7802923Z   include-hidden-files: false
+2026-11-13T09:36:04.7803118Z env:
+2026-11-13T09:36:04.7803278Z   PYTHONPATH: src:tests
+2026-11-13T09:36:04.7803467Z   OMP_NUM_THREADS: 1
+2026-11-13T09:36:04.7803634Z   MKL_NUM_THREADS: 1
+2026-11-13T09:36:04.7803851Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7804185Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T09:36:04.7804739Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7805073Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7805366Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T09:36:04.7805662Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T09:36:04.7805914Z ##[endgroup]
+2026-11-13T09:36:04.9190549Z (node:2576) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T09:36:04.9191497Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T09:36:04.9386443Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-13T09:36:04.9388680Z The least common ancestor is /home/runner/work/pytorch-lightning/pytorch-lightning. This will be the root directory of the artifact
+2026-11-13T09:36:04.9389583Z With the provided path, there will be 6 files uploaded
+2026-11-13T09:36:04.9390206Z Artifact name is valid!
+2026-11-13T09:36:04.9390529Z Root directory input is valid!
+2026-11-13T09:36:05.1340622Z Beginning upload of artifact content to blob storage
+2026-11-13T09:36:05.1617754Z (node:2576) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T09:36:05.2030573Z Uploaded bytes 9756
+2026-11-13T09:36:05.2152221Z Finished uploading artifact content to blob storage!
+2026-11-13T09:36:05.2152844Z SHA256 digest of uploaded artifact zip is 0a0fc5a7efcf353e621a21ba6dffa818e195d4046a26bf656edbaf5189b94f42
+2026-11-13T09:36:05.2154531Z Finalizing artifact upload
+2026-11-13T09:36:05.5621297Z Artifact batch-size-smaller-start-before-after.zip successfully finalized. Artifact ID 14025393426
+2026-11-13T09:36:05.5622364Z Artifact batch-size-smaller-start-before-after has been successfully uploaded! Final size is 9756 bytes. Artifact ID is 14025393426
+2026-11-13T09:36:05.5628258Z Artifact download URL: https://github.com/Afloat16/pytorch-lightning/actions/runs/43402076422/artifacts/14025393426
+2026-11-13T09:36:05.5804934Z Post job cleanup.
+2026-11-13T09:36:05.6785915Z (node:2590) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T09:36:05.6786501Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T09:36:05.6917429Z Post job cleanup.
+2026-11-13T09:36:05.7652873Z [command]/usr/bin/git version
+2026-11-13T09:36:05.7691724Z git version 2.56.0
+2026-11-13T09:36:05.7722856Z Temporarily overriding HOME='/home/runner/work/_temp/2d2432d9-9a93-4d95-87c1-beddcfdaaafe' before making global git config changes
+2026-11-13T09:36:05.7723849Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T09:36:05.7728134Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pytorch-lightning/pytorch-lightning
+2026-11-13T09:36:05.7766910Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T09:36:05.7809671Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T09:36:05.8091020Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T09:36:05.8106993Z http.https://github.com/.extraheader
+2026-11-13T09:36:05.8117722Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T09:36:05.8158923Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T09:36:05.8431729Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T09:36:05.8466325Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T09:36:05.8884564Z Cleaning up orphan processes
+2026-11-13T09:36:05.9187562Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
