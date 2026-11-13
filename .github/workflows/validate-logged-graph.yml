@@ -30,12 +30,12 @@ jobs:
       - name: Check changed files
         if: always()
         run: |
-          .venv/bin/ruff check src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py
-          .venv/bin/ruff format --check --diff src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py
+          .venv/bin/ruff check src/lightning/pytorch/core/module.py src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py
+          .venv/bin/ruff format --check --diff src/lightning/pytorch/core/module.py src/lightning/pytorch/trainer/connectors/logger_connector/result.py tests/tests_pytorch/core/test_logging_graph.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: logged-graph-native-30beffe748cf
+          name: logged-graph-native-c9e322333cc8
           path: |
             before.log
             before.xml

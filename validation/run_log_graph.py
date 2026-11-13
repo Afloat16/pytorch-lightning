@@ -5,10 +5,10 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 BASE = "84df182f50ab34301aabb3c0eb4031815bfb413d"
-HEAD = "30beffe748cf35069821a3e8f1d191e6762fd001"
-FILES = ["src/lightning/pytorch/trainer/connectors/logger_connector/result.py", "tests/tests_pytorch/core/test_logging_graph.py"]
-SOURCE = FILES[0]
-TEST = FILES[1]
+HEAD = "c9e322333cc8211b985aab66634508db6e161fe2"
+FILES = ["src/lightning/pytorch/core/module.py", "src/lightning/pytorch/trainer/connectors/logger_connector/result.py", "tests/tests_pytorch/core/test_logging_graph.py"]
+SOURCES = FILES[:2]
+TEST = FILES[2]
 subprocess.run(["git", "fetch", "--no-tags", "--depth=1", "origin", BASE, HEAD], check=True)
 for path in FILES:
     assert Path(path).read_bytes() == subprocess.check_output(["git", "show", f"{HEAD}:{path}"]), path
@@ -24,12 +24,14 @@ def run(label, tests):
     print(label, out, flush=True)
     return out
 
-fixed = Path(SOURCE).read_bytes()
+fixed = {path: Path(path).read_bytes() for path in SOURCES}
 try:
-    Path(SOURCE).write_bytes(subprocess.check_output(["git", "show", f"{BASE}:{SOURCE}"]))
+    for path in SOURCES:
+        Path(path).write_bytes(subprocess.check_output(["git", "show", f"{BASE}:{path}"]))
     before = run("before", [TEST])
 finally:
-    Path(SOURCE).write_bytes(fixed)
+    for path, contents in fixed.items():
+        Path(path).write_bytes(contents)
 after = run("after", [TEST])
 existing = run("existing", ["tests/tests_pytorch/core/test_metric_result_integration.py"])
 result = {"base": BASE, "head": HEAD, "before": before, "after": after, "existing": existing}
