@@ -1,0 +1,190 @@
+name: Validate OpenCode JSON cache refresh
+on:
+  push:
+    branches: [validation/orca-opencode-json-refresh-20261127]
+permissions:
+  contents: read
+jobs:
+  changed-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      ORCA_BACKGROUND_LAUNCH: '1'
+      ORCA_CANDIDATE_SHA: a3dea9ab43dbe6ba3a24796950345ccc3d5ac1f0
+      ORCA_CANDIDATE_TREE: a182f97e6914cf51fc67ec67e7463968c32cca5f
+      ORCA_BASE_SHA: 12ba475107eb4617c302e432fb551a69451d2274
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: Afloat16/orca
+          ref: a3dea9ab43dbe6ba3a24796950345ccc3d5ac1f0
+          fetch-depth: 10
+          persist-credentials: false
+      - name: Verify exact candidate and change scope
+        run: |
+          test "$(git rev-parse HEAD)" = "$ORCA_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$ORCA_CANDIDATE_TREE"
+          python3 - <<'PY'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['ORCA_BASE_SHA'], 'HEAD'], text=True).splitlines()
+          assert sorted(paths) == ["src/main/ai-vault-search/indexing/session-search-index-consumer.ts","src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts","src/main/ai-vault-search/indexing/session-search-read-decision.ts","src/main/ai-vault-search/storage/session-search-file-records.ts","src/main/ai-vault-search/storage/session-search-schema.ts","src/main/ai-vault-search/storage/session-search-store-types.ts","src/main/ai-vault-search/storage/session-search-store.ts","src/main/ai-vault-search/worker/session-search-worker-entry.ts","src/main/ai-vault-search/worker/session-search-worker-protocol.ts","src/main/ai-vault-search/worker/session-search-worker-store-base.ts","src/main/ai-vault-search/worker/session-search-worker-store.ts","src/main/ai-vault/parse-cache/session-parse-cache-store.ts","src/main/ai-vault/parse-cache/session-sidecar-stat.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-json-sidecar.ts","src/main/ai-vault/scanners/opencode/sqlite/session-scanner-opencode-sqlite-discovery.ts"], paths
+          print('Verified 14 production files and one public regression file.')
+          PY
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: config/.bun-version
+          no-cache: true
+      - name: Install repository toolchain and native dependencies
+        uses: ./.github/actions/install-node-dependencies
+        with:
+          node-version: '24'
+          native-runtime: node
+          cache-pnpm-store: 'false'
+          cache-pnpm-verification: 'false'
+          persist-native-cache: 'false'
+      - name: Check source formatting
+        run: |
+          if ! pnpm exec oxfmt --check src/main/ai-vault-search/indexing/session-search-index-consumer.ts src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts src/main/ai-vault-search/indexing/session-search-read-decision.ts src/main/ai-vault-search/storage/session-search-file-records.ts src/main/ai-vault-search/storage/session-search-schema.ts src/main/ai-vault-search/storage/session-search-store-types.ts src/main/ai-vault-search/storage/session-search-store.ts src/main/ai-vault-search/worker/session-search-worker-entry.ts src/main/ai-vault-search/worker/session-search-worker-protocol.ts src/main/ai-vault-search/worker/session-search-worker-store-base.ts src/main/ai-vault-search/worker/session-search-worker-store.ts src/main/ai-vault/parse-cache/session-parse-cache-store.ts src/main/ai-vault/parse-cache/session-sidecar-stat.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-json-sidecar.ts src/main/ai-vault/scanners/opencode/sqlite/session-scanner-opencode-sqlite-discovery.ts; then
+            pnpm exec oxfmt --write src/main/ai-vault-search/indexing/session-search-index-consumer.ts src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts src/main/ai-vault-search/indexing/session-search-read-decision.ts src/main/ai-vault-search/storage/session-search-file-records.ts src/main/ai-vault-search/storage/session-search-schema.ts src/main/ai-vault-search/storage/session-search-store-types.ts src/main/ai-vault-search/storage/session-search-store.ts src/main/ai-vault-search/worker/session-search-worker-entry.ts src/main/ai-vault-search/worker/session-search-worker-protocol.ts src/main/ai-vault-search/worker/session-search-worker-store-base.ts src/main/ai-vault-search/worker/session-search-worker-store.ts src/main/ai-vault/parse-cache/session-parse-cache-store.ts src/main/ai-vault/parse-cache/session-sidecar-stat.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-json-sidecar.ts src/main/ai-vault/scanners/opencode/sqlite/session-scanner-opencode-sqlite-discovery.ts
+            git diff -- src/main/ai-vault-search/indexing/session-search-index-consumer.ts src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts src/main/ai-vault-search/indexing/session-search-read-decision.ts src/main/ai-vault-search/storage/session-search-file-records.ts src/main/ai-vault-search/storage/session-search-schema.ts src/main/ai-vault-search/storage/session-search-store-types.ts src/main/ai-vault-search/storage/session-search-store.ts src/main/ai-vault-search/worker/session-search-worker-entry.ts src/main/ai-vault-search/worker/session-search-worker-protocol.ts src/main/ai-vault-search/worker/session-search-worker-store-base.ts src/main/ai-vault-search/worker/session-search-worker-store.ts src/main/ai-vault/parse-cache/session-parse-cache-store.ts src/main/ai-vault/parse-cache/session-sidecar-stat.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-json-sidecar.ts src/main/ai-vault/scanners/opencode/sqlite/session-scanner-opencode-sqlite-discovery.ts
+            exit 1
+          fi
+      - name: Run public cache-refresh regressions
+        run: |
+          timeout 900 pnpm test src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts --maxWorkers=2 --reporter=json --outputFile="$RUNNER_TEMP/opencode-focused.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          r = json.loads((Path(os.environ['RUNNER_TEMP']) / 'opencode-focused.json').read_text())
+          assert (r['numTotalTests'], r['numPassedTests'], r['numFailedTests']) == (3, 3, 0), r
+          print('All three public regressions executed and passed.')
+          PY
+      - name: Run required changed-file gate
+        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
+      - name: Verify pre-fix behavior and additive schema migration
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, subprocess
+          test = "src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts"
+          production = ["src/main/ai-vault-search/indexing/session-search-index-consumer.ts","src/main/ai-vault-search/indexing/session-search-read-decision.ts","src/main/ai-vault-search/storage/session-search-file-records.ts","src/main/ai-vault-search/storage/session-search-schema.ts","src/main/ai-vault-search/storage/session-search-store-types.ts","src/main/ai-vault-search/storage/session-search-store.ts","src/main/ai-vault-search/worker/session-search-worker-entry.ts","src/main/ai-vault-search/worker/session-search-worker-protocol.ts","src/main/ai-vault-search/worker/session-search-worker-store-base.ts","src/main/ai-vault-search/worker/session-search-worker-store.ts","src/main/ai-vault/parse-cache/session-parse-cache-store.ts","src/main/ai-vault/parse-cache/session-sidecar-stat.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-json-sidecar.ts","src/main/ai-vault/scanners/opencode/sqlite/session-scanner-opencode-sqlite-discovery.ts"]
+          saved = {p: Path(p).read_bytes() for p in production}
+          test_bytes = Path(test).read_bytes()
+          results = []
+          def restore():
+              for path, data in saved.items(): Path(path).write_bytes(data)
+              Path(test).write_bytes(test_bytes)
+          try:
+              for path in production:
+                  before = subprocess.run(['git', 'show', os.environ['ORCA_BASE_SHA'] + ':' + path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                  if before.returncode == 0: Path(path).write_bytes(before.stdout)
+                  else:
+                      assert path.endswith('session-scanner-opencode-json-sidecar.ts'), path
+                      Path(path).unlink()
+              output = Path(os.environ['RUNNER_TEMP']) / 'opencode-baseline.json'
+              run = subprocess.run(['timeout', '900', 'pnpm', 'test', test, '--maxWorkers=2', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
+              report = json.loads(output.read_text())
+              assert run.returncode == 1, run.returncode
+              assert (report['numTotalTests'], report['numPassedTests'], report['numFailedTests']) == (3, 0, 3), report
+              assertions = [item for suite in report['testResults'] for item in suite['assertionResults']]
+              assert len(assertions) == 3
+              for assertion in assertions:
+                  assert assertion['status'] == 'failed', assertion
+                  assert any('AssertionError' in message for message in assertion.get('failureMessages', [])), assertion
+              result = {'control': 'pre-fix public behavior', 'executed': 3, 'assertion_failures': 3}
+              results.append(result); print(json.dumps(result), flush=True)
+              restore()
+              Path(test).write_text(test_bytes.decode() + "\nit.each(['direct', 'worker'] as const)(\n  'migrates version 8 %s indexes without losing existing search results',\n  async (mode) => {\n    const open = async (): Promise<void> => {\n      store = mode === 'direct'\n        ? new SessionSearchStore(harness.databasePath)\n        : new SessionSearchWorkerStore(harness.databasePath, (error) => { throw error })\n      registerSessionSearchIndexConsumer(store)\n      if (store instanceof SessionSearchWorkerStore) await store.prepare()\n    }\n    await open()\n    await pass()\n    expect(matches('amber')).toEqual(['ses_refresh'])\n    await closeStore()\n    harness.write((db) => db.exec('ALTER TABLE files DROP COLUMN content_signature'))\n    await open()\n    expect(matches('amber')).toEqual(['ses_refresh'])\n    await replacePrompt('cedar request')\n    await pass()\n    expect(matches('cedar')).toEqual(['ses_refresh'])\n    expect(matches('amber')).toEqual([])\n  }\n)\n")
+              output = Path(os.environ['RUNNER_TEMP']) / 'opencode-migration.json'
+              run = subprocess.run(['timeout', '900', 'pnpm', 'test', test, '-t', 'migrates version 8', '--maxWorkers=2', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
+              report = json.loads(output.read_text())
+              assert run.returncode == 0, run.returncode
+              assert report['numPassedTests'] == 2 and report['numFailedTests'] == 0, report
+              passed = [item for suite in report['testResults'] for item in suite['assertionResults'] if item['status'] == 'passed']
+              assert len(passed) == 2 and all('migrates version 8' in item['fullName'] for item in passed), passed
+              result = {'control': 'existing version 8 migration', 'passed': [item['fullName'] for item in passed]}
+              results.append(result); print(json.dumps(result), flush=True)
+          finally:
+              restore()
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          (Path(os.environ['RUNNER_TEMP']) / 'opencode-controls-results.json').write_text(json.dumps(results, indent=2) + '\n')
+          PY
+      - name: Measure hot scans of four thousand legacy parts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, statistics, subprocess
+          production = ["src/main/ai-vault-search/indexing/session-search-index-consumer.ts","src/main/ai-vault-search/indexing/session-search-read-decision.ts","src/main/ai-vault-search/storage/session-search-file-records.ts","src/main/ai-vault-search/storage/session-search-schema.ts","src/main/ai-vault-search/storage/session-search-store-types.ts","src/main/ai-vault-search/storage/session-search-store.ts","src/main/ai-vault-search/worker/session-search-worker-entry.ts","src/main/ai-vault-search/worker/session-search-worker-protocol.ts","src/main/ai-vault-search/worker/session-search-worker-store-base.ts","src/main/ai-vault-search/worker/session-search-worker-store.ts","src/main/ai-vault/parse-cache/session-parse-cache-store.ts","src/main/ai-vault/parse-cache/session-sidecar-stat.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-json-sidecar.ts","src/main/ai-vault/scanners/opencode/sqlite/session-scanner-opencode-sqlite-discovery.ts"]
+          saved = {p: Path(p).read_bytes() for p in production}
+          probe = Path("src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.performance.test.ts")
+          probe.write_text("import { writeFile } from 'node:fs/promises'\nimport { join, sep } from 'node:path'\nimport { performance } from 'node:perf_hooks'\nimport { expect, it, vi } from 'vitest'\nimport { isolatedScanRoots } from '../../ai-vault/scanner-fixtures/session-scanner-test-fixtures'\nimport { scanAiVaultSessions } from '../../ai-vault/session-scanner'\nimport { resetSessionParseCacheForTests } from '../../ai-vault/parse-cache/session-parse-cache-store'\nimport * as transcriptFs from '../../native-chat/transcript-filesystem/wsl-transcript-fs-access'\n\nit('measures repeated scans of forty saved legacy sessions with four thousand parts', async () => {\n  const root = process.env.ORCA_LEGACY_BENCH_ROOT\n  const output = process.env.ORCA_LEGACY_BENCH_OUTPUT\n  if (!root || !output) throw new Error('Missing benchmark paths')\n  const roots = isolatedScanRoots(root)\n  const options = { ...roots, unlimited: true }\n  resetSessionParseCacheForTests()\n  for (let i = 0; i < 2; i++) {\n    const scanned = await scanAiVaultSessions(options)\n    expect(scanned.sessions).toHaveLength(40)\n    expect(scanned.sessions.every((session) => session.previewMessages[0]?.text.startsWith('Prompt segment 000.'))).toBe(true)\n  }\n  const dependencyRoots = [\n    join(roots.opencodeStorageDir, 'message') + sep,\n    join(roots.opencodeStorageDir, 'part') + sep\n  ]\n  const underDependencies = (path: string) => dependencyRoots.some((prefix) => path.startsWith(prefix))\n  const stats = vi.spyOn(transcriptFs, 'wslGatedStat')\n  const dirs = vi.spyOn(transcriptFs, 'wslGatedReaddir')\n  const reads = vi.spyOn(transcriptFs, 'wslGatedReadFile')\n  await scanAiVaultSessions(options)\n  const io = {\n    dependencyStats: stats.mock.calls.filter(([path]) => underDependencies(path)).length,\n    dependencyDirectoryReads: dirs.mock.calls.filter(([path]) => underDependencies(path)).length,\n    dependencyContentReads: reads.mock.calls.filter(([path]) => underDependencies(path)).length\n  }\n  stats.mockRestore()\n  dirs.mockRestore()\n  reads.mockRestore()\n  const samplesMs: number[] = []\n  for (let i = 0; i < 5; i++) {\n    const start = performance.now()\n    const scanned = await scanAiVaultSessions(options)\n    samplesMs.push(performance.now() - start)\n    expect(scanned.sessions).toHaveLength(40)\n  }\n  const medianMs = [...samplesMs].sort((a, b) => a - b)[2]\n  const result = { version: process.env.ORCA_LEGACY_BENCH_VERSION, io, medianMs, samplesMs }\n  await writeFile(output, JSON.stringify(result))\n  console.log(JSON.stringify(result))\n})\n")
+          root = Path(os.environ['RUNNER_TEMP']) / 'opencode-legacy-benchmark'
+          storage = root / 'opencode-storage'
+          def put(path, value):
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(value, separators=(',', ':')))
+              os.utime(path, (1784109600, 1784109600))
+          for session in range(40):
+              sid = f'ses_{session:02d}'
+              mid = f'msg_{session:02d}'
+              put(storage / 'session' / 'project' / (sid + '.json'), {'id': sid, 'title': f'Legacy {session}', 'directory': str(root), 'time': {'created': 1784109600000, 'updated': 1784109600001}})
+              put(storage / 'message' / sid / (mid + '.json'), {'id': mid, 'sessionID': sid, 'role': 'user', 'time': {'created': 1784109600000}})
+              for part in range(100):
+                  pid = f'prt_{part:03d}'
+                  put(storage / 'part' / mid / (pid + '.json'), {'id': pid, 'type': 'text', 'text': f'Prompt segment {part:03d}.'})
+          reports = []
+          try:
+              for pair in range(7):
+                  order = ['baseline', 'candidate'] if pair % 2 == 0 else ['candidate', 'baseline']
+                  paired = {}
+                  for version in order:
+                      for path, data in saved.items():
+                          if version == 'candidate': Path(path).write_bytes(data); continue
+                          before = subprocess.run(['git', 'show', os.environ['ORCA_BASE_SHA'] + ':' + path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                          if before.returncode == 0: Path(path).write_bytes(before.stdout)
+                          else:
+                              assert path.endswith('session-scanner-opencode-json-sidecar.ts'), path
+                              Path(path).unlink(missing_ok=True)
+                      output = Path(os.environ['RUNNER_TEMP']) / f'opencode-benchmark-{pair}-{version}.json'
+                      test_report = Path(os.environ['RUNNER_TEMP']) / f'opencode-benchmark-tests-{pair}-{version}.json'
+                      env = {**os.environ, 'ORCA_LEGACY_BENCH_ROOT': str(root), 'ORCA_LEGACY_BENCH_OUTPUT': str(output), 'ORCA_LEGACY_BENCH_VERSION': version}
+                      run = subprocess.run(['timeout', '900', 'pnpm', 'exec', 'vitest', 'run', '--config', 'config/vitest.performance.config.ts', str(probe), '--maxWorkers=2', '--reporter=json', '--outputFile=' + str(test_report)], env=env, timeout=950)
+                      tested = json.loads(test_report.read_text())
+                      assert run.returncode == 0 and tested['numPassedTests'] == 1 and tested['numFailedTests'] == 0, (version, tested)
+                      paired[version] = json.loads(output.read_text())
+                  paired['ratio'] = paired['candidate']['medianMs'] / paired['baseline']['medianMs']
+                  reports.append(paired); print(json.dumps({'pair': pair, **paired}), flush=True)
+          finally:
+              for path, data in saved.items(): Path(path).write_bytes(data)
+              probe.unlink(missing_ok=True)
+          summary = {
+              'candidate_sha': os.environ['ORCA_CANDIDATE_SHA'], 'base_sha': os.environ['ORCA_BASE_SHA'],
+              'node': subprocess.check_output(['node', '--version'], text=True).strip(),
+              'fixture': {'sessions': 40, 'messages_per_session': 1, 'parts_per_message': 100, 'parts': 4000},
+              'protocol': 'Same on-disk inputs; 7 alternating paired processes per version; each warms twice, measures real dependency I/O once, then measures 5 scans without spies; median of per-process medians.',
+              'baseline_median_ms': statistics.median(p['baseline']['medianMs'] for p in reports),
+              'candidate_median_ms': statistics.median(p['candidate']['medianMs'] for p in reports),
+              'paired_median_ratio': statistics.median(p['ratio'] for p in reports),
+              'pairs': reports
+          }
+          (Path(os.environ['RUNNER_TEMP']) / 'opencode-benchmark-results.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps(summary), flush=True)
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          PY
+      - name: Record exact validated identity
+        run: |
+          git diff --exit-code
+          git status --short
+          git rev-parse HEAD
+          git rev-parse 'HEAD^{tree}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: opencode-json-cache-evidence
+          path: |
+            ${{ runner.temp }}/opencode-focused.json
+            ${{ runner.temp }}/opencode-baseline.json
+            ${{ runner.temp }}/opencode-migration.json
+            ${{ runner.temp }}/opencode-controls-results.json
+            ${{ runner.temp }}/opencode-benchmark-results.json
+          if-no-files-found: ignore
