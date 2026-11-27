@@ -1,0 +1,119 @@
+name: Validate inert HTML metadata follow-up
+on:
+  push:
+    branches: [validation/orca-html-followup-20261127]
+permissions:
+  contents: read
+jobs:
+  changed-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      ORCA_BACKGROUND_LAUNCH: '1'
+      ORCA_CANDIDATE_SHA: e7b66194b19a5b6adbd6dd9beb895efd40936de0
+      ORCA_CANDIDATE_TREE: 26b2652e10cf89c1bf855500ae8c68ac3d7ac30b
+      ORCA_BASE_SHA: ee8d965e81bc22518edae412d5bc4763e38c37c3
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: Afloat16/orca
+          ref: e7b66194b19a5b6adbd6dd9beb895efd40936de0
+          fetch-depth: 50
+          persist-credentials: false
+      - name: Verify exact candidate and change scope
+        run: |
+          test "$(git rev-parse HEAD)" = "$ORCA_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$ORCA_CANDIDATE_TREE"
+          python3 - <<'PYSCOPED'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['ORCA_BASE_SHA'], 'HEAD'], text=True).splitlines()
+          assert sorted(paths) == ['src/main/link-preview/link-preview-inert-markup.test.ts', 'src/main/link-preview/link-preview-page-metadata.ts', 'src/main/link-preview/link-preview.ts', 'src/main/network/page-metadata/html-head-tags.ts'], paths
+          print('Verified exactly three metadata source files and one parser regression test file.')
+          PYSCOPED
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: config/.bun-version
+          no-cache: true
+      - name: Install repository toolchain and native dependencies
+        uses: ./.github/actions/install-node-dependencies
+        with:
+          node-version: '24'
+          native-runtime: node
+          cache-pnpm-store: 'false'
+          cache-pnpm-verification: 'false'
+          persist-native-cache: 'false'
+      - name: Check source formatting
+        run: |
+          if ! pnpm exec oxfmt --check src/main/link-preview/link-preview-inert-markup.test.ts src/main/link-preview/link-preview-page-metadata.ts src/main/link-preview/link-preview.ts src/main/network/page-metadata/html-head-tags.ts; then
+            pnpm exec oxfmt --write src/main/link-preview/link-preview-inert-markup.test.ts src/main/link-preview/link-preview-page-metadata.ts src/main/link-preview/link-preview.ts src/main/network/page-metadata/html-head-tags.ts
+            git diff -- src/main/link-preview/link-preview-inert-markup.test.ts src/main/link-preview/link-preview-page-metadata.ts src/main/link-preview/link-preview.ts src/main/network/page-metadata/html-head-tags.ts
+            exit 1
+          fi
+      - name: Run required changed-file gate
+        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
+      - name: Verify upstream and compatibility controls
+        run: |
+          git fetch --no-tags --depth=1 origin 17dae724dc3c1c3dc3b643193028a1ae5306ecd7
+          python3 - <<'PYCONTROLS'
+          from pathlib import Path
+          import json, os, subprocess
+          paths=['src/main/network/page-metadata/html-head-tags.ts','src/main/link-preview/link-preview-page-metadata.ts']
+          test='src/main/link-preview/link-preview-inert-markup.test.ts'
+          original={p:Path(p).read_bytes() for p in paths}
+          results=[]
+          cases=[('upstream',os.environ['ORCA_BASE_SHA'],3,0),('rejected','17dae724dc3c1c3dc3b643193028a1ae5306ecd7',1,2),('charset-cap',None,1,2)]
+          try:
+              for name,ref,failed,passed in cases:
+                  for path,data in original.items():
+                      Path(path).write_bytes(subprocess.check_output(['git','show',f'{ref}:{path}']) if ref else data)
+                  if name=='charset-cap':
+                      path=Path(paths[1]);text=path.read_text();anchor="body.toString('latin1')"
+                      assert text.count(anchor)==1
+                      path.write_text(text.replace(anchor,"body.subarray(0, 64 * 1024).toString('latin1')"))
+                  output=Path(os.environ['RUNNER_TEMP'])/f'html-{name}-control.json'
+                  proc=subprocess.run(['timeout','900','pnpm','test',test,'--maxWorkers=2','--reporter=json',f'--outputFile={output}'],timeout=950)
+                  result=json.loads(output.read_text())
+                  assert proc.returncode==1,(name,proc.returncode)
+                  assert (result['numFailedTests'],result['numPassedTests'],result['numTotalTests'])==(failed,passed,3),(name,result)
+                  assertions=[a for suite in result['testResults'] for a in suite['assertionResults']]
+                  for assertion in assertions:
+                      if assertion['status']=='failed':
+                          assert any('AssertionError' in message for message in assertion.get('failureMessages',[])),assertion
+                  summary={'name':name,'exit_code':proc.returncode,'failed':failed,'passed':passed,'tests':[{'name':a['fullName'],'status':a['status']} for a in assertions]}
+                  results.append(summary);print(json.dumps(summary),flush=True)
+          finally:
+              for path,data in original.items():Path(path).write_bytes(data)
+              for path,data in original.items():assert Path(path).read_bytes()==data,path
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          (Path(os.environ['RUNNER_TEMP'])/'html-controls-results.json').write_text(json.dumps(results,indent=2)+'\n')
+          PYCONTROLS
+      - name: Benchmark the exact public metadata readers
+        run: |
+          python3 - <<'PYBENCH'
+          from pathlib import Path
+          import os, subprocess
+          root=Path(os.environ['RUNNER_TEMP'])/'html-metadata-benchmark'
+          root.mkdir(parents=True,exist_ok=True)
+          paths=['src/main/network/page-metadata/html-head-tags.ts','src/main/link-preview/link-preview-page-metadata.ts']
+          for directory,ref in [('source',os.environ['ORCA_BASE_SHA']),('candidate',os.environ['ORCA_CANDIDATE_SHA'])]:
+              for path in paths:
+                  target=root/directory/path;target.parent.mkdir(parents=True,exist_ok=True)
+                  target.write_bytes(subprocess.check_output(['git','show',f'{ref}:{path}']))
+          (root/'benchmark.mjs').write_text('import \'./probe-loader.mjs\'\nimport { performance } from \'node:perf_hooks\'\nimport assert from \'node:assert/strict\'\nimport { writeFileSync, readFileSync } from \'node:fs\'\nimport { createHash } from \'node:crypto\'\nconst current = await import(\'./source/src/main/link-preview/link-preview-page-metadata.ts\')\nconst candidate = await import(\'./candidate/src/main/link-preview/link-preview-page-metadata.ts\')\n\nconst pageUrl = new URL(\'https://example.test/page\')\nconst metadata = \'<meta name="description" content="A page"><title>Page title</title><link rel="icon" href="/page.ico">\'\nconst script = \'const value = 12345; const next = value + 1;\\n\'.repeat(24500)\nconst markup = \'<div class="card"><span>Some page text</span></div>\'.repeat(21500)\nconst fixtures = [\n  { name: \'large-script-before-metadata\', html: `<head><script>${script}</script>${metadata}</head>` },\n  { name: \'large-body-after-metadata\', html: `<head>${metadata}</head><body>${markup}</body>` },\n  { name: \'large-body-before-metadata\', html: `<body>${markup}${metadata}</body>` },\n  { name: \'large-script-without-metadata\', html: `<head><script>${script}</script></head>` },\n  { name: \'late-charset\', html: \' \'.repeat(70 * 1024) + \'<meta charset="windows-1252">\' + metadata }\n]\nconst expected = { title: \'Page title\', description: \'A page\', siteName: null, imageUrl: null, iconHref: \'/page.ico\' }\nlet sink = 0\nfunction batch(reader, html, iterations) {\n  const start = performance.now()\n  for (let index = 0; index < iterations; index++) {\n    const result = reader(html, pageUrl)\n    sink += result.title?.length ?? result.iconHref.length\n  }\n  return performance.now() - start\n}\nconst median = (values) => [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)]\nconst results = []\nfor (const fixture of fixtures) {\n  const wanted = fixture.name === \'large-script-without-metadata\'\n    ? { title: null, description: null, siteName: null, imageUrl: null, iconHref: \'/favicon.ico\' }\n    : expected\n  assert.deepEqual(current.readLinkPreviewMetadata(fixture.html, pageUrl), wanted)\n  assert.deepEqual(candidate.readLinkPreviewMetadata(fixture.html, pageUrl), wanted)\n  batch(current.readLinkPreviewMetadata, fixture.html, 20)\n  batch(candidate.readLinkPreviewMetadata, fixture.html, 20)\n  let iterations = 1\n  while (Math.min(\n    batch(current.readLinkPreviewMetadata, fixture.html, iterations),\n    batch(candidate.readLinkPreviewMetadata, fixture.html, iterations)\n  ) < 25 && iterations < 4096) iterations *= 2\n  const samples = []\n  for (let sample = 0; sample < 11; sample++) {\n    const order = sample % 2 ? [\'candidate\', \'current\'] : [\'current\', \'candidate\']\n    const ms = {}\n    for (const name of order) {\n      ms[name] = batch(name === \'current\' ? current.readLinkPreviewMetadata : candidate.readLinkPreviewMetadata, fixture.html, iterations)\n    }\n    samples.push({ currentMs: ms.current / iterations, candidateMs: ms.candidate / iterations, ratio: ms.candidate / ms.current })\n  }\n  const result = {\n    name: fixture.name, bytes: Buffer.byteLength(fixture.html), iterations, samples,\n    currentMedianMs: median(samples.map((sample) => sample.currentMs)),\n    candidateMedianMs: median(samples.map((sample) => sample.candidateMs)),\n    medianPairedRatio: median(samples.map((sample) => sample.ratio))\n  }\n  results.push(result)\n  process.stdout.write(JSON.stringify(result) + \'\\n\')\n}\nconst files = [\'src/main/network/page-metadata/html-head-tags.ts\', \'src/main/link-preview/link-preview-page-metadata.ts\']\nconst candidateHashes = Object.fromEntries(files.map((path) => [path, createHash(\'sha256\').update(readFileSync(new URL(\'./candidate/\' + path, import.meta.url))).digest(\'hex\')]))\nconst report = { candidateHashes, node: process.version, platform: process.platform, base: \'ee8d965e81bc22518edae412d5bc4763e38c37c3\', protocol: \'Identical inputs and hardcoded output checks; warm-up, calibrated equal iteration counts, 11 alternating paired batches, medians; public metadata reader only.\', results, sink }\nwriteFileSync(new URL(\'./benchmark-results.json\', import.meta.url), JSON.stringify(report, null, 2) + \'\\n\')\n')
+          (root/'probe-loader.mjs').write_text("import { registerHooks } from 'node:module'\n\nregisterHooks({\n  resolve(specifier, context, nextResolve) {\n    try {\n      return nextResolve(specifier, context)\n    } catch (error) {\n      if (error.code === 'ERR_MODULE_NOT_FOUND' && specifier.startsWith('.')) {\n        return nextResolve(`${specifier}.ts`, context)\n      }\n      throw error\n    }\n  }\n})\n")
+          PYBENCH
+          timeout 900 node "$RUNNER_TEMP/html-metadata-benchmark/benchmark.mjs"
+      - name: Record exact validation identity
+        run: |
+          git diff --exit-code
+          git status --short
+          git rev-parse HEAD
+          git rev-parse 'HEAD^{tree}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: html-metadata-evidence
+          path: |
+            ${{ runner.temp }}/html-controls-results.json
+            ${{ runner.temp }}/html-metadata-benchmark/benchmark-results.json
+          if-no-files-found: ignore
