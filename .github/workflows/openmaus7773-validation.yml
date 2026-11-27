@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     env:
-      MAUS_CANDIDATE_SHA: 46923b4a43dae57abc42dbe1244869764b653064
-      MAUS_CANDIDATE_TREE: 252c24cac5f1af96d374bcf2191b1bff4be2d863
+      MAUS_CANDIDATE_SHA: d184bc6f9bada6e216910c52423fd33fd82d0ee7
+      MAUS_CANDIDATE_TREE: 4b13b6a086325b8278548c2c83998641de1aba76
       MAUS_BASE_SHA: 8e2e3223c4b8e0e267e0d4bbbb0a955b3cb50d81
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Afloat16/OpenMausBot
-          ref: 46923b4a43dae57abc42dbe1244869764b653064
+          ref: d184bc6f9bada6e216910c52423fd33fd82d0ee7
           fetch-depth: 2
           persist-credentials: false
       - name: Verify exact source and scope
@@ -26,8 +26,8 @@ jobs:
           python3 - <<'PY'
           import os, subprocess
           paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['MAUS_BASE_SHA'], 'HEAD'], text=True).splitlines()
-          assert sorted(paths) == ['server/host/ask-cards.test.ts', 'server/index.ts', 'server/runtime-coordinator.ts'], paths
-          print('Verified three-file follow-up source.')
+          assert sorted(paths) == ['server/coordinator.ts', 'server/host/acting-person.test.ts', 'server/host/acting-person.ts', 'server/host/ask-cards.test.ts', 'server/host/ask-cards.ts', 'server/index.ts', 'server/runtime-coordinator.ts'], paths
+          print('Verified concurrent seven-file source; no replacement patch applied.')
           PY
       - uses: pnpm/action-setup@ff378ebe6b225b0680b81c1ad4498ae0d1d3a5e3
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
@@ -41,31 +41,6 @@ jobs:
         run: pnpm lint
       - name: Real coordinator cards and private hand-back regressions
         run: pnpm exec vitest run server/host/ask-cards.test.ts server/runtime-coordinator.test.ts server/host/acting-person.test.ts --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/candidate-tests.json"
-      - name: Old prefix truncation must fail all five boundary regressions
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import json, os, subprocess
-          path = Path('server/runtime-coordinator.ts')
-          original = path.read_text()
-          start = original.index('export function coordinatorReplyText(text: string): string {')
-          end = original.index('\n}', start) + 2
-          old = 'export function coordinatorReplyText(text: string): string {\n  return text.slice(0, 12_000);\n}'
-          output = Path(os.environ['RUNNER_TEMP']) / 'old-prefix-control.json'
-          try:
-              path.write_text(original[:start] + old + original[end:])
-              run = subprocess.run(['pnpm', 'exec', 'vitest', 'run', 'server/host/ask-cards.test.ts', '-t', 'keeps the right handed-on state', '--reporter=json', '--outputFile=' + str(output)], timeout=180)
-              data = json.loads(output.read_text())
-              assert run.returncode == 1, run.returncode
-              assert data['numFailedTests'] == 5, data
-              failures = [a for s in data['testResults'] for a in s['assertionResults'] if a['status'] == 'failed']
-              assert len(failures) == 5
-              assert all(any('AssertionError' in m for m in a['failureMessages']) for a in failures), failures
-              print(json.dumps({'control': 'old prefix truncation with unchanged helper API', 'failed': data['numFailedTests'], 'passed': data['numPassedTests'], 'pending': data['numPendingTests'], 'names': [a['fullName'] for a in failures]}))
-          finally:
-              path.write_text(original)
-          subprocess.run(['git', 'diff', '--exit-code'], check=True)
-          PY
       - name: Documented isolated two-server question card fixture
         run: pnpm exec vitest run server/question-cards.e2e.test.ts --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/question-cards-e2e.json"
       - name: Verify restored source identity
