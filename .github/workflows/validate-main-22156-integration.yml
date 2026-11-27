@@ -54,7 +54,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "${{ matrix.sha }}"
-          test "$(git rev-parse HEAD^2)" = "2d3327f71690fb6897f651e67369c29f71266be4"
+          test "$(git rev-parse HEAD^2)" = "2d3327f00b77b18b5998107ecd309422575838a2"
           git diff --check HEAD^2 HEAD
       - name: Install official CPU dependencies
         id: install
