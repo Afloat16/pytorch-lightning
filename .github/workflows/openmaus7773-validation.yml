@@ -1,0 +1,85 @@
+name: Validate handed-on long questions
+on:
+  push:
+    branches: [validation/openmaus7773-long-question-20261127]
+permissions:
+  contents: read
+jobs:
+  questions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      MAUS_CANDIDATE_SHA: 0d1d659f518c445b0f712a11c112e2533a0ae9a8
+      MAUS_CANDIDATE_TREE: 6b108a6db96f1353ce0ad516b5f8aa94510f80f2
+      MAUS_BASE_SHA: 8e2e3223c4b8e0e267e0d4bbbb0a955b3cb50d81
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Afloat16/OpenMausBot
+          ref: 0d1d659f518c445b0f712a11c112e2533a0ae9a8
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify exact source and scope
+        run: |
+          test "$(git rev-parse HEAD)" = "$MAUS_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$MAUS_CANDIDATE_TREE"
+          python3 - <<'PY'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['MAUS_BASE_SHA'], 'HEAD'], text=True).splitlines()
+          assert sorted(paths) == ['server/host/ask-cards.test.ts', 'server/index.ts', 'server/runtime-coordinator.ts'], paths
+          print('Verified three-file follow-up source.')
+          PY
+      - uses: pnpm/action-setup@ff378ebe6b225b0680b81c1ad4498ae0d1d3a5e3
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Real coordinator cards and private hand-back regressions
+        run: pnpm exec vitest run server/host/ask-cards.test.ts server/runtime-coordinator.test.ts server/host/acting-person.test.ts --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/candidate-tests.json"
+      - name: Old prefix truncation must fail all five boundary regressions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, subprocess
+          path = Path('server/runtime-coordinator.ts')
+          original = path.read_text()
+          start = original.index('export function coordinatorReplyText(text: string): string {')
+          end = original.index('\n}', start) + 2
+          old = 'export function coordinatorReplyText(text: string): string {\n  return text.slice(0, 12_000);\n}'
+          output = Path(os.environ['RUNNER_TEMP']) / 'old-prefix-control.json'
+          try:
+              path.write_text(original[:start] + old + original[end:])
+              run = subprocess.run(['pnpm', 'exec', 'vitest', 'run', 'server/host/ask-cards.test.ts', '-t', 'keeps the right handed-on state', '--reporter=json', '--outputFile=' + str(output)], timeout=180)
+              data = json.loads(output.read_text())
+              assert run.returncode == 1, run.returncode
+              assert data['numFailedTests'] == 5, data
+              failures = [a for s in data['testResults'] for a in s['assertionResults'] if a['status'] == 'failed']
+              assert len(failures) == 5
+              assert all(any('AssertionError' in m for m in a['failureMessages']) for a in failures), failures
+              print(json.dumps({'control': 'old prefix truncation with unchanged helper API', 'failed': data['numFailedTests'], 'passed': data['numPassedTests'], 'pending': data['numPendingTests'], 'names': [a['fullName'] for a in failures]}))
+          finally:
+              path.write_text(original)
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          PY
+      - name: Documented isolated two-server question card fixture
+        run: pnpm exec vitest run server/question-cards.e2e.test.ts --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/question-cards-e2e.json"
+      - name: Verify restored source identity
+        run: |
+          git diff --exit-code
+          test "$(git rev-parse HEAD)" = "$MAUS_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$MAUS_CANDIDATE_TREE"
+          git status --short
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: openmaus-long-question-evidence
+          path: |
+            ${{ runner.temp }}/candidate-tests.json
+            ${{ runner.temp }}/old-prefix-control.json
+            ${{ runner.temp }}/question-cards-e2e.json
+          if-no-files-found: warn

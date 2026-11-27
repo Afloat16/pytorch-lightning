@@ -1,2 +1,0 @@
-pytest ==9.0.2
-pytest-doctestplus ==1.7.1
