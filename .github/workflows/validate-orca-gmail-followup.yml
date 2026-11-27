@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 35
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: cba9ec54596983b061b99b57053d40e0ace87e1d
-      ORCA_CANDIDATE_TREE: f69986e70d3d72e2ef9d2e8cbad776597a1ab9cd
+      ORCA_CANDIDATE_SHA: 0dcfb92508c7c499564f580a524d815a7eef66de
+      ORCA_CANDIDATE_TREE: 57cb03ae5d37471381bca883fab0606f230a4880
       ORCA_BASE_SHA: 251e9b0558be785f206aece6368a17b72e15c3b5
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: cba9ec54596983b061b99b57053d40e0ace87e1d
+          ref: 0dcfb92508c7c499564f580a524d815a7eef66de
           fetch-depth: 50
           persist-credentials: false
       - name: Verify exact candidate and change scope
