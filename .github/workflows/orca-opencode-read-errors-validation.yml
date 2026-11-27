@@ -1,4 +1,4 @@
-name: Diagnose OpenCode read boundary evidence
+name: Validate OpenCode part read boundaries
 on:
   push:
     branches: [validation/orca-opencode-read-errors-20261127]
@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 35
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: 77c28d162a9447b422696004caad99a932a2a58e
-      ORCA_CANDIDATE_TREE: 06e28e3d35c8cfcc8f30156e1b7666c8f201bbfc
-      ORCA_BASE_SHA: 2c86f32e2447a3cdcdb74917fcedbe30507bc0bc
+      ORCA_CANDIDATE_SHA: 89f916f0c71f7a3a2d447ea666161f3afb07629d
+      ORCA_CANDIDATE_TREE: 0a9469c99876c41a8856b0fb8db6fe13feb6c053
+      ORCA_BASE_SHA: e6fa4c61b8b59656d8f1e41b15192fa9b5f8f7c6
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: 77c28d162a9447b422696004caad99a932a2a58e
+          ref: 89f916f0c71f7a3a2d447ea666161f3afb07629d
           fetch-depth: 10
           persist-credentials: false
       - name: Verify exact candidate and scope
@@ -59,39 +59,39 @@ jobs:
           assert (r['numTotalTests'], r['numPassedTests'], r['numFailedTests']) == (2, 2, 0), r
           print('Both public read-boundary regressions executed and passed.')
           PY
-      - name: Reproduce inherited ratchets on exact prior source
+      - name: Preserve old History and search cache rows
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import json, os, subprocess
-          candidate = os.environ['ORCA_CANDIDATE_SHA']
-          baseline = os.environ['ORCA_BASE_SHA']
-          checks = [
-              ('main-blocking-api-ratchet', [
-                  'src/main/ai-vault-search/storage/session-search-schema.ts: 14 blocking sqlite use(s), baseline allows 13.',
-                  'src/main/ai-vault/parse-cache/session-parse-cache-schema.ts: 6 blocking sqlite use(s), baseline allows 0.'
-              ]),
-              ('main-blocking-helper-ratchet', [
-                  'src/main/ai-vault/parse-cache/session-parse-cache-database.ts: 10 blocking helper reference(s), baseline allows 9.'
-              ])
-          ]
-          results = []
+          overlays = {
+            "src/main/ai-vault/parse-cache/session-parse-cache-persistence.test.ts": "import { existsSync } from 'node:fs'\nimport { mkdtemp, rm, stat, writeFile } from 'node:fs/promises'\nimport { tmpdir } from 'node:os'\nimport { join } from 'node:path'\nimport { afterEach, beforeEach, describe, expect, it } from 'vitest'\nimport SyncDatabase from '../../sqlite/sync-database'\nimport {\n  flushSessionParseCachePersist,\n  initSessionParseCachePersistence,\n  resetSessionParseCachePersistenceForTests\n} from './session-parse-cache-persistence'\nimport { SESSION_PARSE_CACHE_SCHEMA_VERSION } from './session-parse-cache-database'\nimport { writePreviousSessionParseRows } from './session-parse-cache-previous-row.test-fixture'\nimport {\n  createSessionParseStats,\n  parseAgentSessionFileCached,\n  type SessionParseStats\n} from './session-scanner-parse-cache'\nimport { resetSessionParseCacheForTests } from './session-parse-cache-store'\nimport { parseSessionCandidate } from '../parsing/session-scanner-candidate-parse'\nimport { MAX_SESSION_TRANSCRIPT_RECORD_BYTES } from '../transcripts/session-transcript-record-budget'\nimport type { FileWithMtime, SessionFileCandidate } from '../session-scanner-types'\n\nconst APP_VERSION = '1.2.3-test'\n\nlet tempRoots: string[] = []\n\nbeforeEach(() => {\n  resetSessionParseCacheForTests()\n  resetSessionParseCachePersistenceForTests()\n})\n\nafterEach(async () => {\n  resetSessionParseCachePersistenceForTests()\n  await Promise.all(tempRoots.map((root) => rm(root, { recursive: true, force: true })))\n  tempRoots = []\n})\n\nasync function makeTempDir(): Promise<string> {\n  const root = await mkdtemp(join(tmpdir(), 'orca-parse-cache-persist-'))\n  tempRoots.push(root)\n  return root\n}\n\nasync function claudeCandidate(path: string): Promise<SessionFileCandidate> {\n  const fileStat = await stat(path)\n  const file: FileWithMtime = {\n    path,\n    mtimeMs: fileStat.mtimeMs,\n    modifiedAt: fileStat.mtime.toISOString(),\n    sizeBytes: fileStat.size\n  }\n  return { agent: 'claude', file, codexHome: null }\n}\n\nfunction userRecord(index: number, text: string): string {\n  return JSON.stringify({\n    type: 'user',\n    sessionId: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',\n    timestamp: new Date(1740000000000 + index * 60_000).toISOString(),\n    cwd: '/repo/app',\n    gitBranch: 'main',\n    message: { role: 'user', content: text }\n  })\n}\n\nfunction assistantRecord(index: number, text: string): string {\n  return JSON.stringify({\n    type: 'assistant',\n    sessionId: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',\n    timestamp: new Date(1740000000000 + index * 60_000).toISOString(),\n    message: {\n      role: 'assistant',\n      model: 'claude-fable-5',\n      content: [{ type: 'text', text }],\n      usage: { input_tokens: 100, output_tokens: 40 }\n    }\n  })\n}\n\nasync function writeTranscript(\n  root: string,\n  name = 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee'\n): Promise<string> {\n  const path = join(root, `${name}.jsonl`)\n  await writeFile(path, `${userRecord(0, 'first question')}\\n${assistantRecord(1, 'answer')}\\n`)\n  return path\n}\n\nasync function parse(path: string): Promise<SessionParseStats> {\n  const stats = createSessionParseStats()\n  await parseAgentSessionFileCached(await claudeCandidate(path), process.platform, stats)\n  return stats\n}\n\nfunction simulateRestart(cacheFile: string): void {\n  resetSessionParseCacheForTests()\n  resetSessionParseCachePersistenceForTests()\n  initSessionParseCachePersistence({ filePath: cacheFile, appVersion: APP_VERSION })\n}\n\ndescribe('session parse cache persistence', () => {\n  it('preserves version 10 History rows while adding the optional dependency signature', async () => {\n    const root = await makeTempDir()\n    const cacheFile = join(root, 'session-parse-cache.json')\n    const transcript = await writeTranscript(root)\n    const candidate = await claudeCandidate(transcript)\n    const session = await parseAgentSessionFileCached(candidate, process.platform)\n    expect(session).not.toBeNull()\n    writePreviousSessionParseRows(join(root, 'session-parse-cache.sqlite'), [\n      [\n        transcript,\n        {\n          mtimeMs: candidate.file.mtimeMs,\n          sizeBytes: candidate.file.sizeBytes ?? null,\n          platform: process.platform,\n          session\n        }\n      ]\n    ])\n    // Keep missing-transcript retention separate from the schema migration.\n    const previous = new SyncDatabase(join(root, 'session-parse-cache.sqlite'))\n    previous.prepare('UPDATE rows SET seen_at = ?').run(candidate.file.mtimeMs)\n    previous.close()\n    await rm(transcript)\n\n    simulateRestart(cacheFile)\n    const stats = createSessionParseStats()\n    expect(await parseAgentSessionFileCached(candidate, process.platform, stats)).toEqual(session)\n    expect(stats).toMatchObject({ reused: 1, fullParses: 0 })\n  })\n\n  it('reconstructs unreadable diagnostics from a version 8 row before reusing it', async () => {\n    const root = await makeTempDir()\n    const cacheFile = join(root, 'session-parse-cache.json')\n    const transcript = join(root, 'unreadable.jsonl')\n    await writeFile(\n      transcript,\n      `${userRecord(0, 'x'.repeat(MAX_SESSION_TRANSCRIPT_RECORD_BYTES))}\\n`\n    )\n    const candidate = await claudeCandidate(transcript)\n    const session = await parseAgentSessionFileCached(candidate, process.platform)\n    const oldDatabase = new SyncDatabase(join(root, 'session-parse-cache.sqlite'))\n    oldDatabase.exec(`\n      CREATE TABLE meta(key TEXT PRIMARY KEY, value TEXT NOT NULL);\n      INSERT INTO meta VALUES ('schema_version', '8');\n      CREATE TABLE rows(path TEXT PRIMARY KEY, mtime_ms REAL NOT NULL, size_bytes INTEGER,\n        platform TEXT NOT NULL, sidecar TEXT, session TEXT NOT NULL, seen_at INTEGER NOT NULL);\n    `)\n    oldDatabase.prepare('INSERT INTO rows VALUES (?, ?, ?, ?, ?, ?, ?)').run(\n      transcript,\n      candidate.file.mtimeMs,\n      candidate.file.sizeBytes ?? null,\n      process.platform,\n      null,\n      JSON.stringify(session),\n      // ast-grep-ignore: test-no-wall-clock -- Real database expiry uses current time for persisted row ages.\n      Date.now()\n    )\n    oldDatabase.close()\n\n    simulateRestart(cacheFile)\n    const parseStats = createSessionParseStats()\n    const context = {\n      platform: process.platform,\n      executionHostId: 'local' as const,\n      listed: true,\n      parseStats\n    }\n    expect((await parseSessionCandidate(candidate, context)).issue).toMatchObject({\n      messageCode: 'transcriptTooLarge'\n    })\n    expect(parseStats).toMatchObject({ fullParses: 1, reused: 0 })\n    await flushSessionParseCachePersist()\n\n    simulateRestart(cacheFile)\n    const reusedStats = createSessionParseStats()\n    expect(\n      (await parseSessionCandidate(candidate, { ...context, parseStats: reusedStats })).issue\n    ).toMatchObject({ messageCode: 'transcriptTooLarge' })\n    expect(reusedStats).toMatchObject({ reused: 1, fullParses: 0, bytesRead: 0 })\n  })\n\n  it('imports the old JSON file even when a title lookup reaches the database first', async () => {\n    const root = await makeTempDir()\n    const cacheFile = join(root, 'session-parse-cache.json')\n    const transcript = await writeTranscript(root)\n    const candidate = await claudeCandidate(transcript)\n    const session = await parseAgentSessionFileCached(candidate, process.platform)\n    const legacyRow = {\n      mtimeMs: candidate.file.mtimeMs,\n      sizeBytes: candidate.file.sizeBytes,\n      platform: process.platform,\n      session\n    }\n    await writeFile(\n      cacheFile,\n      JSON.stringify({\n        schemaVersion: SESSION_PARSE_CACHE_SCHEMA_VERSION,\n        appVersion: 'old',\n        entries: [[transcript, legacyRow]]\n      })\n    )\n    const orphan = join(root, 'session-parse-cache-12345-99.tmp')\n    await writeFile(orphan, '{\"half\":\"written')\n\n    simulateRestart(cacheFile)\n    // Title synchronization can parse before the first History scan.\n    await parse(await writeTranscript(root, 'baaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee'))\n    await flushSessionParseCachePersist()\n    expect(existsSync(cacheFile)).toBe(false)\n    expect(existsSync(orphan)).toBe(false)\n    await rm(transcript)\n    const stats = createSessionParseStats()\n    expect(await parseAgentSessionFileCached(candidate, process.platform, stats)).toEqual(session)\n    expect(stats).toMatchObject({ reused: 1, fullParses: 0 })\n  })\n})\n",
+            "src/main/ai-vault-search/storage/session-search-opencode-parts-repair.test.ts": "import { mkdtemp, rm } from 'node:fs/promises'\nimport { tmpdir } from 'node:os'\nimport { join } from 'node:path'\nimport { expect, it } from 'vitest'\nimport { openSessionSearchDatabase } from './session-search-schema'\n\nit('rereads old OpenCode JSON search rows once while retaining SQLite cursors', async () => {\n  const root = await mkdtemp(join(tmpdir(), 'orca-opencode-search-repair-'))\n  const path = join(root, 'search.sqlite')\n  let db = openSessionSearchDatabase(path)\n  try {\n    const session = db.prepare(\n      'INSERT INTO sessions(agent, session_id, file_path, title, resume_command) VALUES (?, ?, ?, ?, ?)'\n    )\n    const file = db.prepare(\n      'INSERT INTO files(path, byte_offset, mtime_ms, session_row_id) VALUES (?, 100, 1784109600000, ?)'\n    )\n    for (const [agent, source] of [\n      ['opencode', '/storage/session/project/ses_saved.json'],\n      ['opencode', '/storage/opencode.db#ses_other'],\n      ['claude', '/projects/session.jsonl']\n    ]) {\n      const inserted = session.run(agent, source, source, 'Recorded session', 'resume')\n      file.run(source, inserted.lastInsertRowid)\n    }\n    // Version 8 files predate both optional columns and this parser repair marker.\n    db.exec(\n      'ALTER TABLE files DROP COLUMN prefix_hash; ALTER TABLE files DROP COLUMN dependency_signature'\n    )\n    db.prepare('DELETE FROM meta WHERE key = ?').run('opencode_json_parts_files_version')\n    db.close()\n    db = openSessionSearchDatabase(path)\n    expect(db.prepare('SELECT path, byte_offset FROM files ORDER BY path').all()).toEqual([\n      { path: '/projects/session.jsonl', byte_offset: 100 },\n      { path: '/storage/opencode.db#ses_other', byte_offset: 100 },\n      { path: '/storage/session/project/ses_saved.json', byte_offset: -1 }\n    ])\n    db.prepare(\n      'UPDATE files SET byte_offset = 200, prefix_hash = ?, dependency_signature = ? WHERE path = ?'\n    ).run('saved-prefix', 'saved-revision', '/storage/session/project/ses_saved.json')\n    db.close()\n    db = openSessionSearchDatabase(path)\n    expect(\n      db\n        .prepare('SELECT byte_offset, prefix_hash, dependency_signature FROM files WHERE path = ?')\n        .get('/storage/session/project/ses_saved.json')\n    ).toEqual({\n      byte_offset: 200,\n      prefix_hash: 'saved-prefix',\n      dependency_signature: 'saved-revision'\n    })\n  } finally {\n    db.close()\n    await rm(root, { recursive: true, force: true })\n  }\n})\n"
+          }
+          saved = {path: Path(path).read_bytes() for path in overlays}
           try:
-              subprocess.run(['git', 'switch', '--detach', baseline], check=True)
-              assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == baseline
-              assert subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip() == '8f1428cab41cb2893f8b0153e218f2e02ad5d279'
-              for name, expected in checks:
-                  run = subprocess.run(['timeout', '900', 'node', 'config/scripts/static-analysis/ratchets/runtime-lifecycle/check-' + name + '.mjs'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=950)
-                  print(run.stdout, flush=True)
-                  assert run.returncode == 1, (name, run.returncode)
-                  assert all(item in run.stdout for item in expected), (name, run.stdout)
-                  results.append({'name': name, 'exit_code': run.returncode, 'inherited_diagnostics': expected})
+              for path, contents in overlays.items():
+                  Path(path).write_text(contents)
+              output = Path(os.environ['RUNNER_TEMP']) / 'opencode-e6-migration.json'
+              run = subprocess.run([
+                  'timeout', '900', 'pnpm', 'test', *overlays.keys(),
+                  '-t', 'preserves version 10 History rows|rereads old OpenCode JSON search rows once',
+                  '--maxWorkers=2', '--reporter=default', '--reporter=json', '--outputFile=' + str(output)
+              ], timeout=950)
+              report = json.loads(output.read_text())
+              assert run.returncode == 0, run.returncode
+              assert report['numPassedTests'] == 2 and report['numFailedTests'] == 0, report
+              passed = [item for suite in report['testResults'] for item in suite['assertionResults'] if item['status'] == 'passed']
+              assert len(passed) == 2, passed
+              assert any('preserves version 10 History rows' in item['fullName'] for item in passed), passed
+              assert any('rereads old OpenCode JSON search rows once' in item['fullName'] for item in passed), passed
+              print(json.dumps({'exact_source': os.environ['ORCA_CANDIDATE_SHA'], 'test_overlays_only': list(overlays), 'migration_controls_passed': [item['fullName'] for item in passed]}), flush=True)
           finally:
-              subprocess.run(['git', 'switch', '--detach', candidate], check=True)
-          report = {'baseline': baseline, 'candidate': candidate, 'results': results}
-          (Path(os.environ['RUNNER_TEMP']) / 'opencode-inherited-ratchets.json').write_text(json.dumps(report, indent=2) + '\n')
+              for path, data in saved.items(): Path(path).write_bytes(data)
           subprocess.run(['git', 'diff', '--exit-code'], check=True)
           PY
+      - name: Run required changed-file gate
+        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
       - name: Prove both faults on the current prior head
         run: |
           python3 - <<'PY'
@@ -194,5 +194,5 @@ jobs:
             ${{ runner.temp }}/opencode-read-errors-baseline.json
             ${{ runner.temp }}/opencode-read-errors-controls.json
             ${{ runner.temp }}/opencode-benchmark-results.json
-            ${{ runner.temp }}/opencode-inherited-ratchets.json
+            ${{ runner.temp }}/opencode-e6-migration.json
           if-no-files-found: ignore
