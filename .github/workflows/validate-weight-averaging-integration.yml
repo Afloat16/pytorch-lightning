@@ -12,7 +12,7 @@ jobs:
       PACKAGE_NAME: lightning
       UV_TORCH_BACKEND: cpu
       UV_EXCLUDE_NEWER: 2 days
-      GLOO_SOCKET_IFNAME: eth0
+      GLOO_SOCKET_IFNAME: lo
       PYTHONPATH: src:tests
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
