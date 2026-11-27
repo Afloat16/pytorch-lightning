@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 40
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: 2beb1d2521683deeac67bb478ac43484c2dddce7
-      ORCA_CANDIDATE_TREE: 6e2fd2695024c35c09af2c05c04064c7d09147fb
+      ORCA_CANDIDATE_SHA: 9164b6cb2ddd9b51a23ed70bd890e36b11c11a80
+      ORCA_CANDIDATE_TREE: 552ac58a3f6503edc5dc0f717609cce562f82e53
       ORCA_BASE_SHA: 12ba475107eb4617c302e432fb551a69451d2274
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: 2beb1d2521683deeac67bb478ac43484c2dddce7
+          ref: 9164b6cb2ddd9b51a23ed70bd890e36b11c11a80
           fetch-depth: 10
           persist-credentials: false
       - name: Verify exact candidate and change scope
@@ -51,7 +51,7 @@ jobs:
           fi
       - name: Run public cache-refresh regressions
         run: |
-          timeout 900 pnpm test src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts --maxWorkers=2 --reporter=json --outputFile="$RUNNER_TEMP/opencode-focused.json"
+          timeout 900 pnpm test src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.test.ts --maxWorkers=2 --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/opencode-focused.json"
           python3 - <<'PY'
           import json, os
           from pathlib import Path
@@ -82,7 +82,7 @@ jobs:
                       assert path.endswith('session-scanner-opencode-json-sidecar.ts'), path
                       Path(path).unlink()
               output = Path(os.environ['RUNNER_TEMP']) / 'opencode-baseline.json'
-              run = subprocess.run(['timeout', '900', 'pnpm', 'test', test, '--maxWorkers=2', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
+              run = subprocess.run(['timeout', '900', 'pnpm', 'test', test, '--maxWorkers=2', '--reporter=default', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
               report = json.loads(output.read_text())
               assert run.returncode == 1, run.returncode
               assert (report['numTotalTests'], report['numPassedTests'], report['numFailedTests']) == (3, 0, 3), report
@@ -96,7 +96,7 @@ jobs:
               restore()
               Path(test).write_text(test_bytes.decode() + "\nit.each(['direct', 'worker'] as const)(\n  'migrates version 8 %s indexes without losing existing search results',\n  async (mode) => {\n    const open = async (): Promise<void> => {\n      store = mode === 'direct'\n        ? new SessionSearchStore(harness.databasePath)\n        : new SessionSearchWorkerStore(harness.databasePath, (error) => { throw error })\n      registerSessionSearchIndexConsumer(store)\n      if (store instanceof SessionSearchWorkerStore) await store.prepare()\n    }\n    await open()\n    await pass()\n    expect(matches('amber')).toEqual(['ses_refresh'])\n    await closeStore()\n    harness.write((db) => db.exec('ALTER TABLE files DROP COLUMN content_signature'))\n    await open()\n    expect(matches('amber')).toEqual(['ses_refresh'])\n    await replacePrompt('cedar request')\n    await pass()\n    expect(matches('cedar')).toEqual(['ses_refresh'])\n    expect(matches('amber')).toEqual([])\n  }\n)\n")
               output = Path(os.environ['RUNNER_TEMP']) / 'opencode-migration.json'
-              run = subprocess.run(['timeout', '900', 'pnpm', 'test', test, '-t', 'migrates version 8', '--maxWorkers=2', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
+              run = subprocess.run(['timeout', '900', 'pnpm', 'test', test, '-t', 'migrates version 8', '--maxWorkers=2', '--reporter=default', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
               report = json.loads(output.read_text())
               assert run.returncode == 0, run.returncode
               assert report['numPassedTests'] == 2 and report['numFailedTests'] == 0, report
@@ -148,7 +148,7 @@ jobs:
                       output = Path(os.environ['RUNNER_TEMP']) / f'opencode-benchmark-{pair}-{version}.json'
                       test_report = Path(os.environ['RUNNER_TEMP']) / f'opencode-benchmark-tests-{pair}-{version}.json'
                       env = {**os.environ, 'ORCA_LEGACY_BENCH_ROOT': str(root), 'ORCA_LEGACY_BENCH_OUTPUT': str(output), 'ORCA_LEGACY_BENCH_VERSION': version}
-                      run = subprocess.run(['timeout', '900', 'pnpm', 'exec', 'vitest', 'run', '--config', 'config/vitest.performance.config.ts', str(probe), '--maxWorkers=2', '--reporter=json', '--outputFile=' + str(test_report)], env=env, timeout=950)
+                      run = subprocess.run(['timeout', '900', 'pnpm', 'exec', 'vitest', 'run', '--config', 'config/vitest.performance.config.ts', str(probe), '--maxWorkers=2', '--reporter=default', '--reporter=json', '--outputFile=' + str(test_report)], env=env, timeout=950)
                       tested = json.loads(test_report.read_text())
                       assert run.returncode == 0 and tested['numPassedTests'] == 1 and tested['numFailedTests'] == 0, (version, tested)
                       paired[version] = json.loads(output.read_text())
