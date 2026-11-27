@@ -1,0 +1,38 @@
+name: Validate weight averaging integration
+on:
+  push:
+    branches: [validation/weight-averaging-integration-20261127]
+permissions:
+  contents: read
+jobs:
+  cpu-regressions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PACKAGE_NAME: lightning
+      UV_TORCH_BACKEND: cpu
+      UV_EXCLUDE_NEWER: 2 days
+      GLOO_SOCKET_IFNAME: eth0
+      PYTHONPATH: src:tests
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          ref: c0ceabd6e75a8e3af8fed4f7e0b0d62cb66653c9
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+        with:
+          python-version: '3.12'
+          activate-environment: true
+          enable-cache: false
+      - name: Install CPU test dependencies
+        run: uv pip install -e '.[pytorch-test]' 'torch==2.13.0' 'torchmetrics==1.8.2' 'ruff==0.15.9'
+      - name: Record tested source
+        run: |
+          git rev-parse HEAD
+          python -c "import torch; import lightning.pytorch; print(torch.__version__); print(lightning.pytorch.__file__)"
+      - name: Check changed Python style
+        run: |
+          ruff check src/lightning/pytorch/callbacks/weight_averaging.py tests/tests_pytorch/callbacks/test_weight_averaging.py tests/tests_pytorch/callbacks/test_weight_averaging_final_checkpoint.py
+          ruff format --check src/lightning/pytorch/callbacks/weight_averaging.py tests/tests_pytorch/callbacks/test_weight_averaging.py tests/tests_pytorch/callbacks/test_weight_averaging_final_checkpoint.py
+      - name: Run current integrated callback regressions
+        run: python -m pytest -q tests/tests_pytorch/callbacks/test_weight_averaging_final_checkpoint.py tests/tests_pytorch/callbacks/test_weight_averaging.py
