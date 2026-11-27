@@ -1,4 +1,4 @@
-name: Validate retained downloads after a destination collision
+name: Validate retained downloads after fallback copy failures
 on:
   push:
     branches: [validation/orca50581-download-custody-check-20261127]
@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 35
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: a26e88c4021a600b03e7ad414b4d0b2c296506a9
-      ORCA_CANDIDATE_TREE: e622b4edce90ef66e2c9af77212a3ce84641b5d1
-      ORCA_BASE_SHA: 5713ace06a3edbbc0c827f74cb8c5e993c8b18b3
+      ORCA_CANDIDATE_SHA: c02eb904887adf70d31cb8bf4a482e85ced85dd1
+      ORCA_CANDIDATE_TREE: da68482acda83ef6e176abb7a9eaa34a03ea79d9
+      ORCA_BASE_SHA: a26e88c4021a600b03e7ad414b4d0b2c296506a9
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: a26e88c4021a600b03e7ad414b4d0b2c296506a9
+          ref: c02eb904887adf70d31cb8bf4a482e85ced85dd1
           fetch-depth: 50
           persist-credentials: false
       - name: Verify exact candidate and three-file scope
@@ -54,7 +54,7 @@ jobs:
           fi
       - name: Run required changed-file gate
         run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
-      - name: Prove both production-entrypoint regressions fail on the previous head
+      - name: Prove both fallback-copy regressions fail on the previous head
         run: |
           paths=(src/main/ipc/filesystem/downloads/filesystem-download-{handlers.ts,promotion.ts})
           trap 'git restore --source="$ORCA_CANDIDATE_SHA" -- "${paths[@]}"' EXIT
@@ -71,14 +71,14 @@ jobs:
           import json, os
           from pathlib import Path
           result = json.loads(Path(os.environ['DOWNLOAD_CONTROL_REPORT']).read_text())
-          assert result['numTotalTests'] == 2, result
+          assert result['numTotalTests'] == 4, result
           assert result['numFailedTests'] == 2, result
-          assert result['numPassedTests'] == 0, result
-          assertions = [test for suite in result['testResults'] for test in suite['assertionResults']]
+          assert result['numPassedTests'] == 2, result
+          assertions = [test for suite in result['testResults'] for test in suite['assertionResults'] if test['status'] == 'failed']
           assert len(assertions) == 2, assertions
           for assertion in assertions:
               assert 'expected [] to have a length of 1' in '\n'.join(assertion['failureMessages']), assertion
-          print('Both real download handlers lost the staging file on the prior head.')
+          print('Both real download handlers lost complete staging after copy failure on the prior head.')
           PY
           git restore --source="$ORCA_CANDIDATE_SHA" -- "${paths[@]}"
           git diff --exit-code
