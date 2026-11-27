@@ -1,0 +1,79 @@
+name: Validate Gmail mixed-body follow-up
+on:
+  push:
+    branches: [validation/orca-gmail-followup-20261127]
+permissions:
+  contents: read
+jobs:
+  changed-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      ORCA_BACKGROUND_LAUNCH: '1'
+      ORCA_CANDIDATE_SHA: 815df240b933834b0df46d186186bc14727b2686
+      ORCA_CANDIDATE_TREE: 14aebf87bc4b514f067c7a40926a582c6fe7201b
+      ORCA_BASE_SHA: 251e9b0558be785f206aece6368a17b72e15c3b5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: Afloat16/orca
+          ref: 815df240b933834b0df46d186186bc14727b2686
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify exact candidate and change scope
+        run: |
+          test "$(git rev-parse HEAD)" = "$ORCA_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$ORCA_CANDIDATE_TREE"
+          python3 - <<'PY'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['ORCA_BASE_SHA'], 'HEAD'], text=True).splitlines()
+          assert sorted(paths) == ['src/main/google/google-gmail-message.test.ts', 'src/main/google/google-gmail-message.ts'], paths
+          print('Verified exactly two Gmail source/test files.')
+          PY
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: config/.bun-version
+          no-cache: true
+      - name: Install repository toolchain and native dependencies
+        uses: ./.github/actions/install-node-dependencies
+        with:
+          node-version: '24'
+          native-runtime: node
+          cache-pnpm-store: 'false'
+          cache-pnpm-verification: 'false'
+          persist-native-cache: 'false'
+      - name: Check source formatting
+        run: |
+          if ! pnpm exec oxfmt --check src/main/google/google-gmail-message.ts src/main/google/google-gmail-message.test.ts; then
+            pnpm exec oxfmt --write src/main/google/google-gmail-message.ts src/main/google/google-gmail-message.test.ts
+            git diff -- src/main/google/google-gmail-message.ts src/main/google/google-gmail-message.test.ts
+            exit 1
+          fi
+      - name: Run required changed-file gate
+        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
+      - name: Verify new regressions fail on upstream implementation
+        run: |
+          path=src/main/google/google-gmail-message.ts
+          trap 'git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"' EXIT
+          git show "$ORCA_BASE_SHA:$path" > "$path"
+          set +e
+          timeout 900 pnpm test src/main/google/google-gmail-message.test.ts --maxWorkers=2 --reporter=json --outputFile="$RUNNER_TEMP/gmail-main-control.json"
+          result=$?
+          set -e
+          test "$result" -eq 1
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-main-control.json').read_text())
+          assert result['numFailedTests'] == 3, result
+          assert result['numPassedTests'] == 0, result
+          print('All three regressions fail with the unchanged upstream bodyText implementation.')
+          PY
+          git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
+          git diff --exit-code
+      - name: Record validation identity
+        run: |
+          git status --short
+          git diff --exit-code
+          git rev-parse HEAD
+          git rev-parse 'HEAD^{tree}'
