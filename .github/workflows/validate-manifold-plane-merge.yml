@@ -1,0 +1,50 @@
+name: Validate plane-cut merge
+on:
+  push:
+    branches: [validation/manifold-plane-20261127]
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CC: gcc-14
+      CXX: g++-14
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: Afloat16/manifold
+          ref: c6b2cc38323a8d30760d2ebce4f5622778f3236f
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify candidate and whitespace
+        run: |
+          test "$(git rev-parse HEAD)" = "c6b2cc38323a8d30760d2ebce4f5622778f3236f"
+          git diff --check HEAD^2 HEAD
+      - name: Install native dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes g++-14 cmake ninja-build libgtest-dev python3-venv
+      - name: Check changed C++ formatting
+        run: |
+          python3 -m venv "$RUNNER_TEMP/plane-cut-format"
+          "$RUNNER_TEMP/plane-cut-format/bin/pip" install --disable-pip-version-check clang-format==20.1.8
+          "$RUNNER_TEMP/plane-cut-format/bin/clang-format" --dry-run --Werror src/manifold.cpp test/boolean_test.cpp
+      - name: Configure native tests
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF \
+            -DMANIFOLD_PAR=OFF \
+            -DMANIFOLD_TEST=ON \
+            -DMANIFOLD_PYBIND=OFF \
+            -DMANIFOLD_STRICT=ON \
+            -DMANIFOLD_DEBUG=ON \
+            -DMANIFOLD_ASSERT=ON \
+            -DMANIFOLD_DOWNLOADS=OFF
+      - name: Build native test target
+        run: cmake --build build --target manifold_test --parallel 2
+      - name: Run plane, precision, error and context regressions
+        run: |
+          build/test/manifold_test --gtest_filter='Boolean.Plane*:Boolean.Split*:Boolean.TrimByPlane*:Boolean.Empty*:Boolean.Precision*:Manifold.*Precision*:Manifold.ErrorPropagation*:Context.ManifoldContextEveryOpDropsAttachment'
