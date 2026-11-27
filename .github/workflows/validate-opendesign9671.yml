@@ -1,0 +1,82 @@
+name: Validate OpenDesign 9671 preview section types
+on:
+  push:
+    branches:
+      - validation/opendesign9671-typed-preview-20261127
+permissions:
+  contents: read
+jobs:
+  exact-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      CI: 'true'
+    steps:
+      - name: Checkout exact public candidate
+        uses: actions/checkout@v6.0.2
+        with:
+          repository: Afloat16/open-design
+          ref: f74e6e2cfc06eb7512160c2812923f3fad854d18
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify immutable source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = 'f74e6e2cfc06eb7512160c2812923f3fad854d18'
+          test "$(git rev-parse 'HEAD^{tree}')" = '4b33d34e1df1ba60b5a2d2af09e293f127dd2132'
+          git diff --exit-code
+      - name: Setup repository workspace
+        uses: ./.github/actions/setup-workspace
+        with:
+          postinstall-intent: workspace
+          runner-labels: '[]'
+      - name: Reproduce the eight original daemon type errors and restore
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+          path = Path('apps/daemon/src/document-preview.ts')
+          fixed = path.read_bytes()
+          old = subprocess.check_output(['git', 'show', 'b810b1b61683e6d7cd8ea561e59980e97b164b60:apps/daemon/src/document-preview.ts'])
+          try:
+              path.write_bytes(old)
+              run = subprocess.run(['pnpm', '--filter', '@open-design/daemon', 'typecheck'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+              print(run.stdout)
+              assert run.returncode != 0, 'The original unknown-sections regression did not fail'
+              errors = [line for line in run.stdout.splitlines() if 'error TS' in line]
+              found = set()
+              for line in errors:
+                  match = re.search(r'tests/document-preview-pptx-order\.test\.ts\((\d+),\d+\): error (TS\d+)', line)
+                  assert match, 'Unexpected type error: ' + line
+                  found.add((int(match.group(1)), match.group(2)))
+              expected = {(line, code) for line in (71, 83, 100, 112) for code in ('TS2571', 'TS7006')}
+              assert found == expected and len(errors) == 8, (found, errors)
+              print('NEGATIVE CONTROL: exact original producer fails with all eight expected type errors.')
+          finally:
+              path.write_bytes(fixed)
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          print('Exact candidate restored cleanly.')
+          PY
+      - name: Prebuild the same declaration surfaces as upstream Preflight
+        shell: bash
+        run: |
+          pnpm --filter @open-design/desktop build
+          pnpm --filter @open-design/web build:sidecar
+      - name: Required repository guard
+        run: pnpm guard
+      - name: Required workspace typecheck including daemon source and test configs
+        run: pnpm typecheck
+      - name: Focused preview, export, and classifier regressions
+        run: pnpm --filter @open-design/daemon exec vitest run -c vitest.config.ts tests/document-preview-pptx-order.test.ts tests/deck-export.test.ts tests/project-classifiers.test.ts --maxWorkers=2
+      - name: Verify tested tree is unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code
+          test "$(git rev-parse HEAD)" = 'f74e6e2cfc06eb7512160c2812923f3fad854d18'
+          test "$(git rev-parse 'HEAD^{tree}')" = '4b33d34e1df1ba60b5a2d2af09e293f127dd2132'
+          node --version
+          pnpm --version
