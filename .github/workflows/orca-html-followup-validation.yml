@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 35
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: e7b66194b19a5b6adbd6dd9beb895efd40936de0
-      ORCA_CANDIDATE_TREE: 26b2652e10cf89c1bf855500ae8c68ac3d7ac30b
+      ORCA_CANDIDATE_SHA: c1043dd028e7f37587a4c12c20345b2657f6fcf0
+      ORCA_CANDIDATE_TREE: b0972f1721c99f02e1791dd2077253c8dd7c1598
       ORCA_BASE_SHA: ee8d965e81bc22518edae412d5bc4763e38c37c3
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: e7b66194b19a5b6adbd6dd9beb895efd40936de0
+          ref: c1043dd028e7f37587a4c12c20345b2657f6fcf0
           fetch-depth: 50
           persist-credentials: false
       - name: Verify exact candidate and change scope
@@ -61,7 +61,7 @@ jobs:
           test='src/main/link-preview/link-preview-inert-markup.test.ts'
           original={p:Path(p).read_bytes() for p in paths}
           results=[]
-          cases=[('upstream',os.environ['ORCA_BASE_SHA'],3,0),('rejected','17dae724dc3c1c3dc3b643193028a1ae5306ecd7',1,2),('charset-cap',None,1,2)]
+          cases=[('upstream',os.environ['ORCA_BASE_SHA'],3,0),('rejected','17dae724dc3c1c3dc3b643193028a1ae5306ecd7',1,2),('charset-cap',None,1,2),('script-overlap',None,1,2)]
           try:
               for name,ref,failed,passed in cases:
                   for path,data in original.items():
@@ -70,6 +70,10 @@ jobs:
                       path=Path(paths[1]);text=path.read_text();anchor="body.toString('latin1')"
                       assert text.count(anchor)==1
                       path.write_text(text.replace(anchor,"body.subarray(0, 64 * 1024).toString('latin1')"))
+                  if name=='script-overlap':
+                      path=Path(paths[0]);text=path.read_text();anchor='<!--(?:-*>)?'
+                      assert text.count(anchor)==1
+                      path.write_text(text.replace(anchor,'<!--'))
                   output=Path(os.environ['RUNNER_TEMP'])/f'html-{name}-control.json'
                   proc=subprocess.run(['timeout','900','pnpm','test',test,'--maxWorkers=2','--reporter=json',f'--outputFile={output}'],timeout=950)
                   result=json.loads(output.read_text())
