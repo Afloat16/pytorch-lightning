@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 35
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: 154bf4f178550d324c3422d4d64937d300a523c0
-      ORCA_CANDIDATE_TREE: dc8f487d5e74ad049c8c110067f34ea5ce47ef39
+      ORCA_CANDIDATE_SHA: e60c355b5f56453b37f21e1768ba3473356ce326
+      ORCA_CANDIDATE_TREE: b2271c077e2c8a09d28c759d3ab184cc27c68805
       ORCA_BASE_SHA: 251e9b0558be785f206aece6368a17b72e15c3b5
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: 154bf4f178550d324c3422d4d64937d300a523c0
+          ref: e60c355b5f56453b37f21e1768ba3473356ce326
           fetch-depth: 50
           persist-credentials: false
       - name: Verify exact candidate and change scope
@@ -65,30 +65,30 @@ jobs:
           import json, os
           from pathlib import Path
           result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-main-control.json').read_text())
-          assert result['numFailedTests'] == 5, result
-          assert result['numPassedTests'] == 0, result
-          print('All five regressions fail with the unchanged upstream bodyText implementation.')
+          assert result['numFailedTests'] >= 5, result
+          assert result['numTotalTests'] == 8, result
+          print('Upstream negative control:', result['numFailedTests'], 'failed;', result['numPassedTests'], 'passed.')
           PY
           git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
           git diff --exit-code
-      - name: Verify independent-section and named-root controls
+      - name: Verify review regressions fail on the published implementation
         run: |
           path=src/main/google/google-gmail-message.ts
           trap 'git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"' EXIT
-          git show 5356e90785ef458d69dbb5b1bb468b149916628e:"$path" > "$path"
+          git show 154bf4f178550d324c3422d4d64937d300a523c0:"$path" > "$path"
           set +e
-          timeout 900 pnpm test src/main/google/google-gmail-message.test.ts --maxWorkers=2 --reporter=json --outputFile="$RUNNER_TEMP/gmail-boundary-control.json"
+          timeout 900 pnpm test src/main/google/google-gmail-message.test.ts --maxWorkers=2 --reporter=json --outputFile="$RUNNER_TEMP/gmail-review-control.json"
           result=$?
           set -e
           test "$result" -eq 1
-          python3 - <<'PY'
+          python3 - <<'PYCONTROL'
           import json, os
           from pathlib import Path
-          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-boundary-control.json').read_text())
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-review-control.json').read_text())
           assert result['numFailedTests'] == 3, result
-          assert result['numPassedTests'] == 2, result
-          print('Prior candidate fails the named-root and two independent-section regressions; the other two tests pass.')
-          PY
+          assert result['numPassedTests'] == 5, result
+          print('The three review regressions fail on the published implementation; the original five tests pass.')
+          PYCONTROL
           git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
           git diff --exit-code
       - name: Record validation identity
