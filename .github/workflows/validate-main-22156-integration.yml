@@ -1,0 +1,84 @@
+name: Validate main integration after PR 22156
+run-name: Seven precise changelog conflict integrations on 6c4eed0
+on:
+  push:
+    branches: [validation/20261127-main-22156-integration]
+permissions:
+  contents: read
+jobs:
+  native-cpu:
+    name: Native CPU and repository hooks (PR ${{ matrix.pr }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - pr: 22173
+            sha: cf245dd1d71a9f8735bcb6962880f0368db72f17
+            test: tests/tests_pytorch/core/test_logging_graph.py
+          - pr: 22177
+            sha: acda9b432b797cfae5a24284f515fd36ce08f22e
+            test: tests/tests_pytorch/loops/test_evaluation_exception_modes.py
+          - pr: 22175
+            sha: b011af31bf0663e3bf5f2020f390018924ab0884
+            test: tests/tests_pytorch/callbacks/test_lr_monitor_tensor_history.py
+          - pr: 22171
+            sha: d0d3f5d28b716bc8b5ff8a77f57ea4938948b531
+            test: tests/tests_pytorch/tuner/test_lr_finder_accumulation_tail.py
+          - pr: 22169
+            sha: 72220fc37b7300055a03a3b298f419c6272fcdff
+            test: tests/tests_pytorch/tuner/test_batch_size_decrease.py
+          - pr: 22167
+            sha: 74f692443855465155d70c6f70831a0100720d83
+            test: tests/tests_pytorch/core/test_optimizer_toggle_cleanup.py
+          - pr: 22159
+            sha: 39221066eff56f28dd81c3110b6c304b721e81de
+            test: tests/tests_pytorch/callbacks/test_finetuning_iterables.py
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONPATH: src:tests
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+      - name: Verify exact candidate and merge base
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ matrix.sha }}"
+          test "$(git rev-parse HEAD^2)" = "6c4eed071690fb6897f651e67369c29f71266be4"
+          git diff --check HEAD^2 HEAD
+      - name: Install official CPU dependencies
+        id: install
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+          uv pip install --python .venv/bin/python -e . torch==2.9.1 torchmetrics==1.8.2 pytest==9.0.2 pytest-timeout==2.4.0 pytest-rerunfailures==16.1 pytest-random-order==1.2.0 tensorboardX==2.6.4 "jsonargparse[signatures]==4.41.0" rich matplotlib psutil ruff==0.15.9 pre-commit==4.2.0
+      - name: Test original regression and merged WeightAveraging behavior
+        run: |
+          git diff --exit-code
+          .venv/bin/python -m pytest -q "${{ matrix.test }}" tests/tests_pytorch/callbacks/test_weight_averaging_final_checkpoint.py --junitxml=integration.xml
+      - name: Existing result-metric regression coverage
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && matrix.pr == 22173 }}
+        run: .venv/bin/python -m pytest -q tests/tests_pytorch/core/test_results.py --junitxml=results.xml
+      - name: Run repository pre-commit hooks
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: .venv/bin/pre-commit run --all-files --show-diff-on-failure
+      - name: Require tested source to remain unchanged
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: main-22156-pr-${{ matrix.pr }}
+          path: |
+            integration.xml
+            results.xml

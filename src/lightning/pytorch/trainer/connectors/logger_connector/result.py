@@ -187,7 +187,6 @@ class _ResultMetric(Metric):
         super().__init__()
         self.is_tensor = is_tensor
         self.meta = metadata
-        self._enable_grad = metadata.enable_graph
         self.has_reset = False
         if is_tensor:
             if metadata.is_max_reduction:
@@ -264,7 +263,12 @@ class _ResultMetric(Metric):
 
     @override
     def forward(self, value: _VALUE, batch_size: int) -> None:
-        self.update(value, batch_size)
+        if self.meta.enable_graph:
+            with torch.no_grad():
+                self.update(value, batch_size)
+        else:
+            # performance: skip the `torch.no_grad` context manager by calling `update` directly
+            self.update(value, batch_size)
 
     @override
     def _wrap_compute(self, compute: Any) -> Any:
