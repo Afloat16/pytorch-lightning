@@ -1,0 +1,74 @@
+name: Capture ThinkRail Mermaid review pair
+'on':
+  push:
+    branches:
+    - validation/thinkrail-mermaid-shots-20261127
+permissions:
+  contents: read
+env:
+  TURBO_TELEMETRY_DISABLED: '1'
+  DO_NOT_TRACK: '1'
+jobs:
+  screenshots:
+    name: Mermaid review screenshot ${{ matrix.stage }}
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    env:
+      THINKRAIL_E2E_SKIP_BUILD: '1'
+      THINKRAIL_REVIEW_CAPTURE_STAGE: ${{ matrix.stage }}
+      THINKRAIL_REVIEW_CAPTURE_FEATURE: mermaid
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        repository: Afloat16/thinkrail
+        ref: ${{ matrix.ref }}
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22
+    - name: Install pinned dependencies
+      run: bun install --frozen-lockfile
+    - name: Start Chromium download
+      run: .github/scripts/install-playwright.sh start
+    - run: bun run build:web
+    - name: Finish Chromium installation
+      timeout-minutes: 8
+      run: .github/scripts/install-playwright.sh wait
+    - name: Capture Mermaid UI at 1280x1200
+      run: "cat > e2e/review-capture.spec.ts <<'CAPTURE_SPEC'\nimport { mkdirSync, writeFileSync } from \"node:fs\";\nimport { join } from \"node:path\";\nimport { expect, test } from \"@playwright/test\";\nimport { createWorkspaceViaDialog, openFixtureProject, revealWorkbenchTool } from \"./fixtures/app\";\nimport { commitFile } from \"./fixtures/git\";\nimport { pierreLines } from \"./fixtures/pierre\";\n\nconst stage = process.env.THINKRAIL_REVIEW_CAPTURE_STAGE;\nconst feature = process.env.THINKRAIL_REVIEW_CAPTURE_FEATURE;\nconst after = stage === \"after\";\nconst shots = join(process.env.GITHUB_WORKSPACE ?? process.cwd(), \".thinkrail/context/pr-shots\");\nconst longLine = 'export const payload = \"' + \"abcdefghij\".repeat(60) + '\";';\n\ntest(\"review capture for diff line wrapping\", async ({ page }) => {\n  test.skip(feature !== \"all\" && feature !== \"diff\");\n  await page.setViewportSize({ width: 1280, height: 1200 });\n  await openFixtureProject(page);\n  const workspace =\
+        \ await createWorkspaceViaDialog(page);\n  commitFile(workspace.worktreePath, \"capture-wrap.ts\",\n    \"export const v0 = 0;\\nexport const v1 = 1;\\nexport const v2 = 2;\\n\", \"seed source diff\");\n  writeFileSync(join(workspace.worktreePath, \"capture-wrap.ts\"),\n    \"export const v0 = 0;\\n\" + longLine + \"\\nexport const v2 = 2;\\n\");\n  await revealWorkbenchTool(page, \"changes\");\n  await page.getByTestId(\"change-item\").filter({ hasText: \"capture-wrap.ts\" }).dblclick();\n  const surface = page.getByTestId(\"diff-view\");\n  const line = pierreLines(surface, longLine).last();\n  await expect(line).toBeVisible();\n  if (after) {\n    const toggle = page.getByTestId(\"diff-toggle-wrap\");\n    await expect(toggle).toHaveAttribute(\"aria-pressed\", \"false\");\n    await toggle.click();\n    await expect(toggle).toHaveAttribute(\"aria-pressed\", \"true\");\n    await expect.poll(() => line.evaluate((element) =>\n      element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)\n\
+        \    )).toBeGreaterThan(2);\n  } else {\n    await expect(page.getByTestId(\"diff-toggle-wrap\")).toHaveCount(0);\n    await expect.poll(() => line.evaluate((element) =>\n      element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)\n    )).toBeLessThanOrEqual(1.2);\n  }\n  mkdirSync(shots, { recursive: true });\n  await page.screenshot({ path: join(shots, \"diff-line-wrap-\" + stage + \".png\"), animations: \"disabled\" });\n});\n\ntest(\"review capture for bounded inline Mermaid\", async ({ page }) => {\n  test.skip(feature !== \"all\" && feature !== \"mermaid\");\n  await page.setViewportSize({ width: 1280, height: 1200 });\n  await openFixtureProject(page);\n  const workspace = await createWorkspaceViaDialog(page);\n  const steps = Array.from({ length: 30 }, (_, i) =>\n    \"N\" + i + \"[Step \" + i + \"] --> N\" + (i + 1) + \"[Step \" + (i + 1) + \"]\").join(\"\\n\");\n  const fence = String.fromCharCode(96).repeat(3);\n  writeFileSync(join(workspace.worktreePath,\
+        \ \"TALL-DIAGRAM.md\"),\n    \"# Long diagram\\n\\n\" + fence + \"mermaid\\nflowchart TD\\n\" + steps + \"\\n\" + fence + \"\\n\\n\" +\n    Array.from({ length: 20 }, (_, i) => \"Paragraph after the diagram \" + i + \".\").join(\"\\n\\n\"));\n  await revealWorkbenchTool(page, \"files\");\n  const file = page.getByTestId(\"file-node\").filter({ hasText: \"TALL-DIAGRAM.md\" });\n  await expect(file).toBeVisible();\n  await file.dblclick();\n  const preview = page.getByTestId(\"markdown-preview\");\n  const viewport = preview.getByTestId(\"mermaid-svg\");\n  await expect(viewport.locator(\"svg\")).toBeVisible({ timeout: 20_000 });\n  if (after) {\n    await expect.poll(async () => (await viewport.boundingBox())?.height ?? 0).toBeCloseTo(480, 0);\n    await expect(preview.getByTestId(\"mermaid-zoom-level\")).toHaveText(\"100%\");\n  } else {\n    await expect.poll(async () => (await viewport.boundingBox())?.height ?? 0).toBeGreaterThan(1000);\n    await expect(preview.getByTestId(\"\
+        mermaid-zoom-level\")).toHaveCount(0);\n  }\n  await preview.evaluate((element) => { element.scrollTop = 0; });\n  mkdirSync(shots, { recursive: true });\n  await page.screenshot({ path: join(shots, \"inline-mermaid-\" + stage + \".png\"), animations: \"disabled\" });\n});\n\nCAPTURE_SPEC\nenv -u THINKRAIL_E2E_JOB_SHARD bun run e2e --serial e2e/review-capture.spec.ts"
+    - name: Remove capture scaffold
+      if: ${{ always() }}
+      run: rm -f e2e/review-capture.spec.ts
+    - name: Upload review screenshot
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: thinkrail-mermaid-${{ matrix.stage }}-1200
+        path: .thinkrail/context/pr-shots/*.png
+        include-hidden-files: true
+        retention-days: 7
+        if-no-files-found: error
+    - name: Upload failed capture report
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: thinkrail-mermaid-${{ matrix.stage }}-1200-report
+        path: playwright-report/
+        retention-days: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - stage: before
+          ref: 0880a5563c41650f4f9e011f0a61a974c0a0e930
+        - stage: after
+          ref: f0f44c812512bc80b0cdea9cdfce9f0cfe94d095
+
