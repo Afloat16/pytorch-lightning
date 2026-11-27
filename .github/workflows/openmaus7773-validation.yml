@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     env:
-      MAUS_CANDIDATE_SHA: 0d1d659f518c445b0f712a11c112e2533a0ae9a8
-      MAUS_CANDIDATE_TREE: 6b108a6db96f1353ce0ad516b5f8aa94510f80f2
+      MAUS_CANDIDATE_SHA: 46923b4a43dae57abc42dbe1244869764b653064
+      MAUS_CANDIDATE_TREE: 252c24cac5f1af96d374bcf2191b1bff4be2d863
       MAUS_BASE_SHA: 8e2e3223c4b8e0e267e0d4bbbb0a955b3cb50d81
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Afloat16/OpenMausBot
-          ref: 0d1d659f518c445b0f712a11c112e2533a0ae9a8
+          ref: 46923b4a43dae57abc42dbe1244869764b653064
           fetch-depth: 2
           persist-credentials: false
       - name: Verify exact source and scope
