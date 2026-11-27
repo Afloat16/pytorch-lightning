@@ -1,0 +1,89 @@
+name: Validate retained downloads after a destination collision
+on:
+  push:
+    branches: [validation/orca50581-download-custody-check-20261127]
+permissions:
+  contents: read
+jobs:
+  changed-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      ORCA_BACKGROUND_LAUNCH: '1'
+      ORCA_CANDIDATE_SHA: 928e7126bb32edd7dd282a61f2236182f1f1d861
+      ORCA_CANDIDATE_TREE: 26f1631528aab8217a7789c404b7e7d2debb6576
+      ORCA_BASE_SHA: 5713ace06a3edbbc0c827f74cb8c5e993c8b18b3
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: Afloat16/orca
+          ref: 928e7126bb32edd7dd282a61f2236182f1f1d861
+          fetch-depth: 50
+          persist-credentials: false
+      - name: Verify exact candidate and three-file scope
+        run: |
+          test "$(git rev-parse HEAD)" = "$ORCA_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$ORCA_CANDIDATE_TREE"
+          python3 - <<'PY'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['ORCA_BASE_SHA'], 'HEAD'], text=True).splitlines()
+          prefix = 'src/main/ipc/filesystem/downloads/'
+          expected = [prefix + name for name in ['filesystem-download-custody.test.ts', 'filesystem-download-handlers.ts', 'filesystem-download-promotion.ts']]
+          assert sorted(paths) == sorted(expected), paths
+          print('Verified exactly the two production files and the custody regression.')
+          PY
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: config/.bun-version
+          no-cache: true
+      - name: Install repository toolchain and native dependencies
+        uses: ./.github/actions/install-node-dependencies
+        with:
+          node-version: '24'
+          native-runtime: node
+          cache-pnpm-store: 'false'
+          cache-pnpm-verification: 'false'
+          persist-native-cache: 'false'
+      - name: Check source formatting
+        run: |
+          paths=(src/main/ipc/filesystem/downloads/filesystem-download-{handlers.ts,promotion.ts,custody.test.ts})
+          if ! pnpm exec oxfmt --check "${paths[@]}"; then
+            pnpm exec oxfmt --write "${paths[@]}"
+            git diff -- "${paths[@]}"
+            exit 1
+          fi
+      - name: Run required changed-file gate
+        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
+      - name: Prove both production-entrypoint regressions fail on the previous head
+        run: |
+          paths=(src/main/ipc/filesystem/downloads/filesystem-download-{handlers.ts,promotion.ts})
+          trap 'git restore --source="$ORCA_CANDIDATE_SHA" -- "${paths[@]}"' EXIT
+          for path in "${paths[@]}"; do
+            git show "$ORCA_BASE_SHA:$path" > "$path"
+          done
+          export DOWNLOAD_CONTROL_REPORT="$RUNNER_TEMP/download-custody-control.json"
+          set +e
+          timeout 900 pnpm test src/main/ipc/filesystem/downloads/filesystem-download-custody.test.ts --maxWorkers=2 --reporter=json --outputFile="$DOWNLOAD_CONTROL_REPORT"
+          result=$?
+          set -e
+          test "$result" -eq 1
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          result = json.loads(Path(os.environ['DOWNLOAD_CONTROL_REPORT']).read_text())
+          assert result['numTotalTests'] == 2, result
+          assert result['numFailedTests'] == 2, result
+          assert result['numPassedTests'] == 0, result
+          assertions = [test for suite in result['testResults'] for test in suite['assertionResults']]
+          assert len(assertions) == 2, assertions
+          for assertion in assertions:
+              assert 'expected [] to have a length of 1' in '\n'.join(assertion['failureMessages']), assertion
+          print('Both real download handlers lost the staging file on the prior head.')
+          PY
+          git restore --source="$ORCA_CANDIDATE_SHA" -- "${paths[@]}"
+          git diff --exit-code
+      - name: Record restored validation identity
+        run: |
+          git diff --exit-code
+          git rev-parse HEAD
+          git rev-parse 'HEAD^{tree}'
