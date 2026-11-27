@@ -1,0 +1,166 @@
+name: Validate OpenCode part read boundaries
+on:
+  push:
+    branches: [validation/orca-opencode-read-errors-20261127]
+permissions:
+  contents: read
+jobs:
+  changed-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      ORCA_BACKGROUND_LAUNCH: '1'
+      ORCA_CANDIDATE_SHA: 31fb0ff6753339e2c5f3e90a559deccefab2c2b3
+      ORCA_CANDIDATE_TREE: 750f11888c3587f246cc641dabba89678377bfa2
+      ORCA_BASE_SHA: 2c86f32e2447a3cdcdb74917fcedbe30507bc0bc
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: Afloat16/orca
+          ref: 31fb0ff6753339e2c5f3e90a559deccefab2c2b3
+          fetch-depth: 10
+          persist-credentials: false
+      - name: Verify exact candidate and scope
+        run: |
+          test "$(git rev-parse HEAD)" = "$ORCA_CANDIDATE_SHA"
+          test "$(git rev-parse 'HEAD^{tree}')" = "$ORCA_CANDIDATE_TREE"
+          python3 - <<'PY'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['ORCA_BASE_SHA'], 'HEAD'], text=True).splitlines()
+          assert sorted(paths) == ["src/main/ai-vault-search/indexing/session-search-opencode-json-read-errors.test.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-dependencies.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-parser.ts"], paths
+          print('Verified two production files and two public regressions in one test file.')
+          PY
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: config/.bun-version
+          no-cache: true
+      - name: Install repository toolchain and native dependencies
+        uses: ./.github/actions/install-node-dependencies
+        with:
+          node-version: '24'
+          native-runtime: node
+          cache-pnpm-store: 'false'
+          cache-pnpm-verification: 'false'
+          persist-native-cache: 'false'
+      - name: Check source formatting
+        run: |
+          if ! pnpm exec oxfmt --check src/main/ai-vault-search/indexing/session-search-opencode-json-read-errors.test.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-dependencies.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-parser.ts; then
+            pnpm exec oxfmt --write src/main/ai-vault-search/indexing/session-search-opencode-json-read-errors.test.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-dependencies.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-parser.ts
+            git diff -- src/main/ai-vault-search/indexing/session-search-opencode-json-read-errors.test.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-dependencies.ts src/main/ai-vault/scanners/opencode/session-scanner-opencode-parser.ts
+            exit 1
+          fi
+      - name: Run public read-boundary regressions
+        run: |
+          timeout 900 pnpm test src/main/ai-vault-search/indexing/session-search-opencode-json-read-errors.test.ts --maxWorkers=2 --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/opencode-read-errors-focused.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          r = json.loads((Path(os.environ['RUNNER_TEMP']) / 'opencode-read-errors-focused.json').read_text())
+          assert (r['numTotalTests'], r['numPassedTests'], r['numFailedTests']) == (2, 2, 0), r
+          print('Both public read-boundary regressions executed and passed.')
+          PY
+      - name: Run required changed-file gate
+        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
+      - name: Prove both faults on the current prior head
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, subprocess
+          paths = ["src/main/ai-vault/scanners/opencode/session-scanner-opencode-dependencies.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-parser.ts"]
+          saved = {p: Path(p).read_bytes() for p in paths}
+          try:
+              for path in paths:
+                  Path(path).write_bytes(subprocess.check_output(['git', 'show', os.environ['ORCA_BASE_SHA'] + ':' + path]))
+              output = Path(os.environ['RUNNER_TEMP']) / 'opencode-read-errors-baseline.json'
+              run = subprocess.run(['timeout', '900', 'pnpm', 'test', "src/main/ai-vault-search/indexing/session-search-opencode-json-read-errors.test.ts", '--maxWorkers=2', '--reporter=default', '--reporter=json', '--outputFile=' + str(output)], timeout=950)
+              report = json.loads(output.read_text())
+              assert run.returncode == 1, run.returncode
+              assert (report['numTotalTests'], report['numPassedTests'], report['numFailedTests']) == (2, 0, 2), report
+              assertions = [item for suite in report['testResults'] for item in suite['assertionResults']]
+              assert len(assertions) == 2
+              for assertion in assertions:
+                  assert assertion['status'] == 'failed', assertion
+                  assert any('AssertionError' in message for message in assertion.get('failureMessages', [])), assertion
+              summary = {'base': os.environ['ORCA_BASE_SHA'], 'executed': 2, 'assertion_failures': 2, 'tests': [{'name': a['fullName'], 'status': a['status']} for a in assertions]}
+              print(json.dumps(summary), flush=True)
+              (Path(os.environ['RUNNER_TEMP']) / 'opencode-read-errors-controls.json').write_text(json.dumps(summary, indent=2) + '\n')
+          finally:
+              for path, data in saved.items(): Path(path).write_bytes(data)
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          PY
+      - name: Compare current and revised discovery cost
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, statistics, subprocess
+          production = ["src/main/ai-vault/scanners/opencode/session-scanner-opencode-dependencies.ts","src/main/ai-vault/scanners/opencode/session-scanner-opencode-parser.ts"]
+          saved = {p: Path(p).read_bytes() for p in production}
+          probe = Path("src/main/ai-vault-search/indexing/session-search-opencode-json-refresh.performance.test.ts")
+          probe.write_text("import { writeFile } from 'node:fs/promises'\nimport { join, sep } from 'node:path'\nimport { performance } from 'node:perf_hooks'\nimport { expect, it, vi } from 'vitest'\nimport { isolatedScanRoots } from '../../ai-vault/scanner-fixtures/session-scanner-test-fixtures'\nimport { scanAiVaultSessions } from '../../ai-vault/session-scanner'\nimport { resetSessionParseCacheForTests } from '../../ai-vault/parse-cache/session-parse-cache-store'\nimport * as transcriptFs from '../../native-chat/transcript-filesystem/wsl-transcript-fs-access'\n\nit('measures repeated scans of forty saved legacy sessions with four thousand parts', async () => {\n  const root = process.env.ORCA_LEGACY_BENCH_ROOT\n  const output = process.env.ORCA_LEGACY_BENCH_OUTPUT\n  if (!root || !output) throw new Error('Missing benchmark paths')\n  const roots = isolatedScanRoots(root)\n  const options = { ...roots, unlimited: true }\n  resetSessionParseCacheForTests()\n  for (let i = 0; i < 2; i++) {\n    const scanned = await scanAiVaultSessions(options)\n    expect(scanned.sessions).toHaveLength(40)\n    expect(scanned.sessions.every((session) => session.previewMessages[0]?.text.startsWith('Prompt segment 000.'))).toBe(true)\n  }\n  const dependencyRoots = [\n    join(roots.opencodeStorageDir, 'message') + sep,\n    join(roots.opencodeStorageDir, 'part') + sep\n  ]\n  const underDependencies = (path: string) => dependencyRoots.some((prefix) => path.startsWith(prefix))\n  const stats = vi.spyOn(transcriptFs, 'wslGatedStat')\n  const dirs = vi.spyOn(transcriptFs, 'wslGatedReaddir')\n  const reads = vi.spyOn(transcriptFs, 'wslGatedReadFile')\n  await scanAiVaultSessions(options)\n  const io = {\n    dependencyStats: stats.mock.calls.filter(([path]) => underDependencies(path)).length,\n    dependencyDirectoryReads: dirs.mock.calls.filter(([path]) => underDependencies(path)).length,\n    dependencyContentReads: reads.mock.calls.filter(([path]) => underDependencies(path)).length\n  }\n  stats.mockRestore()\n  dirs.mockRestore()\n  reads.mockRestore()\n  const samplesMs: number[] = []\n  for (let i = 0; i < 5; i++) {\n    const start = performance.now()\n    const scanned = await scanAiVaultSessions(options)\n    samplesMs.push(performance.now() - start)\n    expect(scanned.sessions).toHaveLength(40)\n  }\n  const medianMs = [...samplesMs].sort((a, b) => a - b)[2]\n  const result = { version: process.env.ORCA_LEGACY_BENCH_VERSION, io, medianMs, samplesMs }\n  await writeFile(output, JSON.stringify(result))\n  console.log(JSON.stringify(result))\n})\n")
+          root = Path(os.environ['RUNNER_TEMP']) / 'opencode-legacy-benchmark'
+          storage = root / 'opencode-storage'
+          def put(path, value):
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(value, separators=(',', ':')))
+              os.utime(path, (1784109600, 1784109600))
+          for session in range(40):
+              sid = f'ses_{session:02d}'
+              mid = f'msg_{session:02d}'
+              put(storage / 'session' / 'project' / (sid + '.json'), {'id': sid, 'title': f'Legacy {session}', 'directory': str(root), 'time': {'created': 1784109600000, 'updated': 1784109600001}})
+              put(storage / 'message' / sid / (mid + '.json'), {'id': mid, 'sessionID': sid, 'role': 'user', 'time': {'created': 1784109600000}})
+              for part in range(100):
+                  pid = f'prt_{part:03d}'
+                  put(storage / 'part' / mid / (pid + '.json'), {'id': pid, 'type': 'text', 'text': f'Prompt segment {part:03d}.'})
+          reports = []
+          try:
+              for pair in range(7):
+                  order = ['baseline', 'candidate'] if pair % 2 == 0 else ['candidate', 'baseline']
+                  paired = {}
+                  for version in order:
+                      for path, data in saved.items():
+                          if version == 'candidate': Path(path).write_bytes(data); continue
+                          before = subprocess.run(['git', 'show', os.environ['ORCA_BASE_SHA'] + ':' + path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                          assert before.returncode == 0, (path, before.stderr.decode())
+                          Path(path).write_bytes(before.stdout)
+                      output = Path(os.environ['RUNNER_TEMP']) / f'opencode-benchmark-{pair}-{version}.json'
+                      test_report = Path(os.environ['RUNNER_TEMP']) / f'opencode-benchmark-tests-{pair}-{version}.json'
+                      env = {**os.environ, 'ORCA_LEGACY_BENCH_ROOT': str(root), 'ORCA_LEGACY_BENCH_OUTPUT': str(output), 'ORCA_LEGACY_BENCH_VERSION': version}
+                      run = subprocess.run(['timeout', '900', 'pnpm', 'exec', 'vitest', 'run', '--config', 'config/vitest.performance.config.ts', str(probe), '--maxWorkers=2', '--reporter=default', '--reporter=json', '--outputFile=' + str(test_report)], env=env, timeout=950)
+                      tested = json.loads(test_report.read_text())
+                      assert run.returncode == 0 and tested['numPassedTests'] == 1 and tested['numFailedTests'] == 0, (version, tested)
+                      paired[version] = json.loads(output.read_text())
+                  paired['ratio'] = paired['candidate']['medianMs'] / paired['baseline']['medianMs']
+                  reports.append(paired); print(json.dumps({'pair': pair, **paired}), flush=True)
+          finally:
+              for path, data in saved.items(): Path(path).write_bytes(data)
+              probe.unlink(missing_ok=True)
+          summary = {
+              'candidate_sha': os.environ['ORCA_CANDIDATE_SHA'], 'base_sha': os.environ['ORCA_BASE_SHA'],
+              'node': subprocess.check_output(['node', '--version'], text=True).strip(),
+              'fixture': {'sessions': 40, 'messages_per_session': 1, 'parts_per_message': 100, 'parts': 4000},
+              'protocol': 'Same on-disk inputs; 7 alternating paired processes per version; each warms twice, measures real dependency I/O once, then measures 5 scans without spies; median of per-process medians.',
+              'baseline_median_ms': statistics.median(p['baseline']['medianMs'] for p in reports),
+              'candidate_median_ms': statistics.median(p['candidate']['medianMs'] for p in reports),
+              'paired_median_ratio': statistics.median(p['ratio'] for p in reports),
+              'pairs': reports
+          }
+          (Path(os.environ['RUNNER_TEMP']) / 'opencode-benchmark-results.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps(summary), flush=True)
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          PY
+      - name: Record exact validated identity
+        run: |
+          git diff --exit-code
+          git status --short
+          git rev-parse HEAD
+          git rev-parse 'HEAD^{tree}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: opencode-read-errors-evidence
+          path: |
+            ${{ runner.temp }}/opencode-read-errors-focused.json
+            ${{ runner.temp }}/opencode-read-errors-baseline.json
+            ${{ runner.temp }}/opencode-read-errors-controls.json
+            ${{ runner.temp }}/opencode-benchmark-results.json
+          if-no-files-found: ignore
