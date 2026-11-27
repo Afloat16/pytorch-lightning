@@ -1,4 +1,4 @@
-name: Validate OpenCode part read boundaries
+name: Diagnose OpenCode read boundary evidence
 on:
   push:
     branches: [validation/orca-opencode-read-errors-20261127]
@@ -59,8 +59,39 @@ jobs:
           assert (r['numTotalTests'], r['numPassedTests'], r['numFailedTests']) == (2, 2, 0), r
           print('Both public read-boundary regressions executed and passed.')
           PY
-      - name: Run required changed-file gate
-        run: timeout 900 pnpm check:changed --base="$ORCA_BASE_SHA" --maxWorkers=2
+      - name: Reproduce inherited ratchets on exact prior source
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os, subprocess
+          candidate = os.environ['ORCA_CANDIDATE_SHA']
+          baseline = os.environ['ORCA_BASE_SHA']
+          checks = [
+              ('main-blocking-api-ratchet', [
+                  'src/main/ai-vault-search/storage/session-search-schema.ts: 14 blocking sqlite use(s), baseline allows 13.',
+                  'src/main/ai-vault/parse-cache/session-parse-cache-schema.ts: 6 blocking sqlite use(s), baseline allows 0.'
+              ]),
+              ('main-blocking-helper-ratchet', [
+                  'src/main/ai-vault/parse-cache/session-parse-cache-database.ts: 10 blocking helper reference(s), baseline allows 9.'
+              ])
+          ]
+          results = []
+          try:
+              subprocess.run(['git', 'switch', '--detach', baseline], check=True)
+              assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == baseline
+              assert subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip() == '8f1428cab41cb2893f8b0153e218f2e02ad5d279'
+              for name, expected in checks:
+                  run = subprocess.run(['timeout', '900', 'node', 'config/scripts/static-analysis/ratchets/runtime-lifecycle/check-' + name + '.mjs'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=950)
+                  print(run.stdout, flush=True)
+                  assert run.returncode == 1, (name, run.returncode)
+                  assert all(item in run.stdout for item in expected), (name, run.stdout)
+                  results.append({'name': name, 'exit_code': run.returncode, 'inherited_diagnostics': expected})
+          finally:
+              subprocess.run(['git', 'switch', '--detach', candidate], check=True)
+          report = {'baseline': baseline, 'candidate': candidate, 'results': results}
+          (Path(os.environ['RUNNER_TEMP']) / 'opencode-inherited-ratchets.json').write_text(json.dumps(report, indent=2) + '\n')
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          PY
       - name: Prove both faults on the current prior head
         run: |
           python3 - <<'PY'
@@ -163,4 +194,5 @@ jobs:
             ${{ runner.temp }}/opencode-read-errors-baseline.json
             ${{ runner.temp }}/opencode-read-errors-controls.json
             ${{ runner.temp }}/opencode-benchmark-results.json
+            ${{ runner.temp }}/opencode-inherited-ratchets.json
           if-no-files-found: ignore
