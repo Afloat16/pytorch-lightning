@@ -1,0 +1,39 @@
+name: Validate Elements native Windows paths
+on:
+  push:
+    branches: [validation/elements-windows-20261127]
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    env:
+      DO_NOT_TRACK: '1'
+      WANDB_MODE: disabled
+      UV_EXCLUDE_NEWER: 2 days
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: Afloat16/elements
+          ref: 51066d38b4f200c8e3f97072fbd86e9b2d21edcf
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+        with:
+          python-version: '3.12'
+          enable-cache: false
+      - name: Verify exact current source
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = 51066d38b4f200c8e3f97072fbd86e9b2d21edcf
+          git rev-parse 'HEAD^{tree}'
+          git diff --exit-code
+      - name: Run the complete repository test selection on Windows
+        shell: bash
+        run: uv run --frozen --group dev --extra extra pytest -q
+      - name: Build source and wheel distributions
+        shell: bash
+        run: uv build
+      - name: Confirm source and lockfile remained unchanged
+        shell: bash
+        run: git diff --exit-code
