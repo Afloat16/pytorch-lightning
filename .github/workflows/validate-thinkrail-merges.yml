@@ -1,0 +1,387 @@
+name: Validate ThinkRail conflict integrations
+'on':
+  push:
+    branches:
+    - validation/thinkrail-merges-20261127
+permissions:
+  contents: read
+env:
+  TURBO_TELEMETRY_DISABLED: '1'
+  DO_NOT_TRACK: '1'
+jobs:
+  fast:
+    name: Fast gates PR ${{ matrix.pr }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - pr: 1491
+          ref: 725e4b7909788d2d7f93c90d4d3ced0804e6e433
+          feature: diff
+        - pr: 1504
+          ref: f0f44c812512bc80b0cdea9cdfce9f0cfe94d095
+          feature: mermaid
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        repository: Afloat16/thinkrail
+        ref: ${{ matrix.ref }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Verify candidate and whitespace
+      run: |-
+        test "$(git rev-parse HEAD)" = "${{ matrix.ref }}"
+        git diff --check HEAD^2 HEAD
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22
+    - name: Install pinned dependencies
+      run: bun install --frozen-lockfile
+    - name: Static and boundary gates
+      run: |-
+        bun run check:deps
+        bun run check:boundaries
+        bun run check:seams
+        bun run check:spec-surface
+        bun run check:i18n
+        bun run check:compiler
+        bun run lint
+    - name: Prepare desktop typecheck inputs
+      run: .github/scripts/prepare-electrobun.sh
+    - name: Full typecheck
+      run: bun run typecheck
+  unit:
+    name: Unit tests PR ${{ matrix.pr }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - pr: 1491
+          ref: 725e4b7909788d2d7f93c90d4d3ced0804e6e433
+          feature: diff
+        - pr: 1504
+          ref: f0f44c812512bc80b0cdea9cdfce9f0cfe94d095
+          feature: mermaid
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        repository: Afloat16/thinkrail
+        ref: ${{ matrix.ref }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Verify candidate and whitespace
+      run: |-
+        test "$(git rev-parse HEAD)" = "${{ matrix.ref }}"
+        git diff --check HEAD^2 HEAD
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22
+    - name: Install pinned dependencies
+      run: bun install --frozen-lockfile
+    - run: bun run test
+  e2e:
+    name: No-agent PR ${{ matrix.pr }} shard ${{ matrix.shard }}/3
+    runs-on: ubuntu-26.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - pr: 1491
+          ref: 725e4b7909788d2d7f93c90d4d3ced0804e6e433
+          feature: diff
+          shard: 1
+        - pr: 1491
+          ref: 725e4b7909788d2d7f93c90d4d3ced0804e6e433
+          feature: diff
+          shard: 2
+        - pr: 1491
+          ref: 725e4b7909788d2d7f93c90d4d3ced0804e6e433
+          feature: diff
+          shard: 3
+        - pr: 1504
+          ref: f0f44c812512bc80b0cdea9cdfce9f0cfe94d095
+          feature: mermaid
+          shard: 1
+        - pr: 1504
+          ref: f0f44c812512bc80b0cdea9cdfce9f0cfe94d095
+          feature: mermaid
+          shard: 2
+        - pr: 1504
+          ref: f0f44c812512bc80b0cdea9cdfce9f0cfe94d095
+          feature: mermaid
+          shard: 3
+    env:
+      THINKRAIL_E2E_JOB_SHARD: ${{ matrix.shard }}/3
+      THINKRAIL_E2E_SKIP_BUILD: '1'
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        repository: Afloat16/thinkrail
+        ref: ${{ matrix.ref }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Verify candidate and whitespace
+      run: |-
+        test "$(git rev-parse HEAD)" = "${{ matrix.ref }}"
+        git diff --check HEAD^2 HEAD
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22
+    - name: Install pinned dependencies
+      run: bun install --frozen-lockfile
+    - name: Start browser downloads
+      run: .github/scripts/install-playwright.sh start webkit
+    - name: Install WebKit system libraries
+      uses: ./.github/actions/apt-packages
+      timeout-minutes: 10
+      with:
+        set: webkit
+    - run: bun run build:web
+    - name: Finish browser installation
+      timeout-minutes: 8
+      run: .github/scripts/install-playwright.sh wait webkit
+    - name: Complete no-agent suite slice
+      run: bun run e2e
+    - name: Capture branch UI
+      if: ${{ matrix.shard == 1 }}
+      env:
+        THINKRAIL_REVIEW_CAPTURE_STAGE: after
+        THINKRAIL_REVIEW_CAPTURE_FEATURE: ${{ matrix.feature }}
+      run: |-
+        cat > e2e/review-capture.spec.ts <<'CAPTURE_SPEC'
+        import { mkdirSync, writeFileSync } from "node:fs";
+        import { join } from "node:path";
+        import { expect, test } from "@playwright/test";
+        import { createWorkspaceViaDialog, openFixtureProject, revealWorkbenchTool } from "./fixtures/app";
+        import { commitFile } from "./fixtures/git";
+        import { pierreLines } from "./fixtures/pierre";
+
+        const stage = process.env.THINKRAIL_REVIEW_CAPTURE_STAGE;
+        const feature = process.env.THINKRAIL_REVIEW_CAPTURE_FEATURE;
+        const after = stage === "after";
+        const shots = join(process.env.GITHUB_WORKSPACE ?? process.cwd(), ".thinkrail/context/pr-shots");
+        const longLine = 'export const payload = "' + "abcdefghij".repeat(60) + '";';
+
+        test("review capture for diff line wrapping", async ({ page }) => {
+          test.skip(feature !== "all" && feature !== "diff");
+          await page.setViewportSize({ width: 1280, height: 900 });
+          await openFixtureProject(page);
+          const workspace = await createWorkspaceViaDialog(page);
+          commitFile(workspace.worktreePath, "capture-wrap.ts",
+            "export const v0 = 0;\nexport const v1 = 1;\nexport const v2 = 2;\n", "seed source diff");
+          writeFileSync(join(workspace.worktreePath, "capture-wrap.ts"),
+            "export const v0 = 0;\n" + longLine + "\nexport const v2 = 2;\n");
+          await revealWorkbenchTool(page, "changes");
+          await page.getByTestId("change-item").filter({ hasText: "capture-wrap.ts" }).dblclick();
+          const surface = page.getByTestId("diff-view");
+          const line = pierreLines(surface, longLine).last();
+          await expect(line).toBeVisible();
+          if (after) {
+            const toggle = page.getByTestId("diff-toggle-wrap");
+            await expect(toggle).toHaveAttribute("aria-pressed", "false");
+            await toggle.click();
+            await expect(toggle).toHaveAttribute("aria-pressed", "true");
+            await expect.poll(() => line.evaluate((element) =>
+              element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)
+            )).toBeGreaterThan(2);
+          } else {
+            await expect(page.getByTestId("diff-toggle-wrap")).toHaveCount(0);
+            await expect.poll(() => line.evaluate((element) =>
+              element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)
+            )).toBeLessThanOrEqual(1.2);
+          }
+          mkdirSync(shots, { recursive: true });
+          await page.screenshot({ path: join(shots, "diff-line-wrap-" + stage + ".png"), animations: "disabled" });
+        });
+
+        test("review capture for bounded inline Mermaid", async ({ page }) => {
+          test.skip(feature !== "all" && feature !== "mermaid");
+          await page.setViewportSize({ width: 1280, height: 900 });
+          await openFixtureProject(page);
+          const workspace = await createWorkspaceViaDialog(page);
+          const steps = Array.from({ length: 30 }, (_, i) =>
+            "N" + i + "[Step " + i + "] --> N" + (i + 1) + "[Step " + (i + 1) + "]").join("\n");
+          const fence = String.fromCharCode(96).repeat(3);
+          writeFileSync(join(workspace.worktreePath, "TALL-DIAGRAM.md"),
+            "# Long diagram\n\n" + fence + "mermaid\nflowchart TD\n" + steps + "\n" + fence + "\n\n" +
+            Array.from({ length: 20 }, (_, i) => "Paragraph after the diagram " + i + ".").join("\n\n"));
+          await revealWorkbenchTool(page, "files");
+          const file = page.getByTestId("file-node").filter({ hasText: "TALL-DIAGRAM.md" });
+          await expect(file).toBeVisible();
+          await file.dblclick();
+          const preview = page.getByTestId("markdown-preview");
+          const viewport = preview.getByTestId("mermaid-svg");
+          await expect(viewport.locator("svg")).toBeVisible({ timeout: 20_000 });
+          if (after) {
+            await expect.poll(async () => (await viewport.boundingBox())?.height ?? 0).toBeCloseTo(480, 0);
+            await expect(preview.getByTestId("mermaid-zoom-level")).toHaveText("100%");
+          } else {
+            await expect.poll(async () => (await viewport.boundingBox())?.height ?? 0).toBeGreaterThan(1000);
+            await expect(preview.getByTestId("mermaid-zoom-level")).toHaveCount(0);
+          }
+          await preview.evaluate((element) => { element.scrollTop = 0; });
+          mkdirSync(shots, { recursive: true });
+          await page.screenshot({ path: join(shots, "inline-mermaid-" + stage + ".png"), animations: "disabled" });
+        });
+        CAPTURE_SPEC
+        env -u THINKRAIL_E2E_JOB_SHARD bun run e2e --serial e2e/review-capture.spec.ts
+    - name: Remove capture scaffold
+      if: ${{ always() && matrix.shard == 1 }}
+      run: rm -f e2e/review-capture.spec.ts
+    - name: Upload branch screenshots
+      if: ${{ always() && matrix.shard == 1 }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: thinkrail-pr-${{ matrix.pr }}-after
+        path: .thinkrail/context/pr-shots/*.png
+        include-hidden-files: true
+        retention-days: 7
+        if-no-files-found: warn
+    - name: Upload failed browser report
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: thinkrail-pr-${{ matrix.pr }}-shard-${{ matrix.shard }}-report
+        path: playwright-report/
+        retention-days: 7
+  screenshots:
+    name: Base UI screenshots
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    env:
+      THINKRAIL_E2E_SKIP_BUILD: '1'
+      THINKRAIL_REVIEW_CAPTURE_STAGE: before
+      THINKRAIL_REVIEW_CAPTURE_FEATURE: all
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        repository: Afloat16/thinkrail
+        ref: 0880a5563c41650f4f9e011f0a61a974c0a0e930
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22
+    - name: Install pinned dependencies
+      run: bun install --frozen-lockfile
+    - name: Start Chromium download
+      run: .github/scripts/install-playwright.sh start
+    - run: bun run build:web
+    - name: Finish Chromium installation
+      timeout-minutes: 8
+      run: .github/scripts/install-playwright.sh wait
+    - name: Capture base UI
+      run: |-
+        cat > e2e/review-capture.spec.ts <<'CAPTURE_SPEC'
+        import { mkdirSync, writeFileSync } from "node:fs";
+        import { join } from "node:path";
+        import { expect, test } from "@playwright/test";
+        import { createWorkspaceViaDialog, openFixtureProject, revealWorkbenchTool } from "./fixtures/app";
+        import { commitFile } from "./fixtures/git";
+        import { pierreLines } from "./fixtures/pierre";
+
+        const stage = process.env.THINKRAIL_REVIEW_CAPTURE_STAGE;
+        const feature = process.env.THINKRAIL_REVIEW_CAPTURE_FEATURE;
+        const after = stage === "after";
+        const shots = join(process.env.GITHUB_WORKSPACE ?? process.cwd(), ".thinkrail/context/pr-shots");
+        const longLine = 'export const payload = "' + "abcdefghij".repeat(60) + '";';
+
+        test("review capture for diff line wrapping", async ({ page }) => {
+          test.skip(feature !== "all" && feature !== "diff");
+          await page.setViewportSize({ width: 1280, height: 900 });
+          await openFixtureProject(page);
+          const workspace = await createWorkspaceViaDialog(page);
+          commitFile(workspace.worktreePath, "capture-wrap.ts",
+            "export const v0 = 0;\nexport const v1 = 1;\nexport const v2 = 2;\n", "seed source diff");
+          writeFileSync(join(workspace.worktreePath, "capture-wrap.ts"),
+            "export const v0 = 0;\n" + longLine + "\nexport const v2 = 2;\n");
+          await revealWorkbenchTool(page, "changes");
+          await page.getByTestId("change-item").filter({ hasText: "capture-wrap.ts" }).dblclick();
+          const surface = page.getByTestId("diff-view");
+          const line = pierreLines(surface, longLine).last();
+          await expect(line).toBeVisible();
+          if (after) {
+            const toggle = page.getByTestId("diff-toggle-wrap");
+            await expect(toggle).toHaveAttribute("aria-pressed", "false");
+            await toggle.click();
+            await expect(toggle).toHaveAttribute("aria-pressed", "true");
+            await expect.poll(() => line.evaluate((element) =>
+              element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)
+            )).toBeGreaterThan(2);
+          } else {
+            await expect(page.getByTestId("diff-toggle-wrap")).toHaveCount(0);
+            await expect.poll(() => line.evaluate((element) =>
+              element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)
+            )).toBeLessThanOrEqual(1.2);
+          }
+          mkdirSync(shots, { recursive: true });
+          await page.screenshot({ path: join(shots, "diff-line-wrap-" + stage + ".png"), animations: "disabled" });
+        });
+
+        test("review capture for bounded inline Mermaid", async ({ page }) => {
+          test.skip(feature !== "all" && feature !== "mermaid");
+          await page.setViewportSize({ width: 1280, height: 900 });
+          await openFixtureProject(page);
+          const workspace = await createWorkspaceViaDialog(page);
+          const steps = Array.from({ length: 30 }, (_, i) =>
+            "N" + i + "[Step " + i + "] --> N" + (i + 1) + "[Step " + (i + 1) + "]").join("\n");
+          const fence = String.fromCharCode(96).repeat(3);
+          writeFileSync(join(workspace.worktreePath, "TALL-DIAGRAM.md"),
+            "# Long diagram\n\n" + fence + "mermaid\nflowchart TD\n" + steps + "\n" + fence + "\n\n" +
+            Array.from({ length: 20 }, (_, i) => "Paragraph after the diagram " + i + ".").join("\n\n"));
+          await revealWorkbenchTool(page, "files");
+          const file = page.getByTestId("file-node").filter({ hasText: "TALL-DIAGRAM.md" });
+          await expect(file).toBeVisible();
+          await file.dblclick();
+          const preview = page.getByTestId("markdown-preview");
+          const viewport = preview.getByTestId("mermaid-svg");
+          await expect(viewport.locator("svg")).toBeVisible({ timeout: 20_000 });
+          if (after) {
+            await expect.poll(async () => (await viewport.boundingBox())?.height ?? 0).toBeCloseTo(480, 0);
+            await expect(preview.getByTestId("mermaid-zoom-level")).toHaveText("100%");
+          } else {
+            await expect.poll(async () => (await viewport.boundingBox())?.height ?? 0).toBeGreaterThan(1000);
+            await expect(preview.getByTestId("mermaid-zoom-level")).toHaveCount(0);
+          }
+          await preview.evaluate((element) => { element.scrollTop = 0; });
+          mkdirSync(shots, { recursive: true });
+          await page.screenshot({ path: join(shots, "inline-mermaid-" + stage + ".png"), animations: "disabled" });
+        });
+        CAPTURE_SPEC
+        env -u THINKRAIL_E2E_JOB_SHARD bun run e2e --serial e2e/review-capture.spec.ts
+    - name: Remove capture scaffold
+      if: ${{ always() }}
+      run: rm -f e2e/review-capture.spec.ts
+    - name: Upload base screenshots
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: thinkrail-base-before
+        path: .thinkrail/context/pr-shots/*.png
+        include-hidden-files: true
+        retention-days: 7
+        if-no-files-found: error
+    - name: Upload failed capture report
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: thinkrail-base-capture-report
+        path: playwright-report/
+        retention-days: 7
