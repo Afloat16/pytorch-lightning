@@ -10,14 +10,14 @@ jobs:
     timeout-minutes: 35
     env:
       ORCA_BACKGROUND_LAUNCH: '1'
-      ORCA_CANDIDATE_SHA: d73f16a051a073691adb6971328ebbf3401dcd86
-      ORCA_CANDIDATE_TREE: 9940f50bb315bef644cb5d3b6c46e8e8082034a4
+      ORCA_CANDIDATE_SHA: 104c11b76b2e84fa681fbecfc46a6aaa7b5e15d4
+      ORCA_CANDIDATE_TREE: 76b29ca1e3916f016b7af5c4cf827a00af5d9385
       ORCA_BASE_SHA: 251e9b0558be785f206aece6368a17b72e15c3b5
     steps:
       - uses: actions/checkout@v6
         with:
           repository: Afloat16/orca
-          ref: d73f16a051a073691adb6971328ebbf3401dcd86
+          ref: 104c11b76b2e84fa681fbecfc46a6aaa7b5e15d4
           fetch-depth: 50
           persist-credentials: false
       - name: Verify exact candidate and change scope
@@ -66,7 +66,7 @@ jobs:
           from pathlib import Path
           result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-main-control.json').read_text())
           assert result['numFailedTests'] >= 5, result
-          assert result['numTotalTests'] == 8, result
+          assert result['numTotalTests'] == 9, result
           print('Upstream negative control:', result['numFailedTests'], 'failed;', result['numPassedTests'], 'passed.')
           PY
           git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
@@ -85,9 +85,9 @@ jobs:
           import json, os
           from pathlib import Path
           result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-review-control.json').read_text())
-          assert result['numFailedTests'] == 3, result
+          assert result['numFailedTests'] == 4, result
           assert result['numPassedTests'] == 5, result
-          print('The three review regressions fail on the published implementation; the original five tests pass.')
+          print('The four review regressions fail on the published implementation; the original five tests pass.')
           PYCONTROL
           git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
           git diff --exit-code
@@ -105,9 +105,29 @@ jobs:
           import json, os
           from pathlib import Path
           result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-literal-control.json').read_text())
-          assert result['numFailedTests'] == 1, result
+          assert result['numFailedTests'] == 2, result
           assert result['numPassedTests'] == 7, result
-          print('The Content-ID literal regression fails on the intermediate normalization; the other seven tests pass.')
+          print('Content-ID literal and disposition regressions fail on the intermediate normalization; the other seven tests pass.')
+          PYCONTROL
+          git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
+          git diff --exit-code
+      - name: Verify disposition comments fail on the preceding published parser
+        run: |
+          path=src/main/google/google-gmail-message.ts
+          trap 'git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"' EXIT
+          git show d73f16a051a073691adb6971328ebbf3401dcd86:"$path" > "$path"
+          set +e
+          timeout 900 pnpm test src/main/google/google-gmail-message.test.ts --maxWorkers=2 --reporter=json --outputFile="$RUNNER_TEMP/gmail-disposition-control.json"
+          result=$?
+          set -e
+          test "$result" -eq 1
+          python3 - <<'PYCONTROL'
+          import json, os
+          from pathlib import Path
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gmail-disposition-control.json').read_text())
+          assert result['numFailedTests'] == 1, result
+          assert result['numPassedTests'] == 8, result
+          print('Disposition regression fails on d73f16a; the preceding eight tests pass.')
           PYCONTROL
           git restore --source="$ORCA_CANDIDATE_SHA" -- "$path"
           git diff --exit-code
