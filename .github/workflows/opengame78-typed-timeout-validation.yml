@@ -1,0 +1,63 @@
+name: Validate source update lock timeout
+on:
+  push:
+    branches:
+      - validation/opengame78-typed-timeout-20261127
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          repository: Afloat16/opengame
+          ref: 01c59d8cb1c2862395bc97c700637cdad3dd668c
+          fetch-depth: 2
+          lfs: false
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '26.11.1'
+          cache: npm
+      - name: Verify exact candidate
+        run: |
+          test "$(git rev-parse HEAD)" = "01c59d8cb1c2862395bc97c700637cdad3dd668c"
+          test "$(git rev-parse HEAD^{tree})" = "3e1aeb6ff047685f5877d83b4754bb97e8e8d5b4"
+          git diff --check HEAD^ HEAD
+          node --version
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Source checks
+        run: npm run check
+      - name: Studio types
+        run: npm run typecheck:studio
+      - name: Studio build
+        run: npm run build:studio
+      - name: Lock and source update regressions
+        run: node --test --test-reporter=tap --test-concurrency=1 tests/process-lock.test.ts tests/source-update-checkout-lock.test.ts tests/source-update.test.ts
+      - name: Prove reclaim regression against the published parent and restore
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          files = ['shared/process-lock.ts', 'shared/source-update.ts']
+          saved = {p: Path(p).read_bytes() for p in files}
+          try:
+              for p in files:
+                  Path(p).write_bytes(subprocess.check_output(['git', 'show', 'ca6cc3aed5872d911eea18a2d1719a1711f7b88f:' + p]))
+              result = subprocess.run(['node', '--test', '--test-reporter=tap', '--test-name-pattern=^a reclaim timeout records contention and preserves the stale owner until retry$', 'tests/source-update-checkout-lock.test.ts'], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+              print(result.stdout)
+              assert result.returncode == 1, result.returncode
+              assert '# pass 0' in result.stdout and '# fail 1' in result.stdout and '# cancelled 0' in result.stdout, 'Expected one executed failing regression'
+              assert 'Timed out waiting for OpenMotion lock:' in result.stdout and '.reclaim' in result.stdout, 'Expected the actual uncaught reclaim timeout'
+          finally:
+              for p, content in saved.items():
+                  Path(p).write_bytes(content)
+                  assert Path(p).read_bytes() == content
+          subprocess.run(['git', 'diff', '--exit-code'], check=True)
+          assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == '01c59d8cb1c2862395bc97c700637cdad3dd668c'
+          print('Published parent fails the reclaim regression; exact candidate restored cleanly.')
+          PY
