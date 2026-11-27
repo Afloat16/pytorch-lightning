@@ -28,7 +28,12 @@ jobs:
           test "$(git rev-parse HEAD)" = 51066d38b4f200c8e3f97072fbd86e9b2d21edcf
           git rev-parse 'HEAD^{tree}'
           git diff --exit-code
+      - name: Run native path regressions
+        shell: bash
+        run: uv run --frozen --group dev --extra extra pytest -q tests/test_path.py
       - name: Run the complete repository test selection on Windows
+        id: full_suite
+        continue-on-error: true
         shell: bash
         run: uv run --frozen --group dev --extra extra pytest -q
       - name: Build source and wheel distributions
@@ -37,3 +42,21 @@ jobs:
       - name: Confirm source and lockfile remained unchanged
         shell: bash
         run: git diff --exit-code
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: danijar/elements
+          ref: d664f8124cd647ba77131950ed35b3faf717d291
+          path: baseline
+          persist-credentials: false
+      - name: Verify baseline source and compare the unchanged full suite
+        id: baseline_suite
+        continue-on-error: true
+        working-directory: baseline
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = d664f8124cd647ba77131950ed35b3faf717d291
+          uv run --frozen --group dev --extra extra pytest -q
+      - name: Preserve the full current-head failure status
+        if: steps.full_suite.outcome != 'success'
+        shell: bash
+        run: exit 1
